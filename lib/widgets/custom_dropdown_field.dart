@@ -5,12 +5,14 @@ class CustomDropdownField extends StatelessWidget {
   final List<String> options;
   final ValueChanged<String?> onChanged;
   final String? value;
+  final String? labelText;
 
   CustomDropdownField(
       {required this.hintText,
       required this.options,
       required this.onChanged,
-      this.value});
+      this.value,
+      this.labelText});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class CustomDropdownField extends StatelessWidget {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
+          labelText: labelText,
           filled: true,
           fillColor: Colors.white,
         ),

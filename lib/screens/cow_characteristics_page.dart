@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_text_field.dart';
+import '../widgets/custom_dropdown_field.dart';
 import '../models/cow_characteristics_model.dart';
+import '../constants/cow_characteristics_constants.dart';
 
 class CowCharacteristicsPage extends StatefulWidget {
   const CowCharacteristicsPage({super.key});
@@ -20,12 +22,12 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
   @override
   void initState() {
     super.initState();
-    liveWeightController.text = '500';
-    pregnancyController.text = '3';
-    volumeController.text = '20';
-    milkFatController.text = '4.0';
-    milkProteinController.text = '3.2';
-    lactationController.text = 'Early lactation';
+    liveWeightController.text = 'Choose live weight (kg)';
+    pregnancyController.text = 'Choose pregnancy month';
+    volumeController.text = '';
+    milkFatController.text = 'Choose milk fat %';
+    milkProteinController.text = 'Choose milk protein %';
+    lactationController.text = 'Choose lactation stage';
   }
 
   @override
@@ -47,27 +49,70 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            const ListTile(
+            ListTile(
               leading: Icon(Icons.pets, size: 40),
               title: Text('Cow Characteristics',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               subtitle: Text('Milk Yield', style: TextStyle(fontSize: 18)),
             ),
-            const SizedBox(height: 20),
-            CustomTextField(
-                labelText: 'Live weight (kg)',
-                controller: liveWeightController),
-            CustomTextField(
-                labelText: 'Pregnancy (mth)', controller: pregnancyController),
+            SizedBox(height: 20),
+            CustomDropdownField(
+              hintText: liveWeightController.text,
+              options: CowCharacteristicsConstants.liveWeightOptions,
+              onChanged: (value) {
+                setState(() {
+                  liveWeightController.text = value ?? '';
+                });
+              },
+              value: liveWeightController.text,
+              labelText: 'Live weight (kg)',
+            ),
+            CustomDropdownField(
+              hintText: pregnancyController.text,
+              options: CowCharacteristicsConstants.pregnancyOptions,
+              onChanged: (value) {
+                setState(() {
+                  pregnancyController.text = value ?? '';
+                });
+              },
+              value: pregnancyController.text,
+              labelText: 'Pregnancy (mth)',
+            ),
             CustomTextField(
                 labelText: 'Volume (kg)', controller: volumeController),
-            CustomTextField(
-                labelText: 'Milk fat (%)', controller: milkFatController),
-            CustomTextField(
-                labelText: 'Milk protein (%)',
-                controller: milkProteinController),
-            CustomTextField(
-                labelText: 'Lactation stage', controller: lactationController),
+            CustomDropdownField(
+              hintText: milkFatController.text,
+              options: CowCharacteristicsConstants.milkFatOptions,
+              onChanged: (value) {
+                setState(() {
+                  milkFatController.text = value ?? '';
+                });
+              },
+              value: milkFatController.text,
+              labelText: 'Milk fat (%)',
+            ),
+            CustomDropdownField(
+              hintText: milkProteinController.text,
+              options: CowCharacteristicsConstants.milkProteinOptions,
+              onChanged: (value) {
+                setState(() {
+                  milkProteinController.text = value ?? '';
+                });
+              },
+              value: milkProteinController.text,
+              labelText: 'Milk protein (%)',
+            ),
+            CustomDropdownField(
+              hintText: lactationController.text,
+              options: CowCharacteristicsConstants.lactationOptions,
+              onChanged: (value) {
+                setState(() {
+                  lactationController.text = value ?? '';
+                });
+              },
+              value: lactationController.text,
+              labelText: 'Lactation stage',
+            ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: calculateCowRequirements,
