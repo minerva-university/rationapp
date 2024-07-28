@@ -32,7 +32,7 @@ class CustomDropdownField extends StatelessWidget {
         items: options.map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(value.toString()),
+            child: Text(value),
           );
         }).toList(),
         onChanged: onChanged,
