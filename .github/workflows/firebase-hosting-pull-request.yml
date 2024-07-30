@@ -19,7 +19,6 @@ jobs:
         with:
           channel: stable
           flutter-version: 3.22.2
-      - run: flutter --version
       - run: flutter build web
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
