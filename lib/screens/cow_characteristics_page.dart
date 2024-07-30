@@ -4,6 +4,8 @@ import '../widgets/custom_dropdown_field.dart';
 import '../models/cow_characteristics_model.dart';
 import '../constants/cow_characteristics_constants.dart';
 import '../../utils/nutrition_calculator.dart';
+import '../models/cow_requirements_model.dart';
+import '../screens/feed_formula_page.dart';
 
 class CowCharacteristicsPage extends StatefulWidget {
   const CowCharacteristicsPage({super.key});
@@ -185,6 +187,18 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
     double pIntake =
         NutritionCalculator.calculatePIntake(cowCharacteristics.lactationStage);
 
+    double ndfIntake = 0.4;
+    double concentrateIntake = 60.0;
+
+    CowRequirements cowRequirements = CowRequirements(
+        dmIntake: dmIntake,
+        meIntake: meIntake,
+        cpIntake: cpIntake,
+        ndfIntake: ndfIntake,
+        caIntake: caIntake,
+        pIntake: pIntake,
+        concentrateIntake: concentrateIntake);
+
     showDialog(
       context: context,
       builder: (context) {
@@ -198,8 +212,17 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FeedFormulaPage(
+                      cowCharacteristics: cowCharacteristics,
+                      cowRequirements: cowRequirements,
+                    ),
+                  ),
+                );
               },
-              child: const Text('Close'),
+              child: const Text('Plan feed'),
             ),
           ],
         );
