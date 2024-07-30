@@ -31,6 +31,29 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
     lactationController.text = 'Choose lactation stage';
   }
 
+  bool _isFormValid() {
+    return liveWeightController.text != 'Choose live weight (kg)' &&
+        pregnancyController.text != 'Choose pregnancy month' &&
+        volumeController.text.isNotEmpty &&
+        milkFatController.text != 'Choose milk fat %' &&
+        milkProteinController.text != 'Choose milk protein %' &&
+        lactationController.text != 'Choose lactation stage';
+  }
+
+  void _handleButtonPress() {
+    if (_isFormValid()) {
+      calculateCowRequirements();
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content:
+              Text('Please fill in all fields before viewing requirements.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,7 +139,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: calculateCowRequirements,
+              onPressed: _handleButtonPress,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green.shade200,
                 padding:
