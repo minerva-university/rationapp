@@ -3,6 +3,7 @@ import '../widgets/custom_text_field.dart';
 import '../widgets/custom_dropdown_field.dart';
 import '../models/cow_characteristics_model.dart';
 import '../constants/cow_characteristics_constants.dart';
+import '../../utils/nutrition_calculator.dart';
 
 class CowCharacteristicsPage extends StatefulWidget {
   const CowCharacteristicsPage({super.key});
@@ -28,6 +29,29 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
     milkFatController.text = 'Choose milk fat %';
     milkProteinController.text = 'Choose milk protein %';
     lactationController.text = 'Choose lactation stage';
+  }
+
+  bool _isFormValid() {
+    return liveWeightController.text != 'Choose live weight (kg)' &&
+        pregnancyController.text != 'Choose pregnancy month' &&
+        volumeController.text.isNotEmpty &&
+        milkFatController.text != 'Choose milk fat %' &&
+        milkProteinController.text != 'Choose milk protein %' &&
+        lactationController.text != 'Choose lactation stage';
+  }
+
+  void _handleButtonPress() {
+    if (_isFormValid()) {
+      calculateCowRequirements();
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content:
+              Text('Please fill in all fields before viewing requirements.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 
   @override
@@ -115,7 +139,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: calculateCowRequirements,
+              onPressed: _handleButtonPress,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green.shade200,
                 padding:
@@ -146,13 +170,30 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
       lactationStage: lactation,
     );
 
+    double dmIntake = NutritionCalculator.calculateDMRequirement(
+        cowCharacteristics.liveWeight);
+    double meIntake = NutritionCalculator.calculateMEIntake(
+        cowCharacteristics.liveWeight,
+        cowCharacteristics.pregnancyMonths,
+        cowCharacteristics.milkVolume,
+        cowCharacteristics.milkFat,
+        cowCharacteristics.milkProtein);
+    double cpIntake = NutritionCalculator.calculateCPIntake(
+        cowCharacteristics.lactationStage);
+    double caIntake = NutritionCalculator.calculateCaIntake(
+        cowCharacteristics.lactationStage);
+    double pIntake =
+        NutritionCalculator.calculatePIntake(cowCharacteristics.lactationStage);
+
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: const Text('Cow Requirements'),
           content: Text(
-              'Live weight: ${cowCharacteristics.liveWeight} kg\nPregnancy: ${cowCharacteristics.pregnancyMonths} months\nVolume: ${cowCharacteristics.milkVolume} kg\nMilk fat: ${cowCharacteristics.milkFat}%\nMilk protein: ${cowCharacteristics.milkProtein}%\nLactation: ${cowCharacteristics.lactationStage}'),
+            'DM Intake: ${dmIntake.toStringAsFixed(2)} kg/day\nME Intake: ${meIntake.toStringAsFixed(2)} MJ/day\nCP Intake: ${(cpIntake * 100).toStringAsFixed(2)}%\nCa Intake: ${(caIntake).toStringAsFixed(2)}%\nP Intake: ${(pIntake).toStringAsFixed(2)}%',
+            style: TextStyle(fontSize: 18),
+          ),
           actions: [
             ElevatedButton(
               onPressed: () {
