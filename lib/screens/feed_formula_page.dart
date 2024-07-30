@@ -44,17 +44,11 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
         title: const Text('Feed Formula',
             style: TextStyle(color: Colors.white, fontSize: 20)),
         centerTitle: true,
-        actions: [
-          IconButton(icon: const Icon(Icons.arrow_forward), onPressed: () {}),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const Text('Feed Formula',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 20),
             Expanded(
               child: ListView(
                 children: [
@@ -163,14 +157,14 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             CustomDropdownField(
-              hintText: 'Select Ingredient',
+              hintText: 'Select Ration Ingredient',
               options: isFodder
                   ? FeedConstants.fodderOptions
                   : FeedConstants.concentrateOptions,
               onChanged: (value) => selectedIngredient = value,
             ),
             CustomTextField(
-              labelText: 'Weight (kg)',
+              labelText: 'Fresh feed intake (kg/d)',
               controller: feedWeightController,
             ),
           ],
