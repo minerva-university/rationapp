@@ -52,19 +52,18 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
             Expanded(
               child: ListView(
                 children: [
-                  buildCowRequirementsSection(),
+                  buildSectionTitle('Cow Requirements', Icons.label_important),
+                  buildCowRequirementsTable(),
                   const Divider(height: 30, thickness: 2),
                   buildSectionTitle('Fodder', Icons.grass),
-                  ...fodderItems.map(
-                      (item) => buildIngredientDisplay(item, isFodder: true)),
+                  buildIngredientTable(fodderItems),
                   ElevatedButton(
                     onPressed: () => _showAddIngredientDialog(true),
                     child: Text('Add Fodder'),
                   ),
                   SizedBox(height: 20),
                   buildSectionTitle('Concentrate', Icons.scatter_plot),
-                  ...concentrateItems.map(
-                      (item) => buildIngredientDisplay(item, isFodder: false)),
+                  buildIngredientTable(concentrateItems),
                   ElevatedButton(
                     onPressed: () => _showAddIngredientDialog(false),
                     child: Text('Add Concentrate'),
@@ -82,28 +81,61 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
     );
   }
 
-  Widget buildCowRequirementsSection() {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Cow Requirements',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            SizedBox(height: 10),
-            Text(
-                'DM Intake: ${widget.cowRequirements.dmIntake.toStringAsFixed(2)} kg/day'),
-            Text(
-                'ME Intake: ${widget.cowRequirements.meIntake.toStringAsFixed(2)} MJ/day'),
-            Text(
-                'CP Intake: ${(widget.cowRequirements.cpIntake * 100).toStringAsFixed(2)}%'),
-            Text(
-                'Ca Intake: ${widget.cowRequirements.caIntake.toStringAsFixed(2)}%'),
-            Text(
-                'P Intake: ${widget.cowRequirements.pIntake.toStringAsFixed(2)}%'),
-          ],
-        ),
+  Widget buildCowRequirementsTable() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: DataTable(
+        columns: [
+          DataColumn(label: Text('DM Intake\n(kg/day)')),
+          DataColumn(label: Text('ME Intake\n(MJ/day)')),
+          DataColumn(label: Text('CP Intake\n(%)')),
+          DataColumn(label: Text('Ca Intake\n(%)')),
+          DataColumn(label: Text('P Intake\n(%)')),
+        ],
+        rows: [
+          DataRow(cells: [
+            DataCell(Text(widget.cowRequirements.dmIntake.toStringAsFixed(2))),
+            DataCell(Text(widget.cowRequirements.meIntake.toStringAsFixed(2))),
+            DataCell(Text(
+                (widget.cowRequirements.cpIntake * 100).toStringAsFixed(2))),
+            DataCell(Text(widget.cowRequirements.caIntake.toStringAsFixed(2))),
+            DataCell(Text(widget.cowRequirements.pIntake.toStringAsFixed(2))),
+          ]),
+        ],
+      ),
+    );
+  }
+
+  Widget buildIngredientTable(List<Map<String, dynamic>> items) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: DataTable(
+        columns: [
+          DataColumn(label: Text('Ingredient')),
+          DataColumn(label: Text('Fresh feed\nintake (kg/d)')),
+          DataColumn(label: Text('DM Intake\n(kg/d)')),
+          DataColumn(label: Text('ME Intake\n(MJ/d)')),
+          DataColumn(label: Text('CP Intake\n(kg/d)')),
+          DataColumn(label: Text('NDF Intake\n(kg/d)')),
+          DataColumn(label: Text('Ca Intake\n(kg/d)')),
+          DataColumn(label: Text('P Intake\n(kg/d)')),
+          DataColumn(label: Text('Cost\n(ERN)')),
+        ],
+        rows: items
+            .map((item) => DataRow(
+                  cells: [
+                    DataCell(Text(item['name'])),
+                    DataCell(Text(item['weight'].toStringAsFixed(2))),
+                    DataCell(Text(item['dmIntake'].toStringAsFixed(5))),
+                    DataCell(Text(item['meIntake'].toStringAsFixed(5))),
+                    DataCell(Text(item['cpIntake'].toStringAsFixed(5))),
+                    DataCell(Text(item['ndfIntake'].toStringAsFixed(5))),
+                    DataCell(Text(item['caIntake'].toStringAsFixed(5))),
+                    DataCell(Text(item['pIntake'].toStringAsFixed(5))),
+                    DataCell(Text(item['cost'].toStringAsFixed(2))),
+                  ],
+                ))
+            .toList(),
       ),
     );
   }
@@ -123,31 +155,23 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
     );
   }
 
-  Widget buildIngredientDisplay(Map<String, dynamic> item,
-      {required bool isFodder}) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('${item['name']} - ${item['weight']} kg',
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            Text('DM Intake: ${item['dmIntake'].toStringAsFixed(5)} kg/d'),
-            Text('ME Intake: ${item['meIntake'].toStringAsFixed(5)} MJ/d'),
-            Text('CP Intake: ${item['cpIntake'].toStringAsFixed(5)} kg/d'),
-            Text('NDF Intake: ${item['ndfIntake'].toStringAsFixed(5)} kg/d'),
-            Text('Ca Intake: ${item['caIntake'].toStringAsFixed(5)} kg/d'),
-            Text('P Intake: ${item['pIntake'].toStringAsFixed(5)} kg/d'),
-            Text('Cost: ${item['cost'].toStringAsFixed(2)} ERN'),
-          ],
-        ),
-      ),
-    );
-  }
-
   void _showAddIngredientDialog(bool isFodder) {
     String? selectedIngredient;
+    List<String> availableOptions = (isFodder
+            ? FeedConstants.fodderOptions
+            : FeedConstants.concentrateOptions)
+        .where((option) => !(isFodder ? fodderItems : concentrateItems)
+            .any((item) => item['name'].toLowerCase() == option.toLowerCase()))
+        .toList();
+    if (availableOptions.length == 1 &&
+        availableOptions[0].contains('Choose')) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Text(
+                'All ${isFodder ? 'fodder' : 'concentrate'} options have been added.')),
+      );
+      return;
+    }
 
     showDialog(
       context: context,
@@ -158,9 +182,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
           children: [
             CustomDropdownField(
               hintText: 'Select Ration Ingredient',
-              options: isFodder
-                  ? FeedConstants.fodderOptions
-                  : FeedConstants.concentrateOptions,
+              options: availableOptions,
               onChanged: (value) => selectedIngredient = value,
             ),
             CustomTextField(
