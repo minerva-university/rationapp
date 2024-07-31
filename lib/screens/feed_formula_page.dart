@@ -46,38 +46,52 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
             style: TextStyle(color: Colors.white, fontSize: 20)),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView(
-                children: [
-                  _buildSectionTitle('Cow Requirements', Icons.label_important),
-                  CowRequirementsTable(cowRequirements: widget.cowRequirements),
-                  const Divider(height: 30, thickness: 2),
-                  _buildSectionTitle('Fodder', Icons.grass),
-                  IngredientTable(items: fodderItems),
-                  ElevatedButton(
-                    onPressed: () => _showAddIngredientDialog(true),
-                    child: Text('Add Fodder'),
-                  ),
-                  SizedBox(height: 20),
-                  _buildSectionTitle('Concentrate', Icons.scatter_plot),
-                  IngredientTable(items: concentrateItems),
-                  ElevatedButton(
-                    onPressed: () => _showAddIngredientDialog(false),
-                    child: Text('Add Concentrate'),
-                  ),
-                ],
+      body: Column(
+        children: [
+          // Fixed Cow Requirements section
+          Container(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildSectionTitle('Cow Requirements', Icons.label_important),
+                CowRequirementsTable(cowRequirements: widget.cowRequirements),
+              ],
+            ),
+          ),
+          const Divider(height: 1, thickness: 2),
+          // Scrollable content
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildSectionTitle('Fodder', Icons.grass),
+                    IngredientTable(items: fodderItems),
+                    ElevatedButton(
+                      onPressed: () => _showAddIngredientDialog(true),
+                      child: Text('Add Fodder'),
+                    ),
+                    SizedBox(height: 10),
+                    _buildSectionTitle('Concentrate', Icons.scatter_plot),
+                    IngredientTable(items: concentrateItems),
+                    ElevatedButton(
+                      onPressed: () => _showAddIngredientDialog(false),
+                      child: Text('Add Concentrate'),
+                    ),
+                  ],
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset('assets/sense-200px.png', height: 20),
-            ),
-          ],
-        ),
+          ),
+          // Footer image
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset('assets/sense-200px.png', height: 20),
+          ),
+        ],
       ),
     );
   }
