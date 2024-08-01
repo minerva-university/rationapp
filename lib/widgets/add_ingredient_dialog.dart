@@ -6,12 +6,14 @@ class AddIngredientDialog extends StatefulWidget {
   final bool isFodder;
   final List<String> availableOptions;
   final Function(String, double) onAdd;
+  final double? initialWeight;
 
   const AddIngredientDialog({
     super.key,
     required this.isFodder,
     required this.availableOptions,
     required this.onAdd,
+    this.initialWeight,
   });
 
   @override
@@ -20,7 +22,16 @@ class AddIngredientDialog extends StatefulWidget {
 
 class _AddIngredientDialogState extends State<AddIngredientDialog> {
   String? selectedIngredient;
-  final TextEditingController feedWeightController = TextEditingController();
+  late TextEditingController feedWeightController;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedIngredient = widget.availableOptions.first;
+    feedWeightController = TextEditingController(
+      text: widget.initialWeight?.toString() ?? '',
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +44,7 @@ class _AddIngredientDialogState extends State<AddIngredientDialog> {
             hintText: 'Select Ration Ingredient',
             options: widget.availableOptions,
             onChanged: (value) => selectedIngredient = value,
+            value: selectedIngredient,
           ),
           CustomTextField(
             labelText: 'Fresh feed intake (kg/d)',
