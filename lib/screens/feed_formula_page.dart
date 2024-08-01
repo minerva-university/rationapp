@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/cow_requirements_table.dart';
 import '../widgets/ingredient_table.dart';
 import '../widgets/add_ingredient_dialog.dart';
+import '../widgets/totals_table.dart';
 import '../constants/feed_constants.dart';
 import '../models/cow_characteristics_model.dart';
 import '../models/cow_requirements_model.dart';
@@ -89,7 +90,17 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
           // Footer image
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset('assets/sense-200px.png', height: 20),
+            child: Column(
+              children: [
+                _buildSectionTitle('Totals', Icons.calculate),
+                TotalsTable(
+                  fodderItems: fodderItems,
+                  concentrateItems: concentrateItems,
+                  cowRequirements: widget.cowRequirements,
+                ),
+                Image.asset('assets/sense-200px.png', height: 20),
+              ],
+            ),
           ),
         ],
       ),
