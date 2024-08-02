@@ -51,7 +51,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
         children: [
           // Fixed Cow Requirements section
           Container(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -65,19 +65,25 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildSectionTitle('Fodder', Icons.grass),
-                    IngredientTable(items: fodderItems),
+                    IngredientTable(
+                        items: fodderItems,
+                        onEdit: (index) => _editIngredient(index, true),
+                        onDelete: (index) => _deleteIngredient(index, true)),
                     ElevatedButton(
                       onPressed: () => _showAddIngredientDialog(true),
                       child: Text('Add Fodder'),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 8),
                     _buildSectionTitle('Concentrate', Icons.scatter_plot),
-                    IngredientTable(items: concentrateItems),
+                    IngredientTable(
+                        items: concentrateItems,
+                        onEdit: (index) => _editIngredient(index, false),
+                        onDelete: (index) => _deleteIngredient(index, false)),
                     ElevatedButton(
                       onPressed: () => _showAddIngredientDialog(false),
                       child: Text('Add Concentrate'),
@@ -157,6 +163,37 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
         fodderItems.add(newItem);
       } else {
         concentrateItems.add(newItem);
+      }
+    });
+  }
+
+  void _editIngredient(int index, bool isFodder) {
+    final items = isFodder ? fodderItems : concentrateItems;
+    final item = items[index];
+
+    showDialog(
+      context: context,
+      builder: (context) => AddIngredientDialog(
+        isFodder: isFodder,
+        availableOptions: [item['name']], // only editing weight
+        initialWeight: item['weight'],
+        onAdd: (name, weight) {
+          setState(() {
+            final updatedItem = FeedCalculator.calculateIngredientValues(
+                name, weight, isFodder);
+            items[index] = updatedItem;
+          });
+        },
+      ),
+    );
+  }
+
+  void _deleteIngredient(int index, bool isFodder) {
+    setState(() {
+      if (isFodder) {
+        fodderItems.removeAt(index);
+      } else {
+        concentrateItems.removeAt(index);
       }
     });
   }
