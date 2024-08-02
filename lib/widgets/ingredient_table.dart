@@ -27,7 +27,7 @@ class IngredientTable extends StatelessWidget {
   final List<ColumnDefinition> columns = [
     {'label': 'Ingredient', 'key': 'name', 'decimals': 0},
     {'label': 'Fresh feed\nintake (kg/d)', 'key': 'weight', 'decimals': 2},
-    {'label': 'DM Intake\n(%)', 'key': 'dmIntake', 'decimals': 5},
+    {'label': 'DM Intake\n(kg/d)', 'key': 'dmIntake', 'decimals': 5},
     {'label': 'ME Intake\n(MJ/d)', 'key': 'meIntake', 'decimals': 5},
     {'label': 'CP Intake\n(%)', 'key': 'cpIntake', 'decimals': 5},
     {'label': 'NDF Intake\n(%)', 'key': 'ndfIntake', 'decimals': 5},

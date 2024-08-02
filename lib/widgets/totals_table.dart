@@ -17,34 +17,45 @@ class TotalsTable extends StatelessWidget {
     {
       'label': 'DM Intake\n(kg/d)',
       'key': 'dmIntake',
-      'decimals': 5,
-      'reqKey': 'dmIntake'
+      'decimals': 2,
+      'reqKey': 'dmIntake',
+      'isPercentage': false,
     },
     {
       'label': 'ME Intake\n(MJ/d)',
       'key': 'meIntake',
-      'decimals': 5,
-      'reqKey': 'meIntake'
+      'decimals': 2,
+      'reqKey': 'meIntake',
+      'isPercentage': false,
     },
     {
-      'label': 'CP Intake\n(kg/d)',
+      'label': 'CP Intake\n(%)',
       'key': 'cpIntake',
-      'decimals': 5,
-      'reqKey': 'cpIntake'
+      'decimals': 2,
+      'reqKey': 'cpIntake',
+      'isPercentage': true,
     },
     {
-      'label': 'Ca Intake\n(kg/d)',
+      'label': 'Ca Intake\n(%)',
       'key': 'caIntake',
-      'decimals': 5,
-      'reqKey': 'caIntake'
+      'decimals': 2,
+      'reqKey': 'caIntake',
+      'isPercentage': true,
     },
     {
-      'label': 'P Intake\n(kg/d)',
+      'label': 'P Intake\n(%)',
       'key': 'pIntake',
-      'decimals': 5,
-      'reqKey': 'pIntake'
+      'decimals': 2,
+      'reqKey': 'pIntake',
+      'isPercentage': true,
     },
-    {'label': 'Cost\n(ERN)', 'key': 'cost', 'decimals': 2, 'reqKey': null},
+    {
+      'label': 'Cost\n(ERN)',
+      'key': 'cost',
+      'decimals': 2,
+      'reqKey': null,
+      'isPercentage': false,
+    },
   ];
 
   Map<String, double> _calculateTotals() {
@@ -64,9 +75,20 @@ class TotalsTable extends StatelessWidget {
     return totals;
   }
 
-  Widget _buildComparisonIcon(double total, double requirement) {
-    const double threshold = 0.05; // 5% threshold for considering values equal
-    if ((total - requirement).abs() < threshold * requirement) {
+  Widget _buildComparisonIcon(
+      double total, double requirement, bool isPercentage) {
+    const double percentageThreshold = 2;
+    const double absoluteThreshold = 0.05;
+
+    bool isWithinRange;
+    if (isPercentage) {
+      isWithinRange = (total - requirement).abs() <= percentageThreshold;
+    } else {
+      isWithinRange =
+          (total - requirement).abs() <= absoluteThreshold * requirement;
+    }
+
+    if (isWithinRange) {
       return Icon(Icons.check_circle, color: Colors.green);
     } else if (total < requirement) {
       return Icon(Icons.arrow_upward, color: Colors.red);
@@ -91,12 +113,14 @@ class TotalsTable extends StatelessWidget {
               String key = col['key'] as String;
               int decimals = col['decimals'] as int;
               String? reqKey = col['reqKey'] as String?;
+              bool isPercentage = col['isPercentage'] as bool;
               double total = totals[key]!;
 
               Widget? comparisonIcon;
               if (reqKey != null) {
                 double requirement = cowRequirements.toJson()[reqKey] as double;
-                comparisonIcon = _buildComparisonIcon(total, requirement);
+                comparisonIcon =
+                    _buildComparisonIcon(total, requirement, isPercentage);
               }
 
               return DataCell(
