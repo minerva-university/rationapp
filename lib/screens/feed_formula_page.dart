@@ -4,19 +4,15 @@ import '../widgets/ingredient_table.dart';
 import '../widgets/add_ingredient_dialog.dart';
 import '../widgets/totals_table.dart';
 import '../constants/feed_constants.dart';
-import '../models/cow_characteristics_model.dart';
 import '../models/cow_requirements_model.dart';
 import '../utils/feed_calculator.dart';
 
 class FeedFormulaPage extends StatefulWidget {
-  final CowCharacteristics cowCharacteristics;
   final CowRequirements cowRequirements;
+  final VoidCallback onBack;
 
-  FeedFormulaPage({
-    super.key,
-    required this.cowCharacteristics,
-    required this.cowRequirements,
-  });
+  FeedFormulaPage(
+      {super.key, required this.cowRequirements, required this.onBack});
 
   @override
   _FeedFormulaPageState createState() => _FeedFormulaPageState();
@@ -41,7 +37,10 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () {
+            Navigator.pop(context);
+            widget.onBack();
+          },
         ),
         title: const Text('Feed Formula',
             style: TextStyle(color: Colors.white, fontSize: 20)),
@@ -104,7 +103,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
                   concentrateItems: concentrateItems,
                   cowRequirements: widget.cowRequirements,
                 ),
-                Image.asset('assets/sense-200px.png', height: 20),
+                // Image.asset('assets/sense-200px.png', height: 20),
               ],
             ),
           ),
