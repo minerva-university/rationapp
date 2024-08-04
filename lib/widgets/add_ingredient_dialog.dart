@@ -60,10 +60,19 @@ class _AddIngredientDialogState extends State<AddIngredientDialog> {
         TextButton(
           onPressed: () {
             if (selectedIngredient != null &&
+                selectedIngredient !=
+                    'Choose ${widget.isFodder ? 'fodder' : 'concentrate'}' &&
                 feedWeightController.text.isNotEmpty) {
               double weight = double.tryParse(feedWeightController.text) ?? 0;
               widget.onAdd(selectedIngredient!, weight);
               Navigator.pop(context);
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Please fill in all fields.'),
+                  backgroundColor: Colors.red,
+                ),
+              );
             }
           },
           child: Text('Add'),
