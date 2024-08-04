@@ -57,8 +57,8 @@ class _HomePageState extends State<HomePage> {
             label: 'Cow',
           ),
           NavigationDestination(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: Icon(Icons.list),
+            label: 'Guidelines',
           ),
         ],
       ),
