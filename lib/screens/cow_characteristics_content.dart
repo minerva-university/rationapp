@@ -7,8 +7,22 @@ import '../utils/cow_requirements_calculator.dart';
 
 class CowCharacteristicsContent extends StatefulWidget {
   final Function(CowRequirements) onNavigateToFeedFormula;
+  final TextEditingController liveWeightController;
+  final TextEditingController pregnancyController;
+  final TextEditingController volumeController;
+  final TextEditingController milkFatController;
+  final TextEditingController milkProteinController;
+  final TextEditingController lactationController;
 
-  CowCharacteristicsContent({required this.onNavigateToFeedFormula});
+  CowCharacteristicsContent({
+    required this.onNavigateToFeedFormula,
+    required this.liveWeightController,
+    required this.pregnancyController,
+    required this.volumeController,
+    required this.milkFatController,
+    required this.milkProteinController,
+    required this.lactationController,
+  });
 
   @override
   _CowCharacteristicsContentState createState() =>
@@ -16,43 +30,25 @@ class CowCharacteristicsContent extends StatefulWidget {
 }
 
 class _CowCharacteristicsContentState extends State<CowCharacteristicsContent> {
-  final TextEditingController liveWeightController = TextEditingController();
-  final TextEditingController pregnancyController = TextEditingController();
-  final TextEditingController volumeController = TextEditingController();
-  final TextEditingController milkFatController = TextEditingController();
-  final TextEditingController milkProteinController = TextEditingController();
-  final TextEditingController lactationController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    liveWeightController.text = 'Choose live weight (kg)';
-    pregnancyController.text = 'Choose pregnancy month';
-    volumeController.text = '';
-    milkFatController.text = 'Choose milk fat %';
-    milkProteinController.text = 'Choose milk protein %';
-    lactationController.text = 'Choose lactation stage';
-  }
-
   bool _isFormValid() {
-    return liveWeightController.text != 'Choose live weight (kg)' &&
-        pregnancyController.text != 'Choose pregnancy month' &&
-        volumeController.text.isNotEmpty &&
-        milkFatController.text != 'Choose milk fat %' &&
-        milkProteinController.text != 'Choose milk protein %' &&
-        lactationController.text != 'Choose lactation stage';
+    return widget.liveWeightController.text != 'Choose live weight (kg)' &&
+        widget.pregnancyController.text != 'Choose pregnancy month' &&
+        widget.volumeController.text.isNotEmpty &&
+        widget.milkFatController.text != 'Choose milk fat %' &&
+        widget.milkProteinController.text != 'Choose milk protein %' &&
+        widget.lactationController.text != 'Choose lactation stage';
   }
 
   void _handleButtonPress() {
     if (_isFormValid()) {
       CowRequirementsCalculator.calculateCowRequirements(
           context,
-          liveWeightController,
-          pregnancyController,
-          volumeController,
-          milkFatController,
-          milkProteinController,
-          lactationController,
+          widget.liveWeightController,
+          widget.pregnancyController,
+          widget.volumeController,
+          widget.milkFatController,
+          widget.milkProteinController,
+          widget.lactationController,
           widget.onNavigateToFeedFormula);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -92,60 +88,60 @@ class _CowCharacteristicsContentState extends State<CowCharacteristicsContent> {
             ),
             SizedBox(height: 20),
             CustomDropdownField(
-              hintText: liveWeightController.text,
+              hintText: widget.liveWeightController.text,
               options: CowCharacteristicsConstants.liveWeightOptions,
               onChanged: (value) {
                 setState(() {
-                  liveWeightController.text = value ?? '';
+                  widget.liveWeightController.text = value ?? '';
                 });
               },
-              value: liveWeightController.text,
+              value: widget.liveWeightController.text,
               labelText: 'Live weight (kg)',
             ),
             CustomDropdownField(
-              hintText: pregnancyController.text,
+              hintText: widget.pregnancyController.text,
               options: CowCharacteristicsConstants.pregnancyOptions,
               onChanged: (value) {
                 setState(() {
-                  pregnancyController.text = value ?? '';
+                  widget.pregnancyController.text = value ?? '';
                 });
               },
-              value: pregnancyController.text,
+              value: widget.pregnancyController.text,
               labelText: 'Pregnancy (mth)',
             ),
             CustomTextField(
-                labelText: 'Volume (kg)', controller: volumeController),
+                labelText: 'Volume (kg)', controller: widget.volumeController),
             CustomDropdownField(
-              hintText: milkFatController.text,
+              hintText: widget.milkFatController.text,
               options: CowCharacteristicsConstants.milkFatOptions,
               onChanged: (value) {
                 setState(() {
-                  milkFatController.text = value ?? '';
+                  widget.milkFatController.text = value ?? '';
                 });
               },
-              value: milkFatController.text,
+              value: widget.milkFatController.text,
               labelText: 'Milk fat (%)',
             ),
             CustomDropdownField(
-              hintText: milkProteinController.text,
+              hintText: widget.milkProteinController.text,
               options: CowCharacteristicsConstants.milkProteinOptions,
               onChanged: (value) {
                 setState(() {
-                  milkProteinController.text = value ?? '';
+                  widget.milkProteinController.text = value ?? '';
                 });
               },
-              value: milkProteinController.text,
+              value: widget.milkProteinController.text,
               labelText: 'Milk protein (%)',
             ),
             CustomDropdownField(
-              hintText: lactationController.text,
+              hintText: widget.lactationController.text,
               options: CowCharacteristicsConstants.lactationOptions,
               onChanged: (value) {
                 setState(() {
-                  lactationController.text = value ?? '';
+                  widget.lactationController.text = value ?? '';
                 });
               },
-              value: lactationController.text,
+              value: widget.lactationController.text,
               labelText: 'Lactation stage',
             ),
             const SizedBox(height: 20),

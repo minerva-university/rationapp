@@ -12,6 +12,25 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
   bool _showFeedFormula = false;
   late CowRequirements _cowRequirements;
 
+  // State for CowCharacteristicsContent
+  final TextEditingController liveWeightController = TextEditingController();
+  final TextEditingController pregnancyController = TextEditingController();
+  final TextEditingController volumeController = TextEditingController();
+  final TextEditingController milkFatController = TextEditingController();
+  final TextEditingController milkProteinController = TextEditingController();
+  final TextEditingController lactationController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    liveWeightController.text = 'Choose live weight (kg)';
+    pregnancyController.text = 'Choose pregnancy month';
+    volumeController.text = '';
+    milkFatController.text = 'Choose milk fat %';
+    milkProteinController.text = 'Choose milk protein %';
+    lactationController.text = 'Choose lactation stage';
+  }
+
   void _navigateToFeedFormula(CowRequirements requirements) {
     setState(() {
       _showFeedFormula = true;
@@ -19,15 +38,29 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
     });
   }
 
+  void _navigateBack() {
+    setState(() {
+      _showFeedFormula = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return _showFeedFormula
-        ? FeedFormulaPage(
-            cowRequirements: _cowRequirements,
-            onBack: () => setState(() => _showFeedFormula = false),
-          )
-        : CowCharacteristicsContent(
-            onNavigateToFeedFormula: _navigateToFeedFormula,
-          );
+    return Scaffold(
+      body: _showFeedFormula
+          ? FeedFormulaPage(
+              cowRequirements: _cowRequirements,
+              onBack: _navigateBack,
+            )
+          : CowCharacteristicsContent(
+              onNavigateToFeedFormula: _navigateToFeedFormula,
+              liveWeightController: liveWeightController,
+              pregnancyController: pregnancyController,
+              volumeController: volumeController,
+              milkFatController: milkFatController,
+              milkProteinController: milkProteinController,
+              lactationController: lactationController,
+            ),
+    );
   }
 }
