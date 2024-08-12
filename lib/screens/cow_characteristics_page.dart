@@ -201,7 +201,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
     showDialog(
       context: context,
       useRootNavigator: false,
-      builder: (dialogContext) {
+      builder: (context) {
         return AlertDialog(
           title: const Text('Cow Requirements'),
           content: Text(
@@ -215,7 +215,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
           actions: [
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(dialogContext); // Close the dialog
+                Navigator.pop(context); // Close the dialog
                 Navigator.pushNamed(
                   context,
                   '/feed_formula',

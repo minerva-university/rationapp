@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/cow_requirements_view.dart';
+import 'screens/feeding_guidelines_page.dart';
 
 void main() {
   runApp(const RationCalculatorApp());
@@ -45,12 +46,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     Destination(
       label: 'Cow Requirements',
       icon: Icons.calculate,
-      builder: (context) => const CowRequirementsView(),
+      builder: (context) => CowRequirementsView(),
     ),
     Destination(
       label: 'Guidelines',
       icon: Icons.list,
-      builder: (context) => const Placeholder(),
+      builder: (context) => FeedingGuidelinesPage(),
     ),
   ];
 
@@ -90,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         } else if (_selectedIndex != 0) {
           setState(() => _selectedIndex = 0);
         } else {
-          Navigator.of(context).pop();
+          Navigator.pop(context);
         }
       },
       child: Scaffold(

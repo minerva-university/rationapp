@@ -41,7 +41,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => Navigator.pop(context),
         ),
         title: const Text('Feed Formula',
             style: TextStyle(color: Colors.white, fontSize: 20)),
