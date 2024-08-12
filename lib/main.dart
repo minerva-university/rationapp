@@ -3,7 +3,7 @@ import 'screens/cow_requirements_view.dart';
 import 'screens/feeding_guidelines_page.dart';
 
 void main() {
-  runApp(const RationCalculatorApp());
+  runApp(RationCalculatorApp());
 }
 
 class RationCalculatorApp extends StatelessWidget {
@@ -12,7 +12,6 @@ class RationCalculatorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Ration Calculator',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),

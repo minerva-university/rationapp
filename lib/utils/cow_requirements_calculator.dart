@@ -11,8 +11,7 @@ class CowRequirementsCalculator {
       TextEditingController volumeController,
       TextEditingController milkFatController,
       TextEditingController milkProteinController,
-      TextEditingController lactationController,
-      Function onNavigate) {
+      TextEditingController lactationController) {
     double liveWeight = double.tryParse(liveWeightController.text) ?? 0;
     double pregnancy = double.tryParse(pregnancyController.text) ?? 0;
     double volume = double.tryParse(volumeController.text) ?? 0;
@@ -58,6 +57,7 @@ class CowRequirementsCalculator {
 
     showDialog(
       context: context,
+      useRootNavigator: false,
       builder: (context) {
         return AlertDialog(
           title: const Text('Cow Requirements'),
@@ -69,7 +69,14 @@ class CowRequirementsCalculator {
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
-                onNavigate(cowRequirements);
+                Navigator.pushNamed(
+                  context,
+                  '/feed_formula',
+                  arguments: {
+                    'cowCharacteristics': cowCharacteristics,
+                    'cowRequirements': cowRequirements,
+                  },
+                );
               },
               child: const Text('Plan feed'),
             ),
