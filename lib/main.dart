@@ -48,11 +48,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       builder: (context) => const CowRequirementsView(),
     ),
     Destination(
-      label: 'Settings',
-      icon: Icons.settings,
+      label: 'Guidelines',
+      icon: Icons.list,
       builder: (context) => const Placeholder(),
     ),
-    // Add more destinations as needed
   ];
 
   @override
