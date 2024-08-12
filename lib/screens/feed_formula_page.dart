@@ -4,18 +4,22 @@ import '../widgets/ingredient_table.dart';
 import '../widgets/add_ingredient_dialog.dart';
 import '../widgets/totals_table.dart';
 import '../constants/feed_constants.dart';
+import '../models/cow_characteristics_model.dart';
 import '../models/cow_requirements_model.dart';
 import '../utils/feed_calculator.dart';
 
 class FeedFormulaPage extends StatefulWidget {
+  final CowCharacteristics cowCharacteristics;
   final CowRequirements cowRequirements;
-  final VoidCallback onBack;
 
-  FeedFormulaPage(
-      {super.key, required this.cowRequirements, required this.onBack});
+  FeedFormulaPage({
+    super.key,
+    required this.cowCharacteristics,
+    required this.cowRequirements,
+  });
 
   @override
-  _FeedFormulaPageState createState() => _FeedFormulaPageState();
+  State<FeedFormulaPage> createState() => _FeedFormulaPageState();
 }
 
 class _FeedFormulaPageState extends State<FeedFormulaPage> {
@@ -37,7 +41,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: widget.onBack,
+          onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text('Feed Formula',
             style: TextStyle(color: Colors.white, fontSize: 20)),
