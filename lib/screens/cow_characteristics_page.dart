@@ -200,6 +200,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
 
     showDialog(
       context: context,
+      useRootNavigator: false,
       builder: (dialogContext) {
         return AlertDialog(
           title: const Text('Cow Requirements'),

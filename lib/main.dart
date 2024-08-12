@@ -16,65 +16,109 @@ class RationCalculatorApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
       ),
-      home: const Home(),
+      home: const HomeScreen(),
     );
   }
 }
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class Destination {
+  final String label;
+  final IconData icon;
+  final Widget Function(BuildContext) builder;
 
-  @override
-  State<Home> createState() => _HomeState();
+  Destination({required this.label, required this.icon, required this.builder});
 }
 
-class _HomeState extends State<Home> {
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   int _selectedIndex = 0;
-  static final List<GlobalKey<NavigatorState>> _navigatorKeys = [
-    GlobalKey<NavigatorState>(),
-    GlobalKey<NavigatorState>(),
+  late List<GlobalKey<NavigatorState>> _navigatorKeys;
+  late List<AnimationController> _faders;
+
+  final List<Destination> _destinations = [
+    Destination(
+      label: 'Cow Requirements',
+      icon: Icons.calculate,
+      builder: (context) => const CowRequirementsView(),
+    ),
+    Destination(
+      label: 'Settings',
+      icon: Icons.settings,
+      builder: (context) => const Placeholder(),
+    ),
+    // Add more destinations as needed
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _navigatorKeys = List<GlobalKey<NavigatorState>>.generate(
+      _destinations.length,
+      (index) => GlobalKey<NavigatorState>(),
+    );
+    _faders = List<AnimationController>.generate(
+      _destinations.length,
+      (index) => AnimationController(
+          vsync: this, duration: Duration(milliseconds: 300)),
+    );
+    _faders[_selectedIndex].value = 1.0;
+  }
+
+  @override
+  void dispose() {
+    for (var controller in _faders) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        final isFirstRouteInCurrentTab =
-            !await _navigatorKeys[_selectedIndex].currentState!.maybePop();
-        if (isFirstRouteInCurrentTab) {
-          if (_selectedIndex != 0) {
-            setState(() {
-              _selectedIndex = 0;
-            });
-            return false;
-          }
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) async {
+        if (didPop) return;
+        final NavigatorState currentNavigator =
+            _navigatorKeys[_selectedIndex].currentState!;
+        if (currentNavigator.canPop()) {
+          currentNavigator.pop();
+        } else if (_selectedIndex != 0) {
+          setState(() => _selectedIndex = 0);
+        } else {
+          Navigator.of(context).pop();
         }
-        return isFirstRouteInCurrentTab;
       },
       child: Scaffold(
         body: Stack(
-          children: [
-            _buildOffstageNavigator(0),
-            _buildOffstageNavigator(1),
-          ],
+          children: List.generate(
+              _destinations.length, (index) => _buildOffstageNavigator(index)),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: (index) {
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: _selectedIndex,
+          onDestinationSelected: (index) {
             setState(() {
               _selectedIndex = index;
+              for (int i = 0; i < _faders.length; i++) {
+                if (i == index) {
+                  _faders[i].forward();
+                } else {
+                  _faders[i].reverse();
+                }
+              }
             });
           },
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.pets),
-              label: 'Cow',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
-            ),
-          ],
+          destinations: _destinations
+              .map((d) => NavigationDestination(
+                    icon: Icon(d.icon),
+                    label: d.label,
+                  ))
+              .toList(),
         ),
       ),
     );
@@ -83,14 +127,16 @@ class _HomeState extends State<Home> {
   Widget _buildOffstageNavigator(int index) {
     return Offstage(
       offstage: _selectedIndex != index,
-      child: Navigator(
-        key: _navigatorKeys[index],
-        onGenerateRoute: (routeSettings) {
-          return MaterialPageRoute(
-            builder: (context) =>
-                index == 0 ? const CowRequirementsView() : const Placeholder(),
-          );
-        },
+      child: FadeTransition(
+        opacity: _faders[index],
+        child: Navigator(
+          key: _navigatorKeys[index],
+          onGenerateRoute: (settings) {
+            return MaterialPageRoute(
+              builder: (context) => _destinations[index].builder(context),
+            );
+          },
+        ),
       ),
     );
   }
