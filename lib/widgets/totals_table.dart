@@ -36,6 +36,13 @@ class TotalsTable extends StatelessWidget {
       'isPercentage': true,
     },
     {
+      'label': 'NDF Intake\n(%)',
+      'key': 'ndfIntake',
+      'decimals': 2,
+      'reqKey': 'ndfIntake',
+      'isPercentage': true,
+    },
+    {
       'label': 'Ca Intake\n(%)',
       'key': 'caIntake',
       'decimals': 2,
@@ -47,6 +54,13 @@ class TotalsTable extends StatelessWidget {
       'key': 'pIntake',
       'decimals': 2,
       'reqKey': 'pIntake',
+      'isPercentage': true,
+    },
+    {
+      'label': 'Concentrate Intake\n(%)',
+      'key': 'concentrateIntake',
+      'decimals': 2,
+      'reqKey': 'concentrateIntake',
       'isPercentage': true,
     },
     {

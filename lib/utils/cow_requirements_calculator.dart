@@ -43,7 +43,7 @@ class CowRequirementsCalculator {
     double pIntake =
         NutritionCalculator.calculatePIntake(cowCharacteristics.lactationStage);
 
-    double ndfIntake = 0.4;
+    double ndfIntake = 40.0;
     double concentrateIntake = 60.0;
 
     CowRequirements cowRequirements = CowRequirements(
@@ -62,7 +62,7 @@ class CowRequirementsCalculator {
         return AlertDialog(
           title: const Text('Cow Requirements'),
           content: Text(
-            'DM Intake: ${dmIntake.toStringAsFixed(2)} kg/day\nME Intake: ${meIntake.toStringAsFixed(2)} MJ/day\nCP Intake: ${(cpIntake * 100).toStringAsFixed(2)}%\nCa Intake: ${(caIntake).toStringAsFixed(2)}%\nP Intake: ${(pIntake).toStringAsFixed(2)}%',
+            'DM Intake: ${dmIntake.toStringAsFixed(2)} kg/day\nME Intake: ${meIntake.toStringAsFixed(2)} MJ/day\nCP Intake: ${(cpIntake * 100).toStringAsFixed(2)}%\nNDF Intake: ${(ndfIntake).toStringAsFixed(2)}%\nCa Intake: ${(caIntake).toStringAsFixed(2)}%\nP Intake: ${(pIntake).toStringAsFixed(2)}%\nConcentrate Intake: ${(concentrateIntake).toStringAsFixed(2)}%',
             style: TextStyle(fontSize: 18),
           ),
           actions: [

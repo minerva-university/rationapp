@@ -109,7 +109,8 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
               labelText: 'Pregnancy (mth)',
             ),
             CustomTextField(
-                labelText: 'Volume (kg)', controller: volumeController),
+                labelText: 'Milk volume per day (kg)',
+                controller: volumeController),
             CustomDropdownField(
               hintText: milkFatController.text,
               options: CowCharacteristicsConstants.milkFatOptions,
