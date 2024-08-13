@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/cow_characteristics_page.dart';
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(RationCalculatorApp());
@@ -11,7 +11,11 @@ class RationCalculatorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: CowCharacteristicsPage(),
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+      ),
+      home: const HomeScreen(),
     );
   }
 }

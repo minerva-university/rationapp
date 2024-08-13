@@ -19,7 +19,7 @@ class FeedFormulaPage extends StatefulWidget {
   });
 
   @override
-  _FeedFormulaPageState createState() => _FeedFormulaPageState();
+  State<FeedFormulaPage> createState() => _FeedFormulaPageState();
 }
 
 class _FeedFormulaPageState extends State<FeedFormulaPage> {
@@ -104,7 +104,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
                   concentrateItems: concentrateItems,
                   cowRequirements: widget.cowRequirements,
                 ),
-                Image.asset('assets/sense-200px.png', height: 20),
+                // Image.asset('assets/sense-200px.png', height: 20),
               ],
             ),
           ),
