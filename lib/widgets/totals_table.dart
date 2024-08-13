@@ -94,7 +94,8 @@ class TotalsTable extends StatelessWidget {
     for (var item in concentrateItems) {
       totalConcentrateDM += item['dmIntake'] ?? 0;
     }
-    totals['concentrateIntake'] = totalConcentrateDM / totals['dmIntake']!;
+    totals['concentrateIntake'] =
+        totalConcentrateDM / totals['dmIntake']! * 100;
 
     return totals;
   }
