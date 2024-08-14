@@ -102,8 +102,7 @@ class TotalsTable extends StatelessWidget {
 
   Widget _buildComparisonIcon(String key, double total, bool isLactating) {
     Map<String, Map<String, double>> limits = {
-      // TODO: update concentrateIntake range
-      'concentrateIntake': {'min': 0, 'max': 100},
+      'concentrateIntake': {'min': 0, 'max': 60},
       'caIntake': {
         'min': isLactating ? 0.7 : 0.35,
         'max': isLactating ? 1.0 : 0.55,
@@ -125,8 +124,15 @@ class TotalsTable extends StatelessWidget {
       return SizedBox.shrink(); // No comparison for this key
     }
 
-    double min = limits[key]!['min']!;
-    double max = limits[key]!['max']!;
+    double min, max;
+    if (key == 'dmIntake') {
+      double requiredDM = cowRequirements.dmIntake;
+      min = limits[key]!['min']! * requiredDM;
+      max = limits[key]!['min']! * requiredDM;
+    } else {
+      min = limits[key]!['min']!;
+      max = limits[key]!['max']!;
+    }
 
     if (total < min) {
       return Icon(Icons.arrow_upward, color: Colors.red);
