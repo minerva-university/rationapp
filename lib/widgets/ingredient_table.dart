@@ -29,10 +29,10 @@ class IngredientTable extends StatelessWidget {
     {'label': 'Fresh feed\nintake (kg/d)', 'key': 'weight', 'decimals': 2},
     {'label': 'DM Intake\n(kg/d)', 'key': 'dmIntake', 'decimals': 5},
     {'label': 'ME Intake\n(MJ/d)', 'key': 'meIntake', 'decimals': 5},
-    {'label': 'CP Intake\n(%)', 'key': 'cpIntake', 'decimals': 5},
-    {'label': 'NDF Intake\n(%)', 'key': 'ndfIntake', 'decimals': 5},
-    {'label': 'Ca Intake\n(%)', 'key': 'caIntake', 'decimals': 5},
-    {'label': 'P Intake\n(%)', 'key': 'pIntake', 'decimals': 5},
+    {'label': 'CP Intake\n(kg/d)', 'key': 'cpIntake', 'decimals': 5},
+    {'label': 'NDF Intake\n(kg/d)', 'key': 'ndfIntake', 'decimals': 5},
+    {'label': 'Ca Intake\n(kg/d)', 'key': 'caIntake', 'decimals': 5},
+    {'label': 'P Intake\n(kg/d)', 'key': 'pIntake', 'decimals': 5},
     {'label': 'Cost\n(ERN)', 'key': 'cost', 'decimals': 2},
   ]
       .map((col) => ColumnDefinition(

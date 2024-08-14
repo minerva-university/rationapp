@@ -15,67 +15,78 @@ class TotalsTable extends StatelessWidget {
       required this.cowRequirements,
       required this.cowCharacteristics});
 
-  final List<Map<String, dynamic>> columns = const [
-    {
-      'label': 'DM Intake\n(kg/d)',
-      'key': 'dmIntake',
-      'decimals': 2,
-      'reqKey': 'dmIntake',
-      'isPercentage': false,
-    },
-    {
-      'label': 'ME Intake\n(MJ/d)',
-      'key': 'meIntake',
-      'decimals': 2,
-      'reqKey': 'meIntake',
-      'isPercentage': false,
-    },
-    {
-      'label': 'CP Intake\n(%)',
-      'key': 'cpIntake',
-      'decimals': 2,
-      'reqKey': 'cpIntake',
-      'isPercentage': true,
-    },
-    {
-      'label': 'NDF Intake\n(%)',
-      'key': 'ndfIntake',
-      'decimals': 2,
-      'reqKey': 'ndfIntake',
-      'isPercentage': true,
-    },
-    {
-      'label': 'Ca Intake\n(%)',
-      'key': 'caIntake',
-      'decimals': 2,
-      'reqKey': 'caIntake',
-      'isPercentage': true,
-    },
-    {
-      'label': 'P Intake\n(%)',
-      'key': 'pIntake',
-      'decimals': 2,
-      'reqKey': 'pIntake',
-      'isPercentage': true,
-    },
-    {
-      'label': 'Concentrate Intake\n(%)',
-      'key': 'concentrateIntake',
-      'decimals': 2,
-      'reqKey': 'concentrateIntake',
-      'isPercentage': true,
-    },
-    {
-      'label': 'Cost\n(ERN)',
-      'key': 'cost',
-      'decimals': 2,
-      'reqKey': null,
-      'isPercentage': false,
-    },
-  ];
+  bool get isLactating => cowCharacteristics.lactationStage != 'Dry';
+
+  List<Map<String, dynamic>> get columns {
+    return [
+      {
+        'label': 'DM Intake\n(kg/d)',
+        'key': 'dmIntake',
+        'decimals': 2,
+        'reqKey': 'dmIntake',
+        'min': 0.95,
+        'max': 1.05
+      },
+      {
+        'label': 'ME Intake\n(MJ/d)',
+        'key': 'meIntake',
+        'decimals': 2,
+        'reqKey': 'meIntake',
+        'min': 0.95,
+        'max': 1.05
+      },
+      {
+        'label': 'CP Intake\n(%DM)',
+        'key': 'cpIntake',
+        'decimals': 2,
+        'reqKey': 'cpIntake',
+        'min': isLactating ? 16 : 12,
+        'max': isLactating ? 18 : 14,
+      },
+      {
+        'label': 'NDF Intake\n(%DM)',
+        'key': 'ndfIntake',
+        'decimals': 2,
+        'reqKey': 'ndfIntake',
+        'min': 28,
+        'max': 35
+      },
+      {
+        'label': 'Ca Intake\n(%DM)',
+        'key': 'caIntake',
+        'decimals': 2,
+        'reqKey': 'caIntake',
+        'min': isLactating ? 0.7 : 0.35,
+        'max': isLactating ? 1.0 : 0.55,
+      },
+      {
+        'label': 'P Intake\n(%DM)',
+        'key': 'pIntake',
+        'decimals': 2,
+        'reqKey': 'pIntake',
+        'min': isLactating ? 0.35 : 0.25,
+        'max': isLactating ? 0.45 : 0.40,
+      },
+      {
+        'label': 'Concentrate Intake\n(%DM)',
+        'key': 'concentrateIntake',
+        'decimals': 2,
+        'reqKey': 'concentrateIntake',
+        'min': 0,
+        'max': 60
+      },
+      {
+        'label': 'Cost\n(ERN)',
+        'key': 'cost',
+        'decimals': 2,
+        'reqKey': null,
+      },
+    ];
+  }
 
   Map<String, double> _calculateTotals() {
     Map<String, double> totals = {};
+
     for (var col in columns) {
       String key = col['key'] as String;
       totals[key] = 0;
@@ -88,50 +99,48 @@ class TotalsTable extends StatelessWidget {
       }
     }
 
-    double totalConcentrateDM = 0;
+    double totalDM = totals['dmIntake']!;
+    totals['concentrateDM'] = 0;
 
     // dmIntake totals for concentrate items
     for (var item in concentrateItems) {
-      totalConcentrateDM += item['dmIntake'] ?? 0;
+      totals['concentrateDM'] =
+          (totals['concentrateDM'] ?? 0) + (item['concentrateDM'] ?? 0);
     }
-    totals['concentrateIntake'] =
-        totalConcentrateDM / totals['dmIntake']! * 100;
+
+    // Convert to %DM
+    List<String> percentageKeys = [
+      'concentrateIntake',
+      'cpIntake',
+      'ndfIntake',
+      'caIntake',
+      'pIntake'
+    ];
+    for (String key in percentageKeys) {
+      if (totalDM > 0) {
+        totals[key] = (totals[key]! / totalDM) * 100;
+      } else {
+        totals[key] = 0;
+      }
+    }
 
     return totals;
   }
 
-  Widget _buildComparisonIcon(String key, double total, bool isLactating) {
-    Map<String, Map<String, double>> limits = {
-      'concentrateIntake': {'min': 0, 'max': 60},
-      'caIntake': {
-        'min': isLactating ? 0.7 : 0.35,
-        'max': isLactating ? 1.0 : 0.55,
-      },
-      'pIntake': {
-        'min': isLactating ? 0.35 : 0.25,
-        'max': isLactating ? 0.45 : 0.40,
-      },
-      'ndfIntake': {'min': 28, 'max': 35},
-      'cpIntake': {
-        'min': isLactating ? 16 : 12,
-        'max': isLactating ? 18 : 14,
-      },
-      'dmIntake': {'min': 0.95, 'max': 1.05},
-      'meIntake': {'min': 0.95, 'max': 1.05},
-    };
-
-    if (!limits.containsKey(key)) {
+  Widget _buildComparisonIcon(
+      String key, double total, Map<String, dynamic> columnData) {
+    if (columnData['reqKey'] == null) {
       return SizedBox.shrink(); // No comparison for this key
     }
 
-    double min, max;
-    if (key == 'dmIntake') {
-      double requiredDM = cowRequirements.dmIntake;
-      min = limits[key]!['min']! * requiredDM;
-      max = limits[key]!['min']! * requiredDM;
-    } else {
-      min = limits[key]!['min']!;
-      max = limits[key]!['max']!;
+    double min = columnData['min'].toDouble();
+    double max = columnData['max'].toDouble();
+
+    if (key == 'dmIntake' || key == 'meIntake') {
+      double required =
+          cowRequirements.toJson()[columnData['reqKey']] as double;
+      min *= required;
+      max *= required;
     }
 
     if (total < min) {
@@ -158,11 +167,9 @@ class TotalsTable extends StatelessWidget {
             cells: columns.map((col) {
               String key = col['key'] as String;
               int decimals = col['decimals'] as int;
-              bool isLactating = cowCharacteristics.lactationStage != 'Dry';
               double total = totals[key]!;
 
-              Widget comparisonIcon =
-                  _buildComparisonIcon(key, total, isLactating);
+              Widget comparisonIcon = _buildComparisonIcon(key, total, col);
 
               return DataCell(
                 Row(
