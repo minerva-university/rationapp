@@ -49,7 +49,7 @@ class TotalsTable extends StatelessWidget {
         'decimals': 2,
         'reqKey': 'ndfIntake',
         'min': 28,
-        'max': 35
+        'max': 40
       },
       {
         'label': 'Ca Intake\n(%DM)',
