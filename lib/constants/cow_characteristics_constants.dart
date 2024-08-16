@@ -1,6 +1,10 @@
+import 'package:flutter/material.dart';
+import '../generated/l10n.dart';
+
 class CowCharacteristicsConstants {
+  final BuildContext context;
+  CowCharacteristicsConstants(this.context);
   static const List<String> liveWeightOptions = [
-    'Choose live weight (kg)',
     '100',
     '125',
     '150',
@@ -25,7 +29,6 @@ class CowCharacteristicsConstants {
   ];
 
   static const List<String> pregnancyOptions = [
-    'Choose pregnancy month',
     '0',
     '1',
     '2',
@@ -39,7 +42,6 @@ class CowCharacteristicsConstants {
   ];
 
   static const List<String> milkFatOptions = [
-    'Choose milk fat %',
     '3.0',
     '3.1',
     '3.2',
@@ -66,7 +68,6 @@ class CowCharacteristicsConstants {
   ];
 
   static const List<String> milkProteinOptions = [
-    'Choose milk protein %',
     '2.6',
     '2.7',
     '2.8',
@@ -80,11 +81,12 @@ class CowCharacteristicsConstants {
     '3.6'
   ];
 
-  static const List<String> lactationOptions = [
-    'Choose lactation stage',
-    'Dry',
-    'Early lactation',
-    'Mid lactation',
-    'Late lactation'
-  ];
+  List<String> get lactationOptions {
+    return [
+      S.of(context).lactationStageDry,
+      S.of(context).lactationStageEarlyLactation,
+      S.of(context).lactationStageMidLactation,
+      S.of(context).lactationStageLateLactation
+    ];
+  }
 }

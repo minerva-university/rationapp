@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CustomDropdownField extends StatelessWidget {
-  final String hintText;
   final List<String> options;
   final ValueChanged<String?> onChanged;
   final String? value;
   final String? labelText;
 
   CustomDropdownField(
-      {required this.hintText,
-      required this.options,
+      {required this.options,
       required this.onChanged,
       this.value,
       this.labelText});
@@ -27,7 +25,6 @@ class CustomDropdownField extends StatelessWidget {
           filled: true,
           fillColor: Colors.white,
         ),
-        hint: Text(hintText),
         value: value,
         items: options.map((String value) {
           return DropdownMenuItem<String>(

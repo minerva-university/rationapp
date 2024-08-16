@@ -7,6 +7,7 @@ import '../constants/feed_constants.dart';
 import '../models/cow_characteristics_model.dart';
 import '../models/cow_requirements_model.dart';
 import '../utils/feed_calculator.dart';
+import '../generated/l10n.dart';
 
 class FeedFormulaPage extends StatefulWidget {
   final CowCharacteristics cowCharacteristics;
@@ -43,7 +44,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text('Feed Formula',
+        title: Text(S.of(context).feedFormula,
             style: TextStyle(color: Colors.white, fontSize: 20)),
         centerTitle: true,
       ),
@@ -55,7 +56,8 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildSectionTitle('Cow Requirements', Icons.label_important),
+                _buildSectionTitle(
+                    S.of(context).cowRequirements, Icons.label_important),
                 CowRequirementsTable(cowRequirements: widget.cowRequirements),
               ],
             ),
@@ -69,24 +71,27 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildSectionTitle('Fodder', Icons.grass),
+                    _buildSectionTitle(S.of(context).fodder, Icons.grass),
                     IngredientTable(
+                        context: context,
                         items: fodderItems,
                         onEdit: (index) => _editIngredient(index, true),
                         onDelete: (index) => _deleteIngredient(index, true)),
                     ElevatedButton(
                       onPressed: () => _showAddIngredientDialog(true),
-                      child: Text('Add Fodder'),
+                      child: Text(S.of(context).addFodder),
                     ),
                     SizedBox(height: 8),
-                    _buildSectionTitle('Concentrate', Icons.scatter_plot),
+                    _buildSectionTitle(
+                        S.of(context).concentrate, Icons.scatter_plot),
                     IngredientTable(
+                        context: context,
                         items: concentrateItems,
                         onEdit: (index) => _editIngredient(index, false),
                         onDelete: (index) => _deleteIngredient(index, false)),
                     ElevatedButton(
                       onPressed: () => _showAddIngredientDialog(false),
-                      child: Text('Add Concentrate'),
+                      child: Text(S.of(context).addConcentrate),
                     ),
                   ],
                 ),
@@ -98,8 +103,9 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                _buildSectionTitle('Totals', Icons.calculate),
+                _buildSectionTitle(S.of(context).totals, Icons.calculate),
                 TotalsTable(
+                  context: context,
                   fodderItems: fodderItems,
                   concentrateItems: concentrateItems,
                   cowRequirements: widget.cowRequirements,
@@ -130,17 +136,18 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
 
   void _showAddIngredientDialog(bool isFodder) {
     List<String> availableOptions = (isFodder
-            ? FeedConstants.fodderOptions
-            : FeedConstants.concentrateOptions)
+            ? FeedConstants(context).fodderOptions
+            : FeedConstants(context).concentrateOptions)
         .where((option) => !(isFodder ? fodderItems : concentrateItems)
             .any((item) => item['name'].toLowerCase() == option.toLowerCase()))
         .toList();
     if (availableOptions.length == 1 &&
-        availableOptions[0].contains('Choose')) {
+        availableOptions[0].contains(S.of(context).choose)) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-            content: Text(
-                'All ${isFodder ? 'fodder' : 'concentrate'} options have been added.')),
+            content: Text(S.of(context).allOptionsHaveBeenAdded(
+                  isFodder ? S.of(context).fodder : S.of(context).concentrate,
+                ))),
       );
       return;
     }
@@ -157,8 +164,8 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
 
   void _addIngredient(String name, double weight, bool isFodder) {
     setState(() {
-      final newItem =
-          FeedCalculator.calculateIngredientValues(name, weight, isFodder);
+      final newItem = FeedCalculator(context)
+          .calculateIngredientValues(name, weight, isFodder);
       if (isFodder) {
         fodderItems.add(newItem);
       } else {
@@ -179,8 +186,8 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
         initialWeight: item['weight'],
         onAdd: (name, weight) {
           setState(() {
-            final updatedItem = FeedCalculator.calculateIngredientValues(
-                name, weight, isFodder);
+            final updatedItem = FeedCalculator(context)
+                .calculateIngredientValues(name, weight, isFodder);
             items[index] = updatedItem;
           });
         },

@@ -1,10 +1,15 @@
 import '../data/nutrition_tables.dart';
+import 'package:flutter/material.dart';
 
 class FeedCalculator {
-  static Map<String, dynamic> calculateIngredientValues(
+  final BuildContext context;
+
+  FeedCalculator(this.context);
+  Map<String, dynamic> calculateIngredientValues(
       String name, double weight, bool isFodder) {
-    final table =
-        isFodder ? NutritionTables.fodder : NutritionTables.concentrates;
+    final table = isFodder
+        ? NutritionTables(context).fodder
+        : NutritionTables(context).concentrates;
     final ingredient =
         table.firstWhere((e) => e['name'].toLowerCase() == name.toLowerCase());
 

@@ -1,6 +1,10 @@
 import '../../data/nutrition_tables.dart';
+import 'package:flutter/material.dart';
 
 class NutritionCalculator {
+  final BuildContext context;
+
+  NutritionCalculator(this.context);
   static double calculateDMRequirement(double liveWeight) {
     var matchingRow = NutritionTables.weightRequirement.firstWhere(
       (row) => row["weight"] == liveWeight,
@@ -39,41 +43,47 @@ class NutritionCalculator {
     return meIntake;
   }
 
-  static double calculateCPIntake(String lactationStage) {
+  double calculateCPIntake(String lactationStage) {
     if (lactationStage.isEmpty) {
       return 0.0;
     }
 
-    var stageReq = NutritionTables.lactationStageRequirements.firstWhere(
-      (req) => req["stage"].toLowerCase() == lactationStage.toLowerCase(),
-      orElse: () => {"proteinReq": 0.0},
-    );
+    var stageReq =
+        NutritionTables(context).lactationStageRequirements.firstWhere(
+              (req) =>
+                  req["stage"].toLowerCase() == lactationStage.toLowerCase(),
+              orElse: () => {"proteinReq": 0.0},
+            );
 
     return stageReq["proteinReq"] / 100;
   }
 
-  static double calculateCaIntake(String lactationStage) {
+  double calculateCaIntake(String lactationStage) {
     if (lactationStage.isEmpty) {
       return 0.0;
     }
 
-    var stageReq = NutritionTables.lactationStageRequirements.firstWhere(
-      (req) => req["stage"].toLowerCase() == lactationStage.toLowerCase(),
-      orElse: () => {"caReq": 0.0},
-    );
+    var stageReq =
+        NutritionTables(context).lactationStageRequirements.firstWhere(
+              (req) =>
+                  req["stage"].toLowerCase() == lactationStage.toLowerCase(),
+              orElse: () => {"caReq": 0.0},
+            );
 
     return stageReq["caReq"];
   }
 
-  static double calculatePIntake(String lactationStage) {
+  double calculatePIntake(String lactationStage) {
     if (lactationStage.isEmpty) {
       return 0.0;
     }
 
-    var stageReq = NutritionTables.lactationStageRequirements.firstWhere(
-      (req) => req["stage"].toLowerCase() == lactationStage.toLowerCase(),
-      orElse: () => {"pReq": 0.0},
-    );
+    var stageReq =
+        NutritionTables(context).lactationStageRequirements.firstWhere(
+              (req) =>
+                  req["stage"].toLowerCase() == lactationStage.toLowerCase(),
+              orElse: () => {"pReq": 0.0},
+            );
 
     return stageReq["pReq"];
   }

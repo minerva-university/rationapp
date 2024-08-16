@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/destination_model.dart';
 import '../screens/cow_requirements_view.dart';
 import '../screens/feeding_guidelines_page.dart';
+import '../generated/l10n.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,29 +15,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   int _selectedIndex = 0;
   late List<GlobalKey<NavigatorState>> _navigatorKeys;
   late List<AnimationController> _faders;
-
-  final List<Destination> _destinations = [
-    Destination(
-      label: 'Cow Requirements',
-      icon: Icons.calculate,
-      builder: (context) => CowRequirementsView(),
-    ),
-    Destination(
-      label: 'Guidelines',
-      icon: Icons.list,
-      builder: (context) => FeedingGuidelinesPage(),
-    ),
-  ];
+  late List<Destination> _destinations;
 
   @override
   void initState() {
     super.initState();
     _navigatorKeys = List<GlobalKey<NavigatorState>>.generate(
-      _destinations.length,
+      2,
       (index) => GlobalKey<NavigatorState>(),
     );
     _faders = List<AnimationController>.generate(
-      _destinations.length,
+      2,
       (index) => AnimationController(
           vsync: this, duration: Duration(milliseconds: 300)),
     );
@@ -53,6 +42,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    _destinations = [
+      Destination(
+        label: S.of(context).cowRequirements,
+        icon: Icons.calculate,
+        builder: (context) => CowRequirementsView(),
+      ),
+      Destination(
+        label: S.of(context).feedingGuidelines,
+        icon: Icons.list,
+        builder: (context) => FeedingGuidelinesPage(),
+      ),
+    ];
+
     return PopScope(
       canPop: false,
       onPopInvoked: (didPop) async {

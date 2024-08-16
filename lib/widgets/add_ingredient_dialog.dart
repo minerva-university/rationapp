@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'custom_dropdown_field.dart';
 import 'custom_text_field.dart';
+import '../generated/l10n.dart';
 
 class AddIngredientDialog extends StatefulWidget {
   final bool isFodder;
@@ -17,7 +18,7 @@ class AddIngredientDialog extends StatefulWidget {
   });
 
   @override
-  _AddIngredientDialogState createState() => _AddIngredientDialogState();
+  State<AddIngredientDialog> createState() => _AddIngredientDialogState();
 }
 
 class _AddIngredientDialogState extends State<AddIngredientDialog> {
@@ -27,7 +28,7 @@ class _AddIngredientDialogState extends State<AddIngredientDialog> {
   @override
   void initState() {
     super.initState();
-    selectedIngredient = widget.availableOptions.first;
+    selectedIngredient = '';
     feedWeightController = TextEditingController(
       text: widget.initialWeight?.toString() ?? '',
     );
@@ -36,18 +37,21 @@ class _AddIngredientDialogState extends State<AddIngredientDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Add ${widget.isFodder ? 'Fodder' : 'Concentrate'}'),
+      title: Text(widget.isFodder
+          ? S.of(context).addFodder
+          : S.of(context).addConcentrate),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           CustomDropdownField(
-            hintText: 'Select Ration Ingredient',
             options: widget.availableOptions,
             onChanged: (value) => selectedIngredient = value,
-            value: selectedIngredient,
+            labelText: widget.isFodder
+                ? S.of(context).chooseFodder
+                : S.of(context).chooseConcentrate,
           ),
           CustomTextField(
-            labelText: 'Fresh feed intake (kg/d)',
+            labelText: S.of(context).freshFeedIntake,
             controller: feedWeightController,
           ),
         ],
@@ -55,13 +59,11 @@ class _AddIngredientDialogState extends State<AddIngredientDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: Text('Cancel'),
+          child: Text(S.of(context).cancel),
         ),
         TextButton(
           onPressed: () {
-            if (selectedIngredient != null &&
-                selectedIngredient !=
-                    'Choose ${widget.isFodder ? 'fodder' : 'concentrate'}' &&
+            if (selectedIngredient != '' &&
                 feedWeightController.text.isNotEmpty) {
               double weight = double.tryParse(feedWeightController.text) ?? 0;
               widget.onAdd(selectedIngredient!, weight);
@@ -69,13 +71,13 @@ class _AddIngredientDialogState extends State<AddIngredientDialog> {
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text('Please fill in all fields.'),
+                  content: Text(S.of(context).pleaseAllFields),
                   backgroundColor: Colors.red,
                 ),
               );
             }
           },
-          child: Text('Add'),
+          child: Text(S.of(context).add),
         ),
       ],
     );

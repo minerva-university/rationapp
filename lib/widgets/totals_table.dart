@@ -1,76 +1,81 @@
 import 'package:flutter/material.dart';
 import '../models/cow_requirements_model.dart';
+import '../generated/l10n.dart';
 
 class TotalsTable extends StatelessWidget {
   final List<Map<String, dynamic>> fodderItems;
   final List<Map<String, dynamic>> concentrateItems;
   final CowRequirements cowRequirements;
+  final BuildContext context;
 
   TotalsTable({
     super.key,
+    required this.context,
     required this.fodderItems,
     required this.concentrateItems,
     required this.cowRequirements,
   });
 
-  final List<Map<String, dynamic>> columns = const [
-    {
-      'label': 'DM Intake\n(kg/d)',
-      'key': 'dmIntake',
-      'decimals': 2,
-      'reqKey': 'dmIntake',
-      'isPercentage': false,
-    },
-    {
-      'label': 'ME Intake\n(MJ/d)',
-      'key': 'meIntake',
-      'decimals': 2,
-      'reqKey': 'meIntake',
-      'isPercentage': false,
-    },
-    {
-      'label': 'CP Intake\n(%)',
-      'key': 'cpIntake',
-      'decimals': 2,
-      'reqKey': 'cpIntake',
-      'isPercentage': true,
-    },
-    {
-      'label': 'NDF Intake\n(%)',
-      'key': 'ndfIntake',
-      'decimals': 2,
-      'reqKey': 'ndfIntake',
-      'isPercentage': true,
-    },
-    {
-      'label': 'Ca Intake\n(%)',
-      'key': 'caIntake',
-      'decimals': 2,
-      'reqKey': 'caIntake',
-      'isPercentage': true,
-    },
-    {
-      'label': 'P Intake\n(%)',
-      'key': 'pIntake',
-      'decimals': 2,
-      'reqKey': 'pIntake',
-      'isPercentage': true,
-    },
-    {
-      'label': 'Concentrate Intake\n(%)',
-      'key': 'concentrateIntake',
-      'decimals': 2,
-      'reqKey': 'concentrateIntake',
-      'isPercentage': true,
-    },
-    {
-      'label': 'Cost\n(ERN)',
-      'key': 'cost',
-      'decimals': 2,
-      'reqKey': null,
-      'isPercentage': false,
-    },
-  ];
+  List<Map<String, dynamic>> get columns {
+    return [
+      {
+        'label': S.of(context).dmIntakeLabelWithUnit,
+        'key': 'dmIntake',
+        'decimals': 2,
+        'reqKey': 'dmIntake',
+        'isPercentage': false,
+      },
+      {
+        'label': S.of(context).meIntakeLabelWithUnit,
+        'key': 'meIntake',
+        'decimals': 2,
+        'reqKey': 'meIntake',
+        'isPercentage': false,
+      },
+      {
+        'label': S.of(context).cpIntakeLabelWithUnit,
+        'key': 'cpIntake',
+        'decimals': 2,
+        'reqKey': 'cpIntake',
+        'isPercentage': true,
+      },
+      {
+        'label': S.of(context).ndfIntakeLabelWithUnit,
+        'key': 'ndfIntake',
+        'decimals': 2,
+        'reqKey': 'ndfIntake',
+        'isPercentage': true,
+      },
+      {
+        'label': S.of(context).caIntakeLabelWithUnit,
+        'key': 'caIntake',
+        'decimals': 2,
+        'reqKey': 'caIntake',
+        'isPercentage': true,
+      },
+      {
+        'label': S.of(context).pIntakeLabelWithUnit,
+        'key': 'pIntake',
+        'decimals': 2,
+        'reqKey': 'pIntake',
+        'isPercentage': true,
+      },
+      {
+        'label': S.of(context).concentrateIntakeLabelWithUnit,
+        'key': 'concentrateIntake',
+        'decimals': 2,
+        'reqKey': 'concentrateIntake',
+        'isPercentage': true,
+      },
+      {
+        'label': 'Cost\n(ERN)',
+        'key': 'cost',
+        'decimals': 2,
+        'reqKey': null,
+        'isPercentage': false,
+      },
+    ];
+  }
 
   Map<String, double> _calculateTotals() {
     Map<String, double> totals = {};
@@ -82,7 +87,7 @@ class TotalsTable extends StatelessWidget {
     for (var item in [...fodderItems, ...concentrateItems]) {
       for (var col in columns) {
         String key = col['key'] as String;
-        totals[key] = (totals[key] ?? 0) + (item[key] as num);
+        totals[key] = (totals[key] ?? 0) + (item[key] ?? 0);
       }
     }
 

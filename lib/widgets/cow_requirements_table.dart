@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/cow_requirements_model.dart';
+import '../generated/l10n.dart';
 
 class CowRequirementsTable extends StatelessWidget {
   final CowRequirements cowRequirements;
@@ -12,13 +13,13 @@ class CowRequirementsTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: DataTable(
         columns: [
-          DataColumn(label: Text('DM Intake\n(kg/day)')),
-          DataColumn(label: Text('ME Intake\n(MJ/day)')),
-          DataColumn(label: Text('CP Intake\n(%)')),
-          DataColumn(label: Text('NDF Intake\n(%)')),
-          DataColumn(label: Text('Ca Intake\n(%)')),
-          DataColumn(label: Text('P Intake\n(%)')),
-          DataColumn(label: Text('Concentrate Intake\n(%)')),
+          DataColumn(label: Text(S.of(context).dmIntakeLabelWithUnit)),
+          DataColumn(label: Text(S.of(context).meIntakeLabelWithUnit)),
+          DataColumn(label: Text(S.of(context).cpIntakeLabelWithUnit)),
+          DataColumn(label: Text(S.of(context).ndfIntakeLabelWithUnit)),
+          DataColumn(label: Text(S.of(context).caIntakeLabelWithUnit)),
+          DataColumn(label: Text(S.of(context).pIntakeLabelWithUnit)),
+          DataColumn(label: Text(S.of(context).concentrateIntakeLabelWithUnit)),
         ],
         rows: [
           DataRow(cells: [

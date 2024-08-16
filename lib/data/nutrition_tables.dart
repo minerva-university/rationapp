@@ -1,4 +1,11 @@
+import 'package:flutter/material.dart';
+import '../generated/l10n.dart';
+
 class NutritionTables {
+  final BuildContext context;
+
+  NutritionTables(this.context);
+
   static final List<Map<String, dynamic>> weightRequirement = [
     {"weight": 100, "meReq": 17.00, "dm": 3.0},
     {"weight": 125, "meReq": 19.06, "dm": 3.75},
@@ -23,12 +30,34 @@ class NutritionTables {
     {"weight": 600, "meReq": 63.00, "dm": 18.0},
   ];
 
-  static final List<Map<String, dynamic>> lactationStageRequirements = [
-    {"stage": "Dry", "proteinReq": 12, "caReq": 0.40, "pReq": 0.20},
-    {"stage": "Early lactation", "proteinReq": 16, "caReq": 0.80, "pReq": 0.40},
-    {"stage": "Mid lactation", "proteinReq": 14, "caReq": 0.70, "pReq": 0.35},
-    {"stage": "Late lactation", "proteinReq": 12, "caReq": 0.40, "pReq": 0.20},
-  ];
+  List<Map<String, dynamic>> get lactationStageRequirements {
+    return [
+      {
+        "stage": S.of(context).lactationStageDry,
+        "proteinReq": 12,
+        "caReq": 0.40,
+        "pReq": 0.20
+      },
+      {
+        "stage": S.of(context).lactationStageEarlyLactation,
+        "proteinReq": 16,
+        "caReq": 0.80,
+        "pReq": 0.40
+      },
+      {
+        "stage": S.of(context).lactationStageMidLactation,
+        "proteinReq": 14,
+        "caReq": 0.70,
+        "pReq": 0.35
+      },
+      {
+        "stage": S.of(context).lactationStageLateLactation,
+        "proteinReq": 12,
+        "caReq": 0.40,
+        "pReq": 0.20
+      },
+    ];
+  }
 
   static final List<Map<String, dynamic>> agePregnancyRequirements = [
     {"pregnancyMonth": 0, "meReq": 0},
@@ -345,299 +374,303 @@ class NutritionTables {
     },
   };
 
-  static final List<Map<String, dynamic>> concentrates = [
-    {
-      "name": "sesame seed meal",
-      "dm": 92.8,
-      "me": 12.5,
-      "cp": 44.9,
-      "ndf": 24.6,
-      "ca": 1.97,
-      "p": 1.26,
-      "costPerKg": 25
-    },
-    {
-      "name": "Molasses",
-      "dm": 80,
-      "me": 14,
-      "cp": 3,
-      "ndf": 1,
-      "ca": null,
-      "p": null,
-      "costPerKg": null
-    },
-    {
-      "name": "Maize grain",
-      "dm": 90,
-      "me": 13,
-      "cp": 11,
-      "ndf": 10,
-      "ca": 0.05,
-      "p": 0.3,
-      "costPerKg": null
-    },
-    {
-      "name": "Soybean cake",
-      "dm": 90,
-      "me": 14,
-      "cp": 45,
-      "ndf": 20,
-      "ca": 0.39,
-      "p": 0.69,
-      "costPerKg": null
-    },
-  ];
+  List<Map<String, dynamic>> get concentrates {
+    return [
+      {
+        "name": S.of(context).concentrateSesameSeedMeal,
+        "dm": 92.8,
+        "me": 12.5,
+        "cp": 44.9,
+        "ndf": 24.6,
+        "ca": 1.97,
+        "p": 1.26,
+        "costPerKg": 25
+      },
+      {
+        "name": S.of(context).concentrateMolasses,
+        "dm": 80,
+        "me": 14,
+        "cp": 3,
+        "ndf": 1,
+        "ca": null,
+        "p": null,
+        "costPerKg": null
+      },
+      {
+        "name": S.of(context).concentrateMaizeGrain,
+        "dm": 90,
+        "me": 13,
+        "cp": 11,
+        "ndf": 10,
+        "ca": 0.05,
+        "p": 0.3,
+        "costPerKg": null
+      },
+      {
+        "name": S.of(context).concentrateSoybeanCake,
+        "dm": 90,
+        "me": 14,
+        "cp": 45,
+        "ndf": 20,
+        "ca": 0.39,
+        "p": 0.69,
+        "costPerKg": null
+      },
+    ];
+  }
 
-  static final List<Map<String, dynamic>> fodder = [
-    {
-      "name": "green maize forage",
-      "dm": 23.3,
-      "me": 9.6,
-      "cp": 7.9,
-      "ndf": 63.2,
-      "ca": 0.36,
-      "p": 0.2,
-      "costPerKg": 10
-    },
-    {
-      "name": "alfafa",
-      "dm": 90.6,
-      "me": 8.5,
-      "cp": 18.3,
-      "ndf": 45.9,
-      "ca": 2.21,
-      "p": 0.27,
-      "costPerKg": 12
-    },
-    {
-      "name": "moringa leaves",
-      "dm": 26.2,
-      "me": 10.6,
-      "cp": 24.3,
-      "ndf": 28.3,
-      "ca": 2.65,
-      "p": 0.31,
-      "costPerKg": 13
-    },
-    {
-      "name": "soya bean forage",
-      "dm": 24,
-      "me": 9.2,
-      "cp": 15.7,
-      "ndf": 48.1,
-      "ca": 1.48,
-      "p": 0.27,
-      "costPerKg": 15
-    },
-    {
-      "name": "groundnut seeds",
-      "dm": 95.5,
-      "me": 18.2,
-      "cp": 29.5,
-      "ndf": 9.3,
-      "ca": 0.08,
-      "p": 0.46,
-      "costPerKg": 16
-    },
-    {
-      "name": "bananna stalks",
-      "dm": 7.2,
-      "me": 16.9,
-      "cp": 5.1,
-      "ndf": 57.5,
-      "ca": 0.75,
-      "p": 0.29,
-      "costPerKg": 18
-    },
-    {
-      "name": "banana leaves",
-      "dm": 20.7,
-      "me": 18.1,
-      "cp": 9.5,
-      "ndf": null,
-      "ca": 1.67,
-      "p": 0.12,
-      "costPerKg": 19
-    },
-    {
-      "name": "sorghum forage",
-      "dm": 28.1,
-      "me": 8.8,
-      "cp": 8.2,
-      "ndf": 57.9,
-      "ca": 0.41,
-      "p": 0.2,
-      "costPerKg": 21
-    },
-    {
-      "name": "sorghum straw",
-      "dm": 93.3,
-      "me": 7.3,
-      "cp": 3.7,
-      "ndf": 76.6,
-      "ca": 0.31,
-      "p": 0.07,
-      "costPerKg": 22
-    },
-    {
-      "name": "maize silage",
-      "dm": 23.5,
-      "me": 10.5,
-      "cp": 8.9,
-      "ndf": 49.3,
-      "ca": 0.21,
-      "p": 0.19,
-      "costPerKg": 24
-    },
-    {
-      "name": "moringa leaves fresh",
-      "dm": 26.2,
-      "me": 10.6,
-      "cp": 24.3,
-      "ndf": 28.3,
-      "ca": 2.65,
-      "p": 0.31,
-      "costPerKg": 27
-    },
-    {
-      "name": "Fresh grass",
-      "dm": 20,
-      "me": 8,
-      "cp": 12,
-      "ndf": 60,
-      "ca": null,
-      "p": null,
-      "costPerKg": 10
-    },
-    {
-      "name": "Rice hay",
-      "dm": 85,
-      "me": 6,
-      "cp": 6,
-      "ndf": 80,
-      "ca": null,
-      "p": null,
-      "costPerKg": 12
-    },
-    {
-      "name": "Sweet corn trash",
-      "dm": 15,
-      "me": 11,
-      "cp": 8,
-      "ndf": 40,
-      "ca": null,
-      "p": null,
-      "costPerKg": 13
-    },
-    {
-      "name": "Bean silage",
-      "dm": 20,
-      "me": 9,
-      "cp": 25,
-      "ndf": 30,
-      "ca": null,
-      "p": null,
-      "costPerKg": 15
-    },
-    {
-      "name": "Rice bran A",
-      "dm": 90,
-      "me": 11,
-      "cp": 14,
-      "ndf": 27,
-      "ca": 0.09,
-      "p": 1.79,
-      "costPerKg": 16
-    },
-    {
-      "name": "Rice bran B",
-      "dm": 90,
-      "me": 8,
-      "cp": 8,
-      "ndf": 35,
-      "ca": null,
-      "p": null,
-      "costPerKg": 18
-    },
-    {
-      "name": "Reject potatoes",
-      "dm": 15,
-      "me": 13,
-      "cp": 6,
-      "ndf": 20,
-      "ca": null,
-      "p": null,
-      "costPerKg": 19
-    },
-    {
-      "name": "Corn stover",
-      "dm": 23,
-      "me": 9,
-      "cp": 6,
-      "ndf": 50,
-      "ca": null,
-      "p": null,
-      "costPerKg": 21
-    },
-    {
-      "name": "Brewers grain",
-      "dm": 80,
-      "me": 10,
-      "cp": 25,
-      "ndf": 40,
-      "ca": 0.27,
-      "p": 0.57,
-      "costPerKg": 22
-    },
-    {
-      "name": "Sago chips",
-      "dm": 88,
-      "me": 13,
-      "cp": 2,
-      "ndf": 10,
-      "ca": null,
-      "p": null,
-      "costPerKg": 24
-    },
-    {
-      "name": "Rice straw",
-      "dm": 90,
-      "me": 5,
-      "cp": 5,
-      "ndf": 80,
-      "ca": null,
-      "p": null,
-      "costPerKg": 27
-    },
-    {
-      "name": "Di-calcium phosphate",
-      "dm": 97.5,
-      "me": null,
-      "cp": null,
-      "ndf": null,
-      "ca": 23,
-      "p": 18,
-      "costPerKg": 24
-    },
-    {
-      "name": "elephant grass/Napier grass",
-      "dm": 17.9,
-      "me": 8.2,
-      "cp": 9.7,
-      "ndf": 71.5,
-      "ca": 3.6,
-      "p": 2.9,
-      "costPerKg": 24
-    },
-    {
-      "name": "elephant grass hay",
-      "dm": 89.3,
-      "me": 7.9,
-      "cp": 10.3,
-      "ndf": 71.1,
-      "ca": 2.8,
-      "p": 2.3,
-      "costPerKg": 27
-    },
-  ];
+  List<Map<String, dynamic>> get fodder {
+    return [
+      {
+        "name": S.of(context).fodderGreenMaizeForage,
+        "dm": 23.3,
+        "me": 9.6,
+        "cp": 7.9,
+        "ndf": 63.2,
+        "ca": 0.36,
+        "p": 0.2,
+        "costPerKg": 10
+      },
+      {
+        "name": S.of(context).fodderAlfafa,
+        "dm": 90.6,
+        "me": 8.5,
+        "cp": 18.3,
+        "ndf": 45.9,
+        "ca": 2.21,
+        "p": 0.27,
+        "costPerKg": 12
+      },
+      {
+        "name": S.of(context).fodderMoringaLeaves,
+        "dm": 26.2,
+        "me": 10.6,
+        "cp": 24.3,
+        "ndf": 28.3,
+        "ca": 2.65,
+        "p": 0.31,
+        "costPerKg": 13
+      },
+      {
+        "name": S.of(context).fodderSoyaBeanForage,
+        "dm": 24,
+        "me": 9.2,
+        "cp": 15.7,
+        "ndf": 48.1,
+        "ca": 1.48,
+        "p": 0.27,
+        "costPerKg": 15
+      },
+      {
+        "name": S.of(context).fodderGroundnutSeeds,
+        "dm": 95.5,
+        "me": 18.2,
+        "cp": 29.5,
+        "ndf": 9.3,
+        "ca": 0.08,
+        "p": 0.46,
+        "costPerKg": 16
+      },
+      {
+        "name": S.of(context).fodderBanannaStalks,
+        "dm": 7.2,
+        "me": 16.9,
+        "cp": 5.1,
+        "ndf": 57.5,
+        "ca": 0.75,
+        "p": 0.29,
+        "costPerKg": 18
+      },
+      {
+        "name": S.of(context).fodderBananaLeaves,
+        "dm": 20.7,
+        "me": 18.1,
+        "cp": 9.5,
+        "ndf": null,
+        "ca": 1.67,
+        "p": 0.12,
+        "costPerKg": 19
+      },
+      {
+        "name": S.of(context).fodderSorghumForage,
+        "dm": 28.1,
+        "me": 8.8,
+        "cp": 8.2,
+        "ndf": 57.9,
+        "ca": 0.41,
+        "p": 0.2,
+        "costPerKg": 21
+      },
+      {
+        "name": S.of(context).fodderSorghumStraw,
+        "dm": 93.3,
+        "me": 7.3,
+        "cp": 3.7,
+        "ndf": 76.6,
+        "ca": 0.31,
+        "p": 0.07,
+        "costPerKg": 22
+      },
+      {
+        "name": S.of(context).fodderMaizeSilage,
+        "dm": 23.5,
+        "me": 10.5,
+        "cp": 8.9,
+        "ndf": 49.3,
+        "ca": 0.21,
+        "p": 0.19,
+        "costPerKg": 24
+      },
+      {
+        "name": S.of(context).fodderMoringaLeavesFresh,
+        "dm": 26.2,
+        "me": 10.6,
+        "cp": 24.3,
+        "ndf": 28.3,
+        "ca": 2.65,
+        "p": 0.31,
+        "costPerKg": 27
+      },
+      {
+        "name": S.of(context).fodderFreshGrass,
+        "dm": 20,
+        "me": 8,
+        "cp": 12,
+        "ndf": 60,
+        "ca": null,
+        "p": null,
+        "costPerKg": 10
+      },
+      {
+        "name": S.of(context).fodderRiceHay,
+        "dm": 85,
+        "me": 6,
+        "cp": 6,
+        "ndf": 80,
+        "ca": null,
+        "p": null,
+        "costPerKg": 12
+      },
+      {
+        "name": S.of(context).fodderSweetCornTrash,
+        "dm": 15,
+        "me": 11,
+        "cp": 8,
+        "ndf": 40,
+        "ca": null,
+        "p": null,
+        "costPerKg": 13
+      },
+      {
+        "name": S.of(context).fodderBeanSilage,
+        "dm": 20,
+        "me": 9,
+        "cp": 25,
+        "ndf": 30,
+        "ca": null,
+        "p": null,
+        "costPerKg": 15
+      },
+      {
+        "name": S.of(context).fodderRiceBranA,
+        "dm": 90,
+        "me": 11,
+        "cp": 14,
+        "ndf": 27,
+        "ca": 0.09,
+        "p": 1.79,
+        "costPerKg": 16
+      },
+      {
+        "name": S.of(context).fodderRiceBranB,
+        "dm": 90,
+        "me": 8,
+        "cp": 8,
+        "ndf": 35,
+        "ca": null,
+        "p": null,
+        "costPerKg": 18
+      },
+      {
+        "name": S.of(context).fodderRejectPotatoes,
+        "dm": 15,
+        "me": 13,
+        "cp": 6,
+        "ndf": 20,
+        "ca": null,
+        "p": null,
+        "costPerKg": 19
+      },
+      {
+        "name": S.of(context).fodderCornStover,
+        "dm": 23,
+        "me": 9,
+        "cp": 6,
+        "ndf": 50,
+        "ca": null,
+        "p": null,
+        "costPerKg": 21
+      },
+      {
+        "name": S.of(context).fodderBrewersGrain,
+        "dm": 80,
+        "me": 10,
+        "cp": 25,
+        "ndf": 40,
+        "ca": 0.27,
+        "p": 0.57,
+        "costPerKg": 22
+      },
+      {
+        "name": S.of(context).fodderSagoChips,
+        "dm": 88,
+        "me": 13,
+        "cp": 2,
+        "ndf": 10,
+        "ca": null,
+        "p": null,
+        "costPerKg": 24
+      },
+      {
+        "name": S.of(context).fodderRiceStraw,
+        "dm": 90,
+        "me": 5,
+        "cp": 5,
+        "ndf": 80,
+        "ca": null,
+        "p": null,
+        "costPerKg": 27
+      },
+      {
+        "name": S.of(context).fodderDiCalciumPhosphate,
+        "dm": 97.5,
+        "me": null,
+        "cp": null,
+        "ndf": null,
+        "ca": 23,
+        "p": 18,
+        "costPerKg": 24
+      },
+      {
+        "name": S.of(context).fodderElephantGrassNapierGrass,
+        "dm": 17.9,
+        "me": 8.2,
+        "cp": 9.7,
+        "ndf": 71.5,
+        "ca": 3.6,
+        "p": 2.9,
+        "costPerKg": 24
+      },
+      {
+        "name": S.of(context).fodderElephantGrassHay,
+        "dm": 89.3,
+        "me": 7.9,
+        "cp": 10.3,
+        "ndf": 71.1,
+        "ca": 2.8,
+        "p": 2.3,
+        "costPerKg": 27
+      },
+    ];
+  }
 }
