@@ -103,6 +103,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
                   fodderItems: fodderItems,
                   concentrateItems: concentrateItems,
                   cowRequirements: widget.cowRequirements,
+                  cowCharacteristics: widget.cowCharacteristics,
                 ),
                 // Image.asset('assets/sense-200px.png', height: 20),
               ],
