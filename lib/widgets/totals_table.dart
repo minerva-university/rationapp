@@ -24,16 +24,16 @@ class TotalsTable extends StatelessWidget {
         'key': 'dmIntake',
         'decimals': 2,
         'reqKey': 'dmIntake',
-        'min': 0.95,
-        'max': 1.05
+        'min': cowRequirements.dmIntake * 0.95,
+        'max': cowRequirements.dmIntake * 1.05
       },
       {
         'label': 'ME Intake\n(MJ/d)',
         'key': 'meIntake',
         'decimals': 2,
         'reqKey': 'meIntake',
-        'min': 0.95,
-        'max': 1.05
+        'min': cowRequirements.meIntake * 0.95,
+        'max': cowRequirements.meIntake * 1.05
       },
       {
         'label': 'CP Intake\n(%DM)',
@@ -100,12 +100,12 @@ class TotalsTable extends StatelessWidget {
     }
 
     double totalDM = totals['dmIntake']!;
-    totals['concentrateDM'] = 0;
+    totals['concentrateIntake'] = 0;
 
     // dmIntake totals for concentrate items
     for (var item in concentrateItems) {
-      totals['concentrateDM'] =
-          (totals['concentrateDM'] ?? 0) + (item['concentrateDM'] ?? 0);
+      totals['concentrateIntake'] =
+          (totals['concentrateIntake'] ?? 0) + (item['dmIntake'] ?? 0);
     }
 
     // Convert to %DM
@@ -135,13 +135,6 @@ class TotalsTable extends StatelessWidget {
 
     double min = columnData['min'].toDouble();
     double max = columnData['max'].toDouble();
-
-    if (key == 'dmIntake' || key == 'meIntake') {
-      double required =
-          cowRequirements.toJson()[columnData['reqKey']] as double;
-      min *= required;
-      max *= required;
-    }
 
     if (total < min) {
       return Icon(Icons.arrow_upward, color: Colors.red);
