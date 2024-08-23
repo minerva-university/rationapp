@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rationapp/models/cow_characteristics_model.dart';
 import '../models/cow_requirements_model.dart';
 import '../generated/l10n.dart';
 
@@ -6,15 +7,18 @@ class TotalsTable extends StatelessWidget {
   final List<Map<String, dynamic>> fodderItems;
   final List<Map<String, dynamic>> concentrateItems;
   final CowRequirements cowRequirements;
+  final CowCharacteristics cowCharacteristics;
   final BuildContext context;
 
-  TotalsTable({
-    super.key,
-    required this.context,
-    required this.fodderItems,
-    required this.concentrateItems,
-    required this.cowRequirements,
-  });
+  TotalsTable(
+      {super.key,
+      required this.context,
+      required this.fodderItems,
+      required this.concentrateItems,
+      required this.cowRequirements,
+      required this.cowCharacteristics});
+
+  bool get isLactating => cowCharacteristics.lactationStage != 'Dry';
 
   List<Map<String, dynamic>> get columns {
     return [
@@ -23,62 +27,69 @@ class TotalsTable extends StatelessWidget {
         'key': 'dmIntake',
         'decimals': 2,
         'reqKey': 'dmIntake',
-        'isPercentage': false,
+        'min': cowRequirements.dmIntake * 0.95,
+        'max': cowRequirements.dmIntake * 1.05
       },
       {
         'label': S.of(context).meIntakeLabelWithUnit,
         'key': 'meIntake',
         'decimals': 2,
         'reqKey': 'meIntake',
-        'isPercentage': false,
+        'min': cowRequirements.meIntake * 0.95,
+        'max': cowRequirements.meIntake * 1.05
       },
       {
         'label': S.of(context).cpIntakeLabelWithUnit,
         'key': 'cpIntake',
         'decimals': 2,
         'reqKey': 'cpIntake',
-        'isPercentage': true,
+        'min': isLactating ? 16 : 12,
+        'max': isLactating ? 18 : 14,
       },
       {
         'label': S.of(context).ndfIntakeLabelWithUnit,
         'key': 'ndfIntake',
         'decimals': 2,
         'reqKey': 'ndfIntake',
-        'isPercentage': true,
+        'min': 28,
+        'max': 40
       },
       {
         'label': S.of(context).caIntakeLabelWithUnit,
         'key': 'caIntake',
         'decimals': 2,
         'reqKey': 'caIntake',
-        'isPercentage': true,
+        'min': isLactating ? 0.7 : 0.35,
+        'max': isLactating ? 1.0 : 0.55,
       },
       {
         'label': S.of(context).pIntakeLabelWithUnit,
         'key': 'pIntake',
         'decimals': 2,
         'reqKey': 'pIntake',
-        'isPercentage': true,
+        'min': isLactating ? 0.35 : 0.25,
+        'max': isLactating ? 0.45 : 0.40,
       },
       {
         'label': S.of(context).concentrateIntakeLabelWithUnit,
         'key': 'concentrateIntake',
         'decimals': 2,
         'reqKey': 'concentrateIntake',
-        'isPercentage': true,
+        'min': 0,
+        'max': 60
       },
       {
         'label': 'Cost\n(ERN)',
         'key': 'cost',
         'decimals': 2,
         'reqKey': null,
-        'isPercentage': false,
       },
     ];
   }
 
   Map<String, double> _calculateTotals() {
     Map<String, double> totals = {};
+
     for (var col in columns) {
       String key = col['key'] as String;
       totals[key] = 0;
@@ -91,28 +102,49 @@ class TotalsTable extends StatelessWidget {
       }
     }
 
+    double totalDM = totals['dmIntake']!;
+    totals['concentrateIntake'] = 0;
+
+    // dmIntake totals for concentrate items
+    for (var item in concentrateItems) {
+      totals['concentrateIntake'] =
+          (totals['concentrateIntake'] ?? 0) + (item['dmIntake'] ?? 0);
+    }
+
+    // Convert to %DM
+    List<String> percentageKeys = [
+      'concentrateIntake',
+      'cpIntake',
+      'ndfIntake',
+      'caIntake',
+      'pIntake'
+    ];
+    for (String key in percentageKeys) {
+      if (totalDM > 0) {
+        totals[key] = (totals[key]! / totalDM) * 100;
+      } else {
+        totals[key] = 0;
+      }
+    }
+
     return totals;
   }
 
   Widget _buildComparisonIcon(
-      double total, double requirement, bool isPercentage) {
-    const double percentageThreshold = 2;
-    const double absoluteThreshold = 0.05;
-
-    bool isWithinRange;
-    if (isPercentage) {
-      isWithinRange = (total - requirement).abs() <= percentageThreshold;
-    } else {
-      isWithinRange =
-          (total - requirement).abs() <= absoluteThreshold * requirement;
+      String key, double total, Map<String, dynamic> columnData) {
+    if (columnData['reqKey'] == null) {
+      return SizedBox.shrink(); // No comparison for this key
     }
 
-    if (isWithinRange) {
-      return Icon(Icons.check_circle, color: Colors.green);
-    } else if (total < requirement) {
+    double min = columnData['min'].toDouble();
+    double max = columnData['max'].toDouble();
+
+    if (total < min) {
       return Icon(Icons.arrow_upward, color: Colors.red);
-    } else {
+    } else if (total > max) {
       return Icon(Icons.arrow_downward, color: Colors.orange);
+    } else {
+      return Icon(Icons.check_circle, color: Colors.green);
     }
   }
 
@@ -131,23 +163,16 @@ class TotalsTable extends StatelessWidget {
             cells: columns.map((col) {
               String key = col['key'] as String;
               int decimals = col['decimals'] as int;
-              String? reqKey = col['reqKey'] as String?;
-              bool isPercentage = col['isPercentage'] as bool;
               double total = totals[key]!;
 
-              Widget? comparisonIcon;
-              if (reqKey != null) {
-                double requirement = cowRequirements.toJson()[reqKey] as double;
-                comparisonIcon =
-                    _buildComparisonIcon(total, requirement, isPercentage);
-              }
+              Widget comparisonIcon = _buildComparisonIcon(key, total, col);
 
               return DataCell(
                 Row(
                   children: [
                     Text(total.toStringAsFixed(decimals)),
-                    if (comparisonIcon != null) SizedBox(width: 5),
-                    if (comparisonIcon != null) comparisonIcon,
+                    SizedBox(width: 5),
+                    comparisonIcon,
                   ],
                 ),
               );
