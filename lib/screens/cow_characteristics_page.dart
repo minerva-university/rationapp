@@ -3,6 +3,8 @@ import '../widgets/custom_text_field.dart';
 import '../widgets/custom_dropdown_field.dart';
 import '../constants/cow_characteristics_constants.dart';
 import '../../utils/cow_requirements_calculator.dart';
+import '../services/persistence_manager.dart';
+import '../models/cow_characteristics_model.dart';
 
 class CowCharacteristicsPage extends StatefulWidget {
   const CowCharacteristicsPage({super.key});
@@ -22,25 +24,59 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
   @override
   void initState() {
     super.initState();
-    liveWeightController.text = 'Choose live weight (kg)';
-    pregnancyController.text = 'Choose pregnancy month';
+    _loadSavedCharacteristics();
+  }
+
+  void _loadSavedCharacteristics() {
+    final savedCharacteristics = SharedPrefsService.getCowCharacteristics();
+    if (savedCharacteristics != null) {
+      setState(() {
+        liveWeightController.text =
+            savedCharacteristics.liveWeight.toInt().toString();
+        pregnancyController.text =
+            savedCharacteristics.pregnancyMonths.toInt().toString();
+        volumeController.text = savedCharacteristics.milkVolume.toString();
+        milkFatController.text = savedCharacteristics.milkFat.toString();
+        milkProteinController.text =
+            savedCharacteristics.milkProtein.toString();
+        lactationController.text =
+            savedCharacteristics.lactationStage.toString();
+      });
+    } else {
+      _setDefaultValues();
+    }
+  }
+
+  void _setDefaultValues() {
+    liveWeightController.text =
+        CowCharacteristicsConstants.liveWeightOptions.first;
+    pregnancyController.text =
+        CowCharacteristicsConstants.pregnancyOptions.first;
     volumeController.text = '';
-    milkFatController.text = 'Choose milk fat %';
-    milkProteinController.text = 'Choose milk protein %';
-    lactationController.text = 'Choose lactation stage';
+    milkFatController.text = CowCharacteristicsConstants.milkFatOptions.first;
+    milkProteinController.text =
+        CowCharacteristicsConstants.milkProteinOptions.first;
+    lactationController.text =
+        CowCharacteristicsConstants.lactationOptions.first;
   }
 
   bool _isFormValid() {
-    return liveWeightController.text != 'Choose live weight (kg)' &&
-        pregnancyController.text != 'Choose pregnancy month' &&
+    return liveWeightController.text !=
+            CowCharacteristicsConstants.liveWeightOptions.first &&
+        pregnancyController.text !=
+            CowCharacteristicsConstants.pregnancyOptions.first &&
         volumeController.text.isNotEmpty &&
-        milkFatController.text != 'Choose milk fat %' &&
-        milkProteinController.text != 'Choose milk protein %' &&
-        lactationController.text != 'Choose lactation stage';
+        milkFatController.text !=
+            CowCharacteristicsConstants.milkFatOptions.first &&
+        milkProteinController.text !=
+            CowCharacteristicsConstants.milkProteinOptions.first &&
+        lactationController.text !=
+            CowCharacteristicsConstants.lactationOptions.first;
   }
 
   void _handleButtonPress() {
     if (_isFormValid()) {
+      _saveCowCharacteristics();
       CowRequirementsCalculator.calculateCowRequirements(
           context,
           liveWeightController,
@@ -58,6 +94,18 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
         ),
       );
     }
+  }
+
+  void _saveCowCharacteristics() {
+    final cowCharacteristics = CowCharacteristics(
+      liveWeight: int.tryParse(liveWeightController.text) ?? 0,
+      pregnancyMonths: int.tryParse(pregnancyController.text) ?? 0,
+      milkVolume: double.tryParse(volumeController.text) ?? 0.0,
+      milkFat: double.tryParse(milkFatController.text) ?? 0.0,
+      milkProtein: double.tryParse(milkProteinController.text) ?? 0.0,
+      lactationStage: lactationController.text,
+    );
+    SharedPrefsService.setCowCharacteristics(cowCharacteristics);
   }
 
   @override

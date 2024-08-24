@@ -1,7 +1,7 @@
 import '../../data/nutrition_tables.dart';
 
 class NutritionCalculator {
-  static double calculateDMRequirement(double liveWeight) {
+  static double calculateDMRequirement(int liveWeight) {
     var matchingRow = NutritionTables.weightRequirement.firstWhere(
       (row) => row["weight"] == liveWeight,
       orElse: () => {"dm": 0.0},
@@ -9,8 +9,8 @@ class NutritionCalculator {
     return matchingRow["dm"];
   }
 
-  static double calculateMEIntake(double liveWeight, double pregnancy,
-      double volume, double milkFat, double milkProtein) {
+  static double calculateMEIntake(int liveWeight, int pregnancy, double volume,
+      double milkFat, double milkProtein) {
     double meIntake = 0;
 
     // Part 1: ME from live weight

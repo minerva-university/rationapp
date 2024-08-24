@@ -12,8 +12,8 @@ class CowRequirementsCalculator {
       TextEditingController milkFatController,
       TextEditingController milkProteinController,
       TextEditingController lactationController) {
-    double liveWeight = double.tryParse(liveWeightController.text) ?? 0;
-    double pregnancy = double.tryParse(pregnancyController.text) ?? 0;
+    int liveWeight = int.tryParse(liveWeightController.text) ?? 0;
+    int pregnancy = int.tryParse(pregnancyController.text) ?? 0;
     double volume = double.tryParse(volumeController.text) ?? 0;
     double milkFat = double.tryParse(milkFatController.text) ?? 0;
     double milkProtein = double.tryParse(milkProteinController.text) ?? 0;
