@@ -6,7 +6,9 @@ import '../widgets/totals_table.dart';
 import '../constants/feed_constants.dart';
 import '../models/cow_characteristics_model.dart';
 import '../models/cow_requirements_model.dart';
+import '../models/feed_formula_model.dart';
 import '../utils/feed_calculator.dart';
+import '../services/persistence_manager.dart';
 
 class FeedFormulaPage extends StatefulWidget {
   final CowCharacteristics cowCharacteristics;
@@ -23,14 +25,31 @@ class FeedFormulaPage extends StatefulWidget {
 }
 
 class _FeedFormulaPageState extends State<FeedFormulaPage> {
-  List<Map<String, dynamic>> fodderItems = [];
-  List<Map<String, dynamic>> concentrateItems = [];
-  final TextEditingController feedWeightController = TextEditingController();
+  List<FeedIngredient> fodderItems = [];
+  List<FeedIngredient> concentrateItems = [];
 
   @override
   void initState() {
     super.initState();
-    feedWeightController.text = '';
+    _loadSavedFeedFormula();
+  }
+
+  void _loadSavedFeedFormula() async {
+    final savedFormula = SharedPrefsService.getFeedFormula();
+    if (savedFormula != null) {
+      setState(() {
+        fodderItems = savedFormula.fodder;
+        concentrateItems = savedFormula.concentrate;
+      });
+    }
+  }
+
+  void _saveFeedFormula() {
+    final feedFormula = FeedFormula(
+      fodder: fodderItems,
+      concentrate: concentrateItems,
+    );
+    SharedPrefsService.setFeedFormula(feedFormula);
   }
 
   @override
@@ -165,6 +184,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
       } else {
         concentrateItems.add(newItem);
       }
+      _saveFeedFormula();
     });
   }
 
@@ -183,6 +203,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
             final updatedItem = FeedCalculator.calculateIngredientValues(
                 name, weight, isFodder);
             items[index] = updatedItem;
+            _saveFeedFormula();
           });
         },
       ),
@@ -196,6 +217,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
       } else {
         concentrateItems.removeAt(index);
       }
+      _saveFeedFormula();
     });
   }
 }
