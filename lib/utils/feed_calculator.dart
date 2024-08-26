@@ -1,7 +1,9 @@
+import 'package:rationapp/models/feed_formula_model.dart';
+
 import '../data/nutrition_tables.dart';
 
 class FeedCalculator {
-  static Map<String, dynamic> calculateIngredientValues(
+  static FeedIngredient calculateIngredientValues(
       String name, double weight, bool isFodder) {
     final table =
         isFodder ? NutritionTables.fodder : NutritionTables.concentrates;
@@ -16,16 +18,15 @@ class FeedCalculator {
       return ((ingredient[key])?.toDouble() ?? 0.0) * dmIntake / 100;
     }
 
-    return {
-      'name': name,
-      'weight': weight,
-      'dmIntake': dmIntake,
-      'meIntake': meIntake,
-      'cpIntake': calculateValue('cp'),
-      'ndfIntake': calculateValue('ndf'),
-      'caIntake': calculateValue('ca'),
-      'pIntake': calculateValue('p'),
-      'cost': cost,
-    };
+    return FeedIngredient(
+        name: name,
+        weight: weight,
+        dmIntake: dmIntake,
+        meIntake: meIntake,
+        cpIntake: calculateValue('cp'),
+        ndfIntake: calculateValue('ndf'),
+        caIntake: calculateValue('ca'),
+        pIntake: calculateValue('p'),
+        cost: cost);
   }
 }

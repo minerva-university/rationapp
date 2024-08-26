@@ -17,7 +17,7 @@ class AddIngredientDialog extends StatefulWidget {
   });
 
   @override
-  _AddIngredientDialogState createState() => _AddIngredientDialogState();
+  State<AddIngredientDialog> createState() => _AddIngredientDialogState();
 }
 
 class _AddIngredientDialogState extends State<AddIngredientDialog> {
