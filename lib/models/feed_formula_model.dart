@@ -7,7 +7,9 @@ class FeedIngredient {
   final double ndfIntake;
   final double caIntake;
   final double pIntake;
-  final double cost;
+  double costPerKg;
+  bool isAvailable;
+  final bool isFodder;
 
   FeedIngredient({
     required this.name,
@@ -18,7 +20,9 @@ class FeedIngredient {
     required this.ndfIntake,
     required this.caIntake,
     required this.pIntake,
-    required this.cost,
+    required this.costPerKg,
+    this.isAvailable = true,
+    required this.isFodder,
   });
 
   dynamic operator [](String key) {
@@ -39,8 +43,12 @@ class FeedIngredient {
         return caIntake;
       case 'pIntake':
         return pIntake;
-      case 'cost':
-        return cost;
+      case 'costPerKg':
+        return costPerKg;
+      case 'isAvailable':
+        return isAvailable;
+      case 'isFodder':
+        return isFodder;
       default:
         throw ArgumentError('Invalid key: $key');
     }
@@ -56,7 +64,9 @@ class FeedIngredient {
       ndfIntake: json['ndfIntake'],
       caIntake: json['caIntake'],
       pIntake: json['pIntake'],
-      cost: json['cost'],
+      costPerKg: json['costPerKg'] ?? 0.0,
+      isAvailable: json['isAvailable'] ?? true,
+      isFodder: json['isFodder'] ?? true,
     );
   }
 
@@ -70,8 +80,15 @@ class FeedIngredient {
       'ndfIntake': ndfIntake,
       'caIntake': caIntake,
       'pIntake': pIntake,
-      'cost': cost,
+      'costPerKg': costPerKg,
+      'isAvailable': isAvailable,
+      'isFodder': isFodder,
     };
+  }
+
+  @override
+  String toString() {
+    return 'FeedIngredient(name: $name, weight: $weight, dmIntake: $dmIntake, meIntake: $meIntake, cpIntake: $cpIntake, ndfIntake: $ndfIntake, caIntake: $caIntake, pIntake: $pIntake, costPerKg: $costPerKg, isAvailable: $isAvailable, isFodder: $isFodder)';
   }
 }
 
@@ -100,5 +117,10 @@ class FeedFormula {
       'fodder': fodder.map((item) => item.toJson()).toList(),
       'concentrate': concentrate.map((item) => item.toJson()).toList(),
     };
+  }
+
+  @override
+  String toString() {
+    return 'FeedFormula(fodder: $fodder, concentrate: $concentrate)';
   }
 }

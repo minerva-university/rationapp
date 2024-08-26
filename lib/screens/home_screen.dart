@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/destination_model.dart';
 import '../screens/cow_requirements_view.dart';
 import '../screens/feeding_guidelines_page.dart';
+import '../screens/price_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,10 +23,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       builder: (context) => CowRequirementsView(),
     ),
     Destination(
+      label: 'Prices',
+      icon: Icons.attach_money,
+      builder: (context) => PricesPage(),
+    ),
+    Destination(
       label: 'Guidelines',
       icon: Icons.list,
       builder: (context) => FeedingGuidelinesPage(),
-    ),
+    )
   ];
 
   @override

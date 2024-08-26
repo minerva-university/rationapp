@@ -34,12 +34,20 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
     _loadSavedFeedFormula();
   }
 
-  void _loadSavedFeedFormula() async {
+  void _loadSavedFeedFormula() {
     final savedFormula = SharedPrefsService.getFeedFormula();
-    if (savedFormula != null) {
+    final savedPricesAndAvailability =
+        SharedPrefsService.getFeedPricesAndAvailability();
+    if (savedFormula != null && savedPricesAndAvailability != null) {
       setState(() {
-        fodderItems = savedFormula.fodder;
-        concentrateItems = savedFormula.concentrate;
+        fodderItems = savedFormula.fodder
+            .where((fodder) => savedPricesAndAvailability
+                .any((item) => item.name == fodder.name && item.isAvailable))
+            .toList();
+        concentrateItems = savedFormula.concentrate
+            .where((concentrate) => savedPricesAndAvailability.any(
+                (item) => item.name == concentrate.name && item.isAvailable))
+            .toList();
       });
     }
   }
@@ -150,8 +158,8 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
 
   void _showAddIngredientDialog(bool isFodder) {
     List<String> availableOptions = (isFodder
-            ? FeedConstants.fodderOptions
-            : FeedConstants.concentrateOptions)
+            ? FeedConstants().fodderOptions
+            : FeedConstants().concentrateOptions)
         .where((option) => !(isFodder ? fodderItems : concentrateItems)
             .any((item) => item['name'].toLowerCase() == option.toLowerCase()))
         .toList();
@@ -178,7 +186,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
   void _addIngredient(String name, double weight, bool isFodder) {
     setState(() {
       final newItem =
-          FeedCalculator.calculateIngredientValues(name, weight, isFodder);
+          FeedCalculator().calculateIngredientValues(name, weight, isFodder);
       if (isFodder) {
         fodderItems.add(newItem);
       } else {
@@ -200,8 +208,8 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
         initialWeight: item['weight'],
         onAdd: (name, weight) {
           setState(() {
-            final updatedItem = FeedCalculator.calculateIngredientValues(
-                name, weight, isFodder);
+            final updatedItem = FeedCalculator()
+                .calculateIngredientValues(name, weight, isFodder);
             items[index] = updatedItem;
             _saveFeedFormula();
           });

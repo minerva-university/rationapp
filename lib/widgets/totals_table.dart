@@ -78,7 +78,7 @@ class TotalsTable extends StatelessWidget {
       },
       {
         'label': 'Cost\n(ERN)',
-        'key': 'cost',
+        'key': 'costPerKg',
         'decimals': 2,
         'reqKey': null,
       },
