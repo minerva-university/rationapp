@@ -65,7 +65,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
             final latestItem = feedState.fodderItems
                 .firstWhere((item) => item.name == fodder.name);
             return fodder.copyWith(
-                costPerKg: latestItem.costPerKg * fodder.weight,
+                cost: latestItem.cost * fodder.weight,
                 isAvailable: latestItem.isAvailable);
           }).toList();
 
@@ -76,12 +76,13 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
             final latestItem = feedState.concentrateItems
                 .firstWhere((item) => item.name == concentrate.name);
             return concentrate.copyWith(
-                costPerKg: latestItem.costPerKg * concentrate.weight,
+                cost: latestItem.cost * concentrate.weight,
                 isAvailable: latestItem.isAvailable);
           }).toList();
 
           return Column(
             children: [
+              // Fixed Cow Requirements section
               Container(
                 padding: const EdgeInsets.all(8),
                 child: Column(
@@ -95,6 +96,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
                 ),
               ),
               const Divider(height: 1, thickness: 2),
+              // Scrollable content
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
@@ -130,6 +132,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
                   ),
                 ),
               ),
+              // Footer image
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -141,6 +144,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
                       cowRequirements: widget.cowRequirements,
                       cowCharacteristics: widget.cowCharacteristics,
                     ),
+                    // Image.asset('assets/sense-200px.png', height: 20),
                   ],
                 ),
               ),
@@ -197,8 +201,8 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
 
   void _addIngredient(String name, double weight, bool isFodder) {
     setState(() {
-      final newItem =
-          FeedCalculator().calculateIngredientValues(name, weight, isFodder);
+      final newItem = FeedCalculator()
+          .calculateIngredientValues(name, weight, isFodder, context);
       if (isFodder) {
         selectedFodderItems.add(newItem);
       } else {
@@ -221,7 +225,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
         onAdd: (name, weight) {
           setState(() {
             final updatedItem = FeedCalculator()
-                .calculateIngredientValues(name, weight, isFodder);
+                .calculateIngredientValues(name, weight, isFodder, context);
             items[index] = updatedItem;
             _saveFeedFormula();
           });

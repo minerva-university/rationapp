@@ -7,7 +7,7 @@ class FeedIngredient {
   final double ndfIntake;
   final double caIntake;
   final double pIntake;
-  double costPerKg;
+  double cost;
   bool isAvailable;
   final bool isFodder;
 
@@ -20,7 +20,7 @@ class FeedIngredient {
     required this.ndfIntake,
     required this.caIntake,
     required this.pIntake,
-    required this.costPerKg,
+    required this.cost,
     this.isAvailable = true,
     required this.isFodder,
   });
@@ -43,8 +43,8 @@ class FeedIngredient {
         return caIntake;
       case 'pIntake':
         return pIntake;
-      case 'costPerKg':
-        return costPerKg;
+      case 'cost':
+        return cost;
       case 'isAvailable':
         return isAvailable;
       case 'isFodder':
@@ -64,7 +64,7 @@ class FeedIngredient {
       ndfIntake: json['ndfIntake'],
       caIntake: json['caIntake'],
       pIntake: json['pIntake'],
-      costPerKg: json['costPerKg'] ?? 0.0,
+      cost: json['cost'] ?? 0.0,
       isAvailable: json['isAvailable'] ?? true,
       isFodder: json['isFodder'] ?? true,
     );
@@ -80,13 +80,13 @@ class FeedIngredient {
       'ndfIntake': ndfIntake,
       'caIntake': caIntake,
       'pIntake': pIntake,
-      'costPerKg': costPerKg,
+      'cost': cost,
       'isAvailable': isAvailable,
       'isFodder': isFodder,
     };
   }
 
-  FeedIngredient copyWith({bool? isAvailable, double? costPerKg}) {
+  FeedIngredient copyWith({bool? isAvailable, double? cost}) {
     return FeedIngredient(
       name: name,
       weight: weight,
@@ -96,7 +96,7 @@ class FeedIngredient {
       ndfIntake: ndfIntake,
       caIntake: caIntake,
       pIntake: pIntake,
-      costPerKg: costPerKg ?? this.costPerKg,
+      cost: cost ?? this.cost,
       isAvailable: isAvailable ?? this.isAvailable,
       isFodder: isFodder,
     );
@@ -104,7 +104,7 @@ class FeedIngredient {
 
   @override
   String toString() {
-    return 'FeedIngredient(name: $name, weight: $weight, dmIntake: $dmIntake, meIntake: $meIntake, cpIntake: $cpIntake, ndfIntake: $ndfIntake, caIntake: $caIntake, pIntake: $pIntake, costPerKg: $costPerKg, isAvailable: $isAvailable, isFodder: $isFodder)';
+    return 'FeedIngredient(name: $name, weight: $weight, dmIntake: $dmIntake, meIntake: $meIntake, cpIntake: $cpIntake, ndfIntake: $ndfIntake, caIntake: $caIntake, pIntake: $pIntake, cost: $cost, isAvailable: $isAvailable, isFodder: $isFodder)';
   }
 }
 

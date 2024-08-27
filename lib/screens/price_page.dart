@@ -55,14 +55,13 @@ class PricesPage extends StatelessWidget {
           SizedBox(
             width: 100,
             child: TextFormField(
-              initialValue: item.costPerKg.toStringAsFixed(2),
+              initialValue: item.cost.toStringAsFixed(2),
               decoration: InputDecoration(labelText: 'Price/kg'),
               keyboardType: TextInputType.numberWithOptions(decimal: true),
               onChanged: (value) {
-                final newPrice = double.tryParse(value) ?? item.costPerKg;
-                if (newPrice != item.costPerKg) {
-                  feedState
-                      .updateIngredient(item.copyWith(costPerKg: newPrice));
+                final newPrice = double.tryParse(value) ?? item.cost;
+                if (newPrice != item.cost) {
+                  feedState.updateIngredient(item.copyWith(cost: newPrice));
                 }
               },
             ),

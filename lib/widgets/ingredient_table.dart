@@ -34,7 +34,7 @@ class IngredientTable extends StatelessWidget {
     {'label': 'NDF Intake\n(kg/d)', 'key': 'ndfIntake', 'decimals': 5},
     {'label': 'Ca Intake\n(kg/d)', 'key': 'caIntake', 'decimals': 5},
     {'label': 'P Intake\n(kg/d)', 'key': 'pIntake', 'decimals': 5},
-    {'label': 'Cost\n(ERN)', 'key': 'costPerKg', 'decimals': 2},
+    {'label': 'Cost\n(ERN)', 'key': 'cost', 'decimals': 2},
   ]
       .map((col) => ColumnDefinition(
           label: col['label'] as String,

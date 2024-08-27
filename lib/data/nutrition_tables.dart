@@ -357,7 +357,7 @@ class NutritionTables {
         ndfIntake: 24.6,
         caIntake: 1.97,
         pIntake: 1.26,
-        costPerKg: 25,
+        cost: 25,
         isFodder: false),
     FeedIngredient(
         name: 'Molasses',
@@ -368,7 +368,7 @@ class NutritionTables {
         ndfIntake: 1,
         caIntake: 0,
         pIntake: 0,
-        costPerKg: 0,
+        cost: 0,
         isFodder: false),
     FeedIngredient(
         name: 'Maize grain',
@@ -379,7 +379,7 @@ class NutritionTables {
         ndfIntake: 10,
         caIntake: 0.05,
         pIntake: 0.3,
-        costPerKg: 0,
+        cost: 0,
         isFodder: false),
     FeedIngredient(
         name: 'Soybean cake',
@@ -390,7 +390,7 @@ class NutritionTables {
         ndfIntake: 20,
         caIntake: 0.39,
         pIntake: 0.69,
-        costPerKg: 0,
+        cost: 0,
         isFodder: false),
   ];
   static List<FeedIngredient> fodderItems = [
@@ -403,7 +403,7 @@ class NutritionTables {
         ndfIntake: 63.2,
         caIntake: 0.36,
         pIntake: 0.2,
-        costPerKg: 10,
+        cost: 10,
         isFodder: true),
     FeedIngredient(
         name: 'alfafa',
@@ -414,7 +414,7 @@ class NutritionTables {
         ndfIntake: 45.9,
         caIntake: 2.21,
         pIntake: 0.27,
-        costPerKg: 12,
+        cost: 12,
         isFodder: true),
     FeedIngredient(
         name: 'moringa leaves',
@@ -425,7 +425,7 @@ class NutritionTables {
         ndfIntake: 28.3,
         caIntake: 2.65,
         pIntake: 0.31,
-        costPerKg: 13,
+        cost: 13,
         isFodder: true),
     FeedIngredient(
         name: 'soya bean forage',
@@ -436,7 +436,7 @@ class NutritionTables {
         ndfIntake: 48.1,
         caIntake: 1.48,
         pIntake: 0.27,
-        costPerKg: 15,
+        cost: 15,
         isFodder: true),
     FeedIngredient(
         name: 'groundnut seeds',
@@ -447,7 +447,7 @@ class NutritionTables {
         ndfIntake: 9.3,
         caIntake: 0.08,
         pIntake: 0.46,
-        costPerKg: 16,
+        cost: 16,
         isFodder: true),
     FeedIngredient(
         name: 'bananna stalks',
@@ -458,7 +458,7 @@ class NutritionTables {
         ndfIntake: 57.5,
         caIntake: 0.75,
         pIntake: 0.29,
-        costPerKg: 18,
+        cost: 18,
         isFodder: true),
     FeedIngredient(
         name: 'banana leaves',
@@ -469,7 +469,7 @@ class NutritionTables {
         ndfIntake: 0,
         caIntake: 1.67,
         pIntake: 0.12,
-        costPerKg: 19,
+        cost: 19,
         isFodder: true),
     FeedIngredient(
         name: 'sorghum forage',
@@ -480,7 +480,7 @@ class NutritionTables {
         ndfIntake: 57.9,
         caIntake: 0.41,
         pIntake: 0.2,
-        costPerKg: 21,
+        cost: 21,
         isFodder: true),
     FeedIngredient(
         name: 'sorghum straw',
@@ -491,7 +491,7 @@ class NutritionTables {
         ndfIntake: 76.6,
         caIntake: 0.31,
         pIntake: 0.07,
-        costPerKg: 22,
+        cost: 22,
         isFodder: true),
     FeedIngredient(
         name: 'maize silage',
@@ -502,7 +502,7 @@ class NutritionTables {
         ndfIntake: 49.3,
         caIntake: 0.21,
         pIntake: 0.19,
-        costPerKg: 24,
+        cost: 24,
         isFodder: true),
     FeedIngredient(
         name: 'moringa leaves fresh',
@@ -513,7 +513,7 @@ class NutritionTables {
         ndfIntake: 28.3,
         caIntake: 2.65,
         pIntake: 0.31,
-        costPerKg: 27,
+        cost: 27,
         isFodder: true),
     FeedIngredient(
         name: 'Fresh grass',
@@ -524,7 +524,7 @@ class NutritionTables {
         ndfIntake: 60,
         caIntake: 0,
         pIntake: 0,
-        costPerKg: 10,
+        cost: 10,
         isFodder: true),
     FeedIngredient(
         name: 'Rice hay',
@@ -535,7 +535,7 @@ class NutritionTables {
         ndfIntake: 80,
         caIntake: 0,
         pIntake: 0,
-        costPerKg: 12,
+        cost: 12,
         isFodder: true),
     FeedIngredient(
         name: 'Sweet corn trash',
@@ -546,7 +546,7 @@ class NutritionTables {
         ndfIntake: 40,
         caIntake: 0,
         pIntake: 0,
-        costPerKg: 13,
+        cost: 13,
         isFodder: true),
     FeedIngredient(
         name: 'Bean silage',
@@ -557,7 +557,7 @@ class NutritionTables {
         ndfIntake: 30,
         caIntake: 0,
         pIntake: 0,
-        costPerKg: 15,
+        cost: 15,
         isFodder: true),
     FeedIngredient(
         name: 'Rice bran A',
@@ -568,7 +568,7 @@ class NutritionTables {
         ndfIntake: 27,
         caIntake: 0.09,
         pIntake: 1.79,
-        costPerKg: 16,
+        cost: 16,
         isFodder: true),
     FeedIngredient(
         name: 'Rice bran B',
@@ -579,7 +579,7 @@ class NutritionTables {
         ndfIntake: 35,
         caIntake: 0,
         pIntake: 0,
-        costPerKg: 18,
+        cost: 18,
         isFodder: true),
     FeedIngredient(
         name: 'Reject potatoes',
@@ -590,7 +590,7 @@ class NutritionTables {
         ndfIntake: 20,
         caIntake: 0,
         pIntake: 0,
-        costPerKg: 19,
+        cost: 19,
         isFodder: true),
     FeedIngredient(
         name: 'Corn stover',
@@ -601,7 +601,7 @@ class NutritionTables {
         ndfIntake: 50,
         caIntake: 0,
         pIntake: 0,
-        costPerKg: 21,
+        cost: 21,
         isFodder: true),
     FeedIngredient(
         name: 'Brewers grain',
@@ -612,7 +612,7 @@ class NutritionTables {
         ndfIntake: 40,
         caIntake: 0.27,
         pIntake: 0.57,
-        costPerKg: 22,
+        cost: 22,
         isFodder: true),
     FeedIngredient(
         name: 'Sago chips',
@@ -623,7 +623,7 @@ class NutritionTables {
         ndfIntake: 10,
         caIntake: 0,
         pIntake: 0,
-        costPerKg: 24,
+        cost: 24,
         isFodder: true),
     FeedIngredient(
         name: 'Rice straw',
@@ -634,7 +634,7 @@ class NutritionTables {
         ndfIntake: 80,
         caIntake: 0,
         pIntake: 0,
-        costPerKg: 27,
+        cost: 27,
         isFodder: true),
     FeedIngredient(
         name: 'Di-calcium phosphate',
@@ -645,7 +645,7 @@ class NutritionTables {
         ndfIntake: 0,
         caIntake: 23,
         pIntake: 18,
-        costPerKg: 24,
+        cost: 24,
         isFodder: true),
     FeedIngredient(
         name: 'elephant grass/Napier grass',
@@ -656,7 +656,7 @@ class NutritionTables {
         ndfIntake: 71.5,
         caIntake: 3.6,
         pIntake: 2.9,
-        costPerKg: 24,
+        cost: 24,
         isFodder: true),
     FeedIngredient(
         name: 'elephant grass hay',
@@ -667,7 +667,7 @@ class NutritionTables {
         ndfIntake: 71.1,
         caIntake: 2.8,
         pIntake: 2.3,
-        costPerKg: 27,
+        cost: 27,
         isFodder: true),
   ];
 }

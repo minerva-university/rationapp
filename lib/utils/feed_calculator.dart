@@ -1,39 +1,23 @@
 import 'package:rationapp/models/feed_formula_model.dart';
-import '../services/persistence_manager.dart';
-import '../data/nutrition_tables.dart';
+import 'package:flutter/material.dart';
+import '../feed_state.dart';
+import 'package:provider/provider.dart';
 
 class FeedCalculator {
-  List<FeedIngredient> fodderItems = [];
-  List<FeedIngredient> concentrateItems = [];
-
-  FeedCalculator() {
-    _loadAvailableItems();
-  }
-
-  void _loadAvailableItems() {
-    final savedPricesAndAvailability =
-        SharedPrefsService.getFeedPricesAndAvailability();
-    if (savedPricesAndAvailability != null) {
-      fodderItems =
-          savedPricesAndAvailability.where((item) => item.isFodder).toList();
-      concentrateItems =
-          savedPricesAndAvailability.where((item) => !item.isFodder).toList();
-    } else {
-      fodderItems = NutritionTables.fodderItems;
-      concentrateItems = NutritionTables.concentrateItems;
-    }
-  }
-
   FeedIngredient calculateIngredientValues(
-      String name, double weight, bool isFodder) {
+      String name, double weight, bool isFodder, BuildContext context) {
+    final feedState = Provider.of<FeedState>(context, listen: false);
+    final fodderItems = feedState.availableFodderItems;
+    final concentrateItems = feedState.availableConcentrateItems;
+
     final table = isFodder ? fodderItems : concentrateItems;
-    final ingredient =
-        table.firstWhere((e) => e['name'].toLowerCase() == name.toLowerCase());
+    final ingredient = table
+        .firstWhere((item) => item['name'].toLowerCase() == name.toLowerCase());
 
     final dmIntake =
         ((ingredient['dmIntake'])?.toDouble() ?? 0.0) * weight / 100;
     final meIntake = ((ingredient['meIntake'])?.toDouble() ?? 0.0) * dmIntake;
-    final cost = ((ingredient['costPerKg'])?.toDouble() ?? 0.0) * weight;
+    final cost = ((ingredient['cost'])?.toDouble() ?? 0.0) * weight;
 
     double calculateValue(String key) {
       return ((ingredient[key])?.toDouble() ?? 0.0) * dmIntake / 100;
@@ -48,7 +32,7 @@ class FeedCalculator {
         ndfIntake: calculateValue('ndfIntake'),
         caIntake: calculateValue('caIntake'),
         pIntake: calculateValue('pIntake'),
-        costPerKg: cost,
+        cost: cost,
         isFodder: isFodder);
   }
 }
