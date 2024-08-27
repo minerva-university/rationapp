@@ -1,61 +1,9 @@
 import 'package:flutter/material.dart';
-import '../data/nutrition_tables.dart';
+import 'package:provider/provider.dart';
 import '../models/feed_formula_model.dart';
-import '../services/persistence_manager.dart';
+import '../feed_state.dart';
 
-class PricesPage extends StatefulWidget {
-  @override
-  State<PricesPage> createState() => _PricesPageState();
-}
-
-class _PricesPageState extends State<PricesPage> {
-  List<FeedIngredient> fodderItems = [];
-  List<FeedIngredient> concentrateItems = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _loadSavedPrices();
-  }
-
-  void _loadSavedPrices() {
-    final savedPricesAndAvailability =
-        SharedPrefsService.getFeedPricesAndAvailability();
-    if (savedPricesAndAvailability != null) {
-      setState(() {
-        fodderItems =
-            savedPricesAndAvailability.where((item) => item.isFodder).toList();
-        concentrateItems =
-            savedPricesAndAvailability.where((item) => !item.isFodder).toList();
-      });
-    } else {
-      fodderItems = NutritionTables.fodderItems;
-      concentrateItems = NutritionTables.concentrateItems;
-      // save default prices
-      _savePricesAndAvailability();
-    }
-  }
-
-  void _savePricesAndAvailability() {
-    List<FeedIngredient> prices = [];
-    for (var item in [...fodderItems, ...concentrateItems]) {
-      prices.add(FeedIngredient(
-        name: item.name,
-        weight: item.weight,
-        dmIntake: item.dmIntake,
-        meIntake: item.meIntake,
-        cpIntake: item.cpIntake,
-        ndfIntake: item.ndfIntake,
-        caIntake: item.caIntake,
-        pIntake: item.pIntake,
-        costPerKg: item.costPerKg,
-        isAvailable: item.isAvailable,
-        isFodder: item.isFodder,
-      ));
-    }
-    SharedPrefsService.setFeedPricesAndAvailability(prices);
-  }
-
+class PricesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,13 +14,19 @@ class _PricesPageState extends State<PricesPage> {
             style: TextStyle(color: Colors.white, fontSize: 20)),
         centerTitle: true,
       ),
-      body: ListView(
-        children: [
-          _buildSectionTitle('Fodder'),
-          ...fodderItems.map(_buildFeedItemTile),
-          _buildSectionTitle('Concentrates'),
-          ...concentrateItems.map(_buildFeedItemTile),
-        ],
+      body: Consumer<FeedState>(
+        builder: (context, feedState, child) {
+          return ListView(
+            children: [
+              _buildSectionTitle('Fodder'),
+              ...feedState.fodderItems
+                  .map((item) => _buildFeedItemTile(item, feedState)),
+              _buildSectionTitle('Concentrates'),
+              ...feedState.concentrateItems
+                  .map((item) => _buildFeedItemTile(item, feedState)),
+            ],
+          );
+        },
       ),
     );
   }
@@ -85,7 +39,7 @@ class _PricesPageState extends State<PricesPage> {
     );
   }
 
-  Widget _buildFeedItemTile(FeedIngredient item) {
+  Widget _buildFeedItemTile(FeedIngredient item, FeedState feedState) {
     return ListTile(
       title: Text(item.name),
       trailing: Row(
@@ -94,22 +48,22 @@ class _PricesPageState extends State<PricesPage> {
           Checkbox(
             value: item.isAvailable,
             onChanged: (bool? value) {
-              setState(() {
-                item.isAvailable = value ?? false;
-                _savePricesAndAvailability();
-              });
+              feedState
+                  .updateIngredient(item.copyWith(isAvailable: value ?? false));
             },
           ),
           SizedBox(
             width: 100,
-            child: TextField(
+            child: TextFormField(
+              initialValue: item.costPerKg.toStringAsFixed(2),
               decoration: InputDecoration(labelText: 'Price/kg'),
-              keyboardType: TextInputType.number,
-              controller:
-                  TextEditingController(text: item.costPerKg.toString()),
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
               onChanged: (value) {
-                item.costPerKg = double.tryParse(value) ?? 0;
-                _savePricesAndAvailability();
+                final newPrice = double.tryParse(value) ?? item.costPerKg;
+                if (newPrice != item.costPerKg) {
+                  feedState
+                      .updateIngredient(item.copyWith(costPerKg: newPrice));
+                }
               },
             ),
           ),

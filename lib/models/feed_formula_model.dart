@@ -86,6 +86,22 @@ class FeedIngredient {
     };
   }
 
+  FeedIngredient copyWith({bool? isAvailable, double? costPerKg}) {
+    return FeedIngredient(
+      name: name,
+      weight: weight,
+      dmIntake: dmIntake,
+      meIntake: meIntake,
+      cpIntake: cpIntake,
+      ndfIntake: ndfIntake,
+      caIntake: caIntake,
+      pIntake: pIntake,
+      costPerKg: costPerKg ?? this.costPerKg,
+      isAvailable: isAvailable ?? this.isAvailable,
+      isFodder: isFodder,
+    );
+  }
+
   @override
   String toString() {
     return 'FeedIngredient(name: $name, weight: $weight, dmIntake: $dmIntake, meIntake: $meIntake, cpIntake: $cpIntake, ndfIntake: $ndfIntake, caIntake: $caIntake, pIntake: $pIntake, costPerKg: $costPerKg, isAvailable: $isAvailable, isFodder: $isFodder)';

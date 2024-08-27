@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../feed_state.dart';
 import '../widgets/cow_requirements_table.dart';
 import '../widgets/ingredient_table.dart';
 import '../widgets/add_ingredient_dialog.dart';
@@ -25,37 +27,14 @@ class FeedFormulaPage extends StatefulWidget {
 }
 
 class _FeedFormulaPageState extends State<FeedFormulaPage> {
-  List<FeedIngredient> fodderItems = [];
-  List<FeedIngredient> concentrateItems = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _loadSavedFeedFormula();
-  }
-
-  void _loadSavedFeedFormula() {
-    final savedFormula = SharedPrefsService.getFeedFormula();
-    final savedPricesAndAvailability =
-        SharedPrefsService.getFeedPricesAndAvailability();
-    if (savedFormula != null && savedPricesAndAvailability != null) {
-      setState(() {
-        fodderItems = savedFormula.fodder
-            .where((fodder) => savedPricesAndAvailability
-                .any((item) => item.name == fodder.name && item.isAvailable))
-            .toList();
-        concentrateItems = savedFormula.concentrate
-            .where((concentrate) => savedPricesAndAvailability.any(
-                (item) => item.name == concentrate.name && item.isAvailable))
-            .toList();
-      });
-    }
-  }
+  final FeedConstants feedConstants = FeedConstants();
+  List<FeedIngredient> selectedFodderItems = [];
+  List<FeedIngredient> selectedConcentrateItems = [];
 
   void _saveFeedFormula() {
     final feedFormula = FeedFormula(
-      fodder: fodderItems,
-      concentrate: concentrateItems,
+      fodder: selectedFodderItems,
+      concentrate: selectedConcentrateItems,
     );
     SharedPrefsService.setFeedFormula(feedFormula);
   }
@@ -74,69 +53,100 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
             style: TextStyle(color: Colors.white, fontSize: 20)),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          // Fixed Cow Requirements section
-          Container(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildSectionTitle('Cow Requirements', Icons.label_important),
-                CowRequirementsTable(cowRequirements: widget.cowRequirements),
-              ],
-            ),
-          ),
-          const Divider(height: 1, thickness: 2),
-          // Scrollable content
-          Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
+      body: Consumer<FeedState>(
+        builder: (context, feedState, child) {
+          final savedFormula = SharedPrefsService.getFeedFormula() ??
+              FeedFormula(fodder: [], concentrate: []);
+
+          selectedFodderItems = savedFormula.fodder
+              .where((fodder) => feedState.availableFodderItems
+                  .any((item) => item.name == fodder.name))
+              .map((fodder) {
+            final latestItem = feedState.fodderItems
+                .firstWhere((item) => item.name == fodder.name);
+            return fodder.copyWith(
+                costPerKg: latestItem.costPerKg * fodder.weight,
+                isAvailable: latestItem.isAvailable);
+          }).toList();
+
+          selectedConcentrateItems = savedFormula.concentrate
+              .where((concentrate) => feedState.availableConcentrateItems
+                  .any((item) => item.name == concentrate.name))
+              .map((concentrate) {
+            final latestItem = feedState.concentrateItems
+                .firstWhere((item) => item.name == concentrate.name);
+            return concentrate.copyWith(
+                costPerKg: latestItem.costPerKg * concentrate.weight,
+                isAvailable: latestItem.isAvailable);
+          }).toList();
+
+          return Column(
+            children: [
+              Container(
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildSectionTitle('Fodder', Icons.grass),
-                    IngredientTable(
-                        items: fodderItems,
-                        onEdit: (index) => _editIngredient(index, true),
-                        onDelete: (index) => _deleteIngredient(index, true)),
-                    ElevatedButton(
-                      onPressed: () => _showAddIngredientDialog(true),
-                      child: Text('Add Fodder'),
+                    _buildSectionTitle(
+                        'Cow Requirements', Icons.label_important),
+                    CowRequirementsTable(
+                        cowRequirements: widget.cowRequirements),
+                  ],
+                ),
+              ),
+              const Divider(height: 1, thickness: 2),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildSectionTitle('Fodder', Icons.grass),
+                        IngredientTable(
+                          items: selectedFodderItems,
+                          onEdit: (index) => _editIngredient(index, true),
+                          onDelete: (index) => _deleteIngredient(index, true),
+                        ),
+                        ElevatedButton(
+                          onPressed: () =>
+                              _showAddIngredientDialog(true, context),
+                          child: Text('Add Fodder'),
+                        ),
+                        SizedBox(height: 8),
+                        _buildSectionTitle('Concentrate', Icons.scatter_plot),
+                        IngredientTable(
+                          items: selectedConcentrateItems,
+                          onEdit: (index) => _editIngredient(index, false),
+                          onDelete: (index) => _deleteIngredient(index, false),
+                        ),
+                        ElevatedButton(
+                          onPressed: () =>
+                              _showAddIngredientDialog(false, context),
+                          child: Text('Add Concentrate'),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 8),
-                    _buildSectionTitle('Concentrate', Icons.scatter_plot),
-                    IngredientTable(
-                        items: concentrateItems,
-                        onEdit: (index) => _editIngredient(index, false),
-                        onDelete: (index) => _deleteIngredient(index, false)),
-                    ElevatedButton(
-                      onPressed: () => _showAddIngredientDialog(false),
-                      child: Text('Add Concentrate'),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    _buildSectionTitle('Totals', Icons.calculate),
+                    TotalsTable(
+                      fodderItems: selectedFodderItems,
+                      concentrateItems: selectedConcentrateItems,
+                      cowRequirements: widget.cowRequirements,
+                      cowCharacteristics: widget.cowCharacteristics,
                     ),
                   ],
                 ),
               ),
-            ),
-          ),
-          // Footer image
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                _buildSectionTitle('Totals', Icons.calculate),
-                TotalsTable(
-                  fodderItems: fodderItems,
-                  concentrateItems: concentrateItems,
-                  cowRequirements: widget.cowRequirements,
-                  cowCharacteristics: widget.cowCharacteristics,
-                ),
-                // Image.asset('assets/sense-200px.png', height: 20),
-              ],
-            ),
-          ),
-        ],
+            ],
+          );
+        },
       ),
     );
   }
@@ -156,11 +166,13 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
     );
   }
 
-  void _showAddIngredientDialog(bool isFodder) {
+  void _showAddIngredientDialog(bool isFodder, BuildContext context) {
     List<String> availableOptions = (isFodder
-            ? FeedConstants().fodderOptions
-            : FeedConstants().concentrateOptions)
-        .where((option) => !(isFodder ? fodderItems : concentrateItems)
+            ? FeedConstants().getFodderOptions(context)
+            : FeedConstants().getConcentrateOptions(context))
+        .where((option) => !(isFodder
+                ? selectedFodderItems
+                : selectedConcentrateItems)
             .any((item) => item['name'].toLowerCase() == option.toLowerCase()))
         .toList();
     if (availableOptions.length == 1 &&
@@ -188,16 +200,16 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
       final newItem =
           FeedCalculator().calculateIngredientValues(name, weight, isFodder);
       if (isFodder) {
-        fodderItems.add(newItem);
+        selectedFodderItems.add(newItem);
       } else {
-        concentrateItems.add(newItem);
+        selectedConcentrateItems.add(newItem);
       }
       _saveFeedFormula();
     });
   }
 
   void _editIngredient(int index, bool isFodder) {
-    final items = isFodder ? fodderItems : concentrateItems;
+    final items = isFodder ? selectedFodderItems : selectedConcentrateItems;
     final item = items[index];
 
     showDialog(
@@ -221,9 +233,9 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
   void _deleteIngredient(int index, bool isFodder) {
     setState(() {
       if (isFodder) {
-        fodderItems.removeAt(index);
+        selectedFodderItems.removeAt(index);
       } else {
-        concentrateItems.removeAt(index);
+        selectedConcentrateItems.removeAt(index);
       }
       _saveFeedFormula();
     });
