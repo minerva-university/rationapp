@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../generated/l10n.dart';
+import 'package:rationapp/models/feed_formula_model.dart';
 
 class ColumnDefinition {
   final String label;
@@ -15,7 +16,7 @@ class ColumnDefinition {
 
 class IngredientTable extends StatelessWidget {
   final BuildContext context;
-  final List<Map<String, dynamic>> items;
+  final List<FeedIngredient> items;
   final Function(int) onEdit;
   final Function(int) onDelete;
 
@@ -137,7 +138,7 @@ class IngredientTable extends StatelessWidget {
     );
   }
 
-  String _formatValue(Map<String, dynamic> item, ColumnDefinition col) {
+  String _formatValue(FeedIngredient item, ColumnDefinition col) {
     final value = item[col.key];
     return col.key == 'name'
         ? value.toString()

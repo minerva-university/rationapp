@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:rationapp/models/cow_characteristics_model.dart';
 import '../models/cow_requirements_model.dart';
 import '../generated/l10n.dart';
+import '../models/feed_formula_model.dart';
 
 class TotalsTable extends StatelessWidget {
-  final List<Map<String, dynamic>> fodderItems;
-  final List<Map<String, dynamic>> concentrateItems;
+  final List<FeedIngredient> fodderItems;
+  final List<FeedIngredient> concentrateItems;
   final CowRequirements cowRequirements;
   final CowCharacteristics cowCharacteristics;
   final BuildContext context;
@@ -98,7 +99,10 @@ class TotalsTable extends StatelessWidget {
     for (var item in [...fodderItems, ...concentrateItems]) {
       for (var col in columns) {
         String key = col['key'] as String;
-        totals[key] = (totals[key] ?? 0) + (item[key] ?? 0);
+        // skip 'concentrateIntake'
+        if (key != 'concentrateIntake') {
+          totals[key] = (totals[key] ?? 0) + item[key];
+        }
       }
     }
 

@@ -1,6 +1,6 @@
 class CowCharacteristics {
-  final double liveWeight;
-  final double pregnancyMonths;
+  final int liveWeight;
+  final int pregnancyMonths;
   final double milkVolume;
   final double milkFat;
   final double milkProtein;
@@ -17,12 +17,12 @@ class CowCharacteristics {
 
   factory CowCharacteristics.fromJson(Map<String, dynamic> json) {
     return CowCharacteristics(
-      liveWeight: json['liveWeight'],
-      pregnancyMonths: json['pregnancyMonths'],
-      milkVolume: json['milkVolume'],
-      milkFat: json['milkFat'],
-      milkProtein: json['milkProtein'],
-      lactationStage: json['lactationStage'],
+      liveWeight: json['liveWeight'] as int,
+      pregnancyMonths: json['pregnancyMonths'] as int,
+      milkVolume: json['milkVolume'] as double,
+      milkFat: json['milkFat'] as double,
+      milkProtein: json['milkProtein'] as double,
+      lactationStage: json['lactationStage']!,
     );
   }
 
