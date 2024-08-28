@@ -57,22 +57,22 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
     milkFatController.text = CowCharacteristicsConstants.milkFatOptions.first;
     milkProteinController.text =
         CowCharacteristicsConstants.milkProteinOptions.first;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     lactationController.text =
         CowCharacteristicsConstants(context).lactationOptions.first;
   }
 
   bool _isFormValid() {
-    return liveWeightController.text !=
-            CowCharacteristicsConstants.liveWeightOptions.first &&
-        pregnancyController.text !=
-            CowCharacteristicsConstants.pregnancyOptions.first &&
+    return liveWeightController.text != '' &&
+        pregnancyController.text != '' &&
         volumeController.text.isNotEmpty &&
-        milkFatController.text !=
-            CowCharacteristicsConstants.milkFatOptions.first &&
-        milkProteinController.text !=
-            CowCharacteristicsConstants.milkProteinOptions.first &&
-        lactationController.text !=
-            CowCharacteristicsConstants(context).lactationOptions.first;
+        milkFatController.text != '' &&
+        milkProteinController.text != '' &&
+        lactationController.text != '';
   }
 
   void _handleButtonPress() {
@@ -143,6 +143,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
                   liveWeightController.text = value ?? '';
                 });
               },
+              value: liveWeightController.text,
               labelText: S.of(context).liveWeight,
             ),
             CustomDropdownField(
@@ -152,6 +153,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
                   pregnancyController.text = value ?? '';
                 });
               },
+              value: pregnancyController.text,
               labelText: S.of(context).pregnancy,
             ),
             CustomTextField(
@@ -164,6 +166,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
                   milkFatController.text = value ?? '';
                 });
               },
+              value: milkFatController.text,
               labelText: S.of(context).milkFat,
             ),
             CustomDropdownField(
@@ -173,6 +176,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
                   milkProteinController.text = value ?? '';
                 });
               },
+              value: milkProteinController.text,
               labelText: S.of(context).milkProtein,
             ),
             CustomDropdownField(
@@ -182,6 +186,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
                   lactationController.text = value ?? '';
                 });
               },
+              value: lactationController.text,
               labelText: S.of(context).lactationStage,
             ),
             const SizedBox(height: 20),

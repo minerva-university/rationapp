@@ -80,7 +80,7 @@ class TotalsTable extends StatelessWidget {
         'max': 60
       },
       {
-        'label': 'Cost\n(ERN)',
+        'label': S.of(context).costLabel,
         'key': 'cost',
         'decimals': 2,
         'reqKey': null,

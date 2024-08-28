@@ -45,6 +45,9 @@ class _AddIngredientDialogState extends State<AddIngredientDialog> {
         children: [
           CustomDropdownField(
             options: widget.availableOptions,
+            value: widget.initialWeight != null // when editing
+                ? widget.availableOptions.first
+                : null,
             onChanged: (value) => selectedIngredient = value,
             labelText: widget.isFodder
                 ? S.of(context).chooseFodder
