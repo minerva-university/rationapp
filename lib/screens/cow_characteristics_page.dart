@@ -49,21 +49,12 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
   }
 
   void _setDefaultValues() {
-    liveWeightController.text =
-        CowCharacteristicsConstants.liveWeightOptions.first;
-    pregnancyController.text =
-        CowCharacteristicsConstants.pregnancyOptions.first;
+    liveWeightController.text = '';
+    pregnancyController.text = '';
     volumeController.text = '';
-    milkFatController.text = CowCharacteristicsConstants.milkFatOptions.first;
-    milkProteinController.text =
-        CowCharacteristicsConstants.milkProteinOptions.first;
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    lactationController.text =
-        CowCharacteristicsConstants(context).lactationOptions.first;
+    milkFatController.text = '';
+    milkProteinController.text = '';
+    lactationController.text = '';
   }
 
   bool _isFormValid() {

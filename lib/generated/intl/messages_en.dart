@@ -70,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "concentrateSoybeanCake":
             MessageLookupByLibrary.simpleMessage("Soybean cake"),
         "costLabel": MessageLookupByLibrary.simpleMessage("Cost\n(ERN)"),
+        "costPerKg": MessageLookupByLibrary.simpleMessage("Cost/kg"),
         "cowCharacteristics":
             MessageLookupByLibrary.simpleMessage("Cow Characteristics"),
         "cowRequirements":
@@ -95,6 +96,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "earlyLactationPeriod": MessageLookupByLibrary.simpleMessage(
             "Early Lactation (14-100 days)"),
         "feedFormula": MessageLookupByLibrary.simpleMessage("Feed Formula"),
+        "feedPricesAndAvailability": MessageLookupByLibrary.simpleMessage(
+            "Feed Prices and Availability"),
         "feedingGuidelines":
             MessageLookupByLibrary.simpleMessage("Feeding Guidelines"),
         "fodder": MessageLookupByLibrary.simpleMessage("Fodder"),
@@ -193,6 +196,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Please fill in all fields before viewing requirements."),
         "pregnancy": MessageLookupByLibrary.simpleMessage("Pregnancy (mth)"),
+        "prices": MessageLookupByLibrary.simpleMessage("Prices"),
         "selectRationIngredient":
             MessageLookupByLibrary.simpleMessage("Select Ration Ingredient"),
         "totals": MessageLookupByLibrary.simpleMessage("Totals"),

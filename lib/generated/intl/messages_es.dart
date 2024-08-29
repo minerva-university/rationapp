@@ -70,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "concentrateSoybeanCake":
             MessageLookupByLibrary.simpleMessage("Torta de soja"),
         "costLabel": MessageLookupByLibrary.simpleMessage("Costo\n(ERN)"),
+        "costPerKg": MessageLookupByLibrary.simpleMessage("Costo/kg"),
         "cowCharacteristics":
             MessageLookupByLibrary.simpleMessage("Características de la Vaca"),
         "cowRequirements":
@@ -96,6 +97,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Lactancia Temprana (14-100 días)"),
         "feedFormula":
             MessageLookupByLibrary.simpleMessage("Fórmula de Alimentación"),
+        "feedPricesAndAvailability": MessageLookupByLibrary.simpleMessage(
+            "Precios de alimentos y disponibilidad"),
         "feedingGuidelines":
             MessageLookupByLibrary.simpleMessage("Pautas de Alimentación"),
         "fodder": MessageLookupByLibrary.simpleMessage("Forraje"),
@@ -206,6 +209,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Por favor, complete todos los campos antes de ver los requisitos."),
         "pregnancy": MessageLookupByLibrary.simpleMessage("Gestación (meses)"),
+        "prices": MessageLookupByLibrary.simpleMessage("Precios"),
         "selectRationIngredient": MessageLookupByLibrary.simpleMessage(
             "Seleccionar Ingrediente de Ración"),
         "totals": MessageLookupByLibrary.simpleMessage("Totales"),

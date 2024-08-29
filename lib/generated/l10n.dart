@@ -1079,6 +1079,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Prices`
+  String get prices {
+    return Intl.message(
+      'Prices',
+      name: 'prices',
+      desc: 'Label for the prices page',
+      args: [],
+    );
+  }
+
+  /// `Cost/kg`
+  String get costPerKg {
+    return Intl.message(
+      'Cost/kg',
+      name: 'costPerKg',
+      desc: 'Label for the cost per kg input',
+      args: [],
+    );
+  }
+
+  /// `Feed Prices and Availability`
+  String get feedPricesAndAvailability {
+    return Intl.message(
+      'Feed Prices and Availability',
+      name: 'feedPricesAndAvailability',
+      desc: 'Label for the feed prices and availability page',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

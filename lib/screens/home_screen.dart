@@ -3,6 +3,7 @@ import '../models/destination_model.dart';
 import '../screens/cow_requirements_view.dart';
 import '../screens/feeding_guidelines_page.dart';
 import '../generated/l10n.dart';
+import '../screens/price_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,17 +16,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   int _selectedIndex = 0;
   late List<GlobalKey<NavigatorState>> _navigatorKeys;
   late List<AnimationController> _faders;
+
   late List<Destination> _destinations;
 
   @override
   void initState() {
     super.initState();
     _navigatorKeys = List<GlobalKey<NavigatorState>>.generate(
-      2,
+      3,
       (index) => GlobalKey<NavigatorState>(),
     );
     _faders = List<AnimationController>.generate(
-      2,
+      3,
       (index) => AnimationController(
           vsync: this, duration: Duration(milliseconds: 300)),
     );
@@ -47,6 +49,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         label: S.of(context).cowRequirements,
         icon: Icons.calculate,
         builder: (context) => CowRequirementsView(),
+      ),
+      Destination(
+        label: S.of(context).prices,
+        icon: Icons.attach_money,
+        builder: (context) => PricesPage(),
       ),
       Destination(
         label: S.of(context).feedingGuidelines,

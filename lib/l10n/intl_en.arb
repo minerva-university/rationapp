@@ -441,5 +441,17 @@
     "choose": "Choose",
     "@choose": {
         "description": "'Choose' For checking Cow Characteristic's form validity"
+    },
+    "prices": "Prices",
+    "@prices": {
+        "description": "Label for the prices page"
+    },
+    "costPerKg": "Cost/kg",
+    "@costPerKg": {
+        "description": "Label for the cost per kg input"
+    },
+    "feedPricesAndAvailability": "Feed Prices and Availability",
+    "@feedPricesAndAvailability": {
+        "description": "Label for the feed prices and availability page"
     }
 }
