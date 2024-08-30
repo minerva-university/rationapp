@@ -28,7 +28,9 @@ class _AddIngredientDialogState extends State<AddIngredientDialog> {
   @override
   void initState() {
     super.initState();
-    selectedIngredient = '';
+    selectedIngredient = widget.initialWeight != null // when editing
+        ? widget.availableOptions.first
+        : '';
     feedWeightController = TextEditingController(
       text: widget.initialWeight?.toString() ?? '',
     );
@@ -45,9 +47,7 @@ class _AddIngredientDialogState extends State<AddIngredientDialog> {
         children: [
           CustomDropdownField(
             options: widget.availableOptions,
-            value: widget.initialWeight != null // when editing
-                ? widget.availableOptions.first
-                : '',
+            value: selectedIngredient!,
             onChanged: (value) => selectedIngredient = value,
             labelText: widget.isFodder
                 ? S.of(context).chooseFodder
