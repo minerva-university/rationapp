@@ -87,7 +87,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
               Container(
                 padding: const EdgeInsets.all(8),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     _buildSectionTitle(
                         S.of(context).cowRequirements, Icons.label_important),
@@ -103,7 +103,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(8),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         _buildSectionTitle(S.of(context).fodder, Icons.grass),
                         IngredientTable(
@@ -196,6 +196,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
 
     showDialog(
       context: context,
+      useRootNavigator: false,
       builder: (context) => AddIngredientDialog(
         isFodder: isFodder,
         availableOptions: availableOptions,
@@ -223,6 +224,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
 
     showDialog(
       context: context,
+      useRootNavigator: false,
       builder: (context) => AddIngredientDialog(
         isFodder: isFodder,
         availableOptions: [item['name']], // only editing weight
