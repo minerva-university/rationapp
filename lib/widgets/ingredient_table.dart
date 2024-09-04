@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../generated/l10n.dart';
 import 'package:rationapp/models/feed_formula_model.dart';
 
 class ColumnDefinition {
@@ -14,33 +15,65 @@ class ColumnDefinition {
 }
 
 class IngredientTable extends StatelessWidget {
+  final BuildContext context;
   final List<FeedIngredient> items;
   final Function(int) onEdit;
   final Function(int) onDelete;
 
   IngredientTable({
     super.key,
+    required this.context,
     required this.items,
     required this.onEdit,
     required this.onDelete,
   });
 
-  final List<ColumnDefinition> columns = [
-    {'label': 'Ingredient', 'key': 'name', 'decimals': 0},
-    {'label': 'Fresh feed\nintake (kg/d)', 'key': 'weight', 'decimals': 2},
-    {'label': 'DM Intake\n(kg/d)', 'key': 'dmIntake', 'decimals': 5},
-    {'label': 'ME Intake\n(MJ/d)', 'key': 'meIntake', 'decimals': 5},
-    {'label': 'CP Intake\n(kg/d)', 'key': 'cpIntake', 'decimals': 5},
-    {'label': 'NDF Intake\n(kg/d)', 'key': 'ndfIntake', 'decimals': 5},
-    {'label': 'Ca Intake\n(kg/d)', 'key': 'caIntake', 'decimals': 5},
-    {'label': 'P Intake\n(kg/d)', 'key': 'pIntake', 'decimals': 5},
-    {'label': 'Cost\n(ERN)', 'key': 'cost', 'decimals': 2},
-  ]
-      .map((col) => ColumnDefinition(
-          label: col['label'] as String,
-          key: col['key'] as String,
-          decimalPlaces: col['decimals'] as int))
-      .toList();
+  List<ColumnDefinition> get columns {
+    return [
+      {'label': S.of(context).ingredientLabel, 'key': 'name', 'decimals': 0},
+      {
+        'label': S.of(context).freshFeedIntakeLabel,
+        'key': 'weight',
+        'decimals': 2
+      },
+      {
+        'label': S.of(context).dmIntakeLabelWithUnit,
+        'key': 'dmIntake',
+        'decimals': 5
+      },
+      {
+        'label': S.of(context).meIntakeLabelWithUnit,
+        'key': 'meIntake',
+        'decimals': 5
+      },
+      {
+        'label': S.of(context).caIntakeLabelKgPerD,
+        'key': 'cpIntake',
+        'decimals': 5
+      },
+      {
+        'label': S.of(context).ndfIntakeLabelKgPerD,
+        'key': 'ndfIntake',
+        'decimals': 5
+      },
+      {
+        'label': S.of(context).caIntakeLabelKgPerD,
+        'key': 'caIntake',
+        'decimals': 5
+      },
+      {
+        'label': S.of(context).pIntakeLabelKgPerD,
+        'key': 'pIntake',
+        'decimals': 5
+      },
+      {'label': S.of(context).costLabel, 'key': 'cost', 'decimals': 2},
+    ]
+        .map((col) => ColumnDefinition(
+            label: col['label'] as String,
+            key: col['key'] as String,
+            decimalPlaces: col['decimals'] as int))
+        .toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +92,8 @@ class IngredientTable extends StatelessWidget {
                 final item = items[index];
                 return DataRow(
                   cells: columns
-                      .map((col) => DataCell(Text(_formatValue(item, col))))
+                      .map((col) =>
+                          DataCell(Text(_formatValue(item, col, context))))
                       .toList(),
                 );
               }),
@@ -105,10 +139,11 @@ class IngredientTable extends StatelessWidget {
     );
   }
 
-  String _formatValue(FeedIngredient item, ColumnDefinition col) {
+  String _formatValue(
+      FeedIngredient item, ColumnDefinition col, BuildContext context) {
     final value = item[col.key];
     return col.key == 'name'
-        ? value.toString()
+        ? item.getName(context)
         : (value as num).toStringAsFixed(col.decimalPlaces);
   }
 }

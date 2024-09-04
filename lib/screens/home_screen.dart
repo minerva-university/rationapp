@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/destination_model.dart';
 import '../screens/cow_requirements_view.dart';
 import '../screens/feeding_guidelines_page.dart';
+import '../generated/l10n.dart';
 import '../screens/price_page.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,33 +17,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late List<GlobalKey<NavigatorState>> _navigatorKeys;
   late List<AnimationController> _faders;
 
-  final List<Destination> _destinations = [
-    Destination(
-      label: 'Cow Requirements',
-      icon: Icons.calculate,
-      builder: (context) => CowRequirementsView(),
-    ),
-    Destination(
-      label: 'Prices',
-      icon: Icons.attach_money,
-      builder: (context) => PricesPage(),
-    ),
-    Destination(
-      label: 'Guidelines',
-      icon: Icons.list,
-      builder: (context) => FeedingGuidelinesPage(),
-    )
-  ];
+  late List<Destination> _destinations;
 
   @override
   void initState() {
     super.initState();
     _navigatorKeys = List<GlobalKey<NavigatorState>>.generate(
-      _destinations.length,
+      3,
       (index) => GlobalKey<NavigatorState>(),
     );
     _faders = List<AnimationController>.generate(
-      _destinations.length,
+      3,
       (index) => AnimationController(
           vsync: this, duration: Duration(milliseconds: 300)),
     );
@@ -59,6 +44,24 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    _destinations = [
+      Destination(
+        label: S.of(context).cowRequirements,
+        icon: Icons.calculate,
+        builder: (context) => CowRequirementsView(),
+      ),
+      Destination(
+        label: S.of(context).prices,
+        icon: Icons.attach_money,
+        builder: (context) => PricesPage(),
+      ),
+      Destination(
+        label: S.of(context).feedingGuidelines,
+        icon: Icons.list,
+        builder: (context) => FeedingGuidelinesPage(),
+      ),
+    ];
+
     return PopScope(
       canPop: false,
       onPopInvoked: (didPop) async {

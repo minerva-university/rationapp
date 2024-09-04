@@ -1,0 +1,457 @@
+{
+    "@@locale": "ti",
+    "pleaseFillInAllFieldsBeforeViewingRequirements": "እባኽኩም ቅድሚ ምርኣይ ድሌታት ኩሎም መስመራት ምልእዎም።",
+    "@pleaseFillInAllFieldsBeforeViewingRequirements": {
+        "description": "Error message shown when not all required fields are filled"
+    },
+    "cowCharacteristics": "ባህርያት ላሕሚ",
+    "@cowCharacteristics": {
+        "description": "Title for the cow characteristics section"
+    },
+    "milkYield": "ምህርቲ ጸባ",
+    "@milkYield": {
+        "description": "Label for milk yield information"
+    },
+    "viewCowRequirements": "ድሌታት ላሕሚ ርአ",
+    "@viewCowRequirements": {
+        "description": "Button text to view cow requirements"
+    },
+    "feedFormula": "ቀመም መግቢ",
+    "@feedFormula": {
+        "description": "Title for the feed formula section"
+    },
+    "addFodder": "ሳዕሪ ወስኽ",
+    "@addFodder": {
+        "description": "Button text to add fodder to the feed formula"
+    },
+    "addConcentrate": "ምጥን መግቢ ወስኽ",
+    "@addConcentrate": {
+        "description": "Button text to add concentrate to the feed formula"
+    },
+    "concentrate": "ምጥን መግቢ",
+    "@concentrate": {
+        "description": "Label for concentrate feed type"
+    },
+    "totals": "ድምር",
+    "@totals": {
+        "description": "Label for the totals section in feed formula"
+    },
+    "fodder": "ሳዕሪ",
+    "@fodder": {
+        "description": "Label for fodder feed type"
+    },
+    "cowRequirements": "ድሌታት ላሕሚ",
+    "@cowRequirements": {
+        "description": "Title for the cow requirements section"
+    },
+    "allOptionsHaveBeenAdded": "ኩሎም {type} ኣማራጺታት ተወሲኾም ኣለዉ።",
+    "@allOptionsHaveBeenAdded": {
+        "description": "Message when all options of a type have been added",
+        "placeholders": {
+            "type": {
+                "type": "String",
+                "example": "fodder"
+            }
+        }
+    },
+    "feedingGuidelines": "መምርሒታት መመገቢ",
+    "@feedingGuidelines": {
+        "description": "Feeding guidelines label"
+    },
+    "kgValue": "{value} ኪሎ",
+    "@kgValue": {
+        "description": "kg unit",
+        "placeholders": {
+            "value": {
+                "type": "String",
+                "example": "16.5"
+            }
+        }
+    },
+    "kgPerDay": "{value} ኪሎ/መዓልቲ",
+    "@kgPerDay": {
+        "description": "Format for kg per day values",
+        "placeholders": {
+            "value": {
+                "type": "String",
+                "example": "16.50"
+            }
+        }
+    },
+    "mjPerDayValue": "{value} MJ/መዓልቲ",
+    "@mjPerDayValue": {
+        "description": "MJ/day unit",
+        "placeholders": {
+            "value": {
+                "type": "String",
+                "example": "179.96"
+            }
+        }
+    },
+    "percentageValue": "{value}%",
+    "@percentageValue": {
+        "description": "Generic percentage value",
+        "placeholders": {
+            "value": {
+                "type": "String",
+                "example": "16"
+            }
+        }
+    },
+    "dryMatterIntakeLabel": "ምውሳድ ደረቕ ነገር",
+    "@dryMatterIntakeLabel": {
+        "description": "Label for dry matter intake in feeding guidelines"
+    },
+    "meIntakeLabel": "ምውሳድ ME",
+    "@meIntakeLabel": {
+        "description": "Label for ME intake in feeding guidelines"
+    },
+    "crudeProteinLabel": "ሓፈሻዊ ፕሮቲን",
+    "@crudeProteinLabel": {
+        "description": "Label for crude protein in feeding guidelines"
+    },
+    "ndfLabel": "NDF",
+    "@ndfLabel": {
+        "description": "Label for NDF in feeding guidelines"
+    },
+    "caIntakeLabel": "ምውሳድ Ca",
+    "@caIntakeLabel": {
+        "description": "Label for calcium intake in feeding guidelines"
+    },
+    "pIntakeLabel": "ምውሳድ P",
+    "@pIntakeLabel": {
+        "description": "Label for phosphorus intake in feeding guidelines"
+    },
+    "period": "እዋን",
+    "@period": {
+        "description": "Period label"
+    },
+    "earlyLactationFeeding": "መመገቢ ቀዳማይ እዋን ጸባ",
+    "@earlyLactationFeeding": {
+        "description": "Title for early lactation feeding guidelines"
+    },
+    "earlyLactationPeriod": "ቀዳማይ እዋን ጸባ (14-100 መዓልቲ)",
+    "@earlyLactationPeriod": {
+        "description": "Period description for early lactation"
+    },
+    "midLactationFeeding": "መመገቢ ማእከላይ እዋን ጸባ",
+    "@midLactationFeeding": {
+        "description": "Title for mid lactation feeding guidelines"
+    },
+    "midLactationPeriod": "ማእከላይ እዋን ጸባ (100 ክሳብ 200 መዓልቲ)",
+    "@midLactationPeriod": {
+        "description": "Period description for mid lactation"
+    },
+    "lateLactationFeeding": "መመገቢ ዳሓራይ እዋን ጸባ",
+    "@lateLactationFeeding": {
+        "description": "Title for late lactation feeding guidelines"
+    },
+    "lateLactationPeriod": "ዳሓራይ እዋን ጸባ (>200 መዓልቲ)",
+    "@lateLactationPeriod": {
+        "description": "Period description for late lactation"
+    },
+    "dryCowFeeding": "መመገቢ ደረቕ ላሕሚ",
+    "@dryCowFeeding": {
+        "description": "Title for dry cow feeding guidelines"
+    },
+    "dryCowPeriod": "45 ክሳብ 60 መዓልቲ ኣብ ውሽጢ ንምውላድ",
+    "@dryCowPeriod": {
+        "description": "Period description for dry cow feeding"
+    },
+    "planFeed": "መግቢ ምሕሳብ",
+    "@planFeed": {
+        "description": "Button text to plan feed"
+    },
+    "dmIntakeLabel": "ምውሳድ DM",
+    "@dmIntakeLabel": {
+        "description": "Label for Dry Matter Intake"
+    },
+    "cpIntakeLabel": "ምውሳድ CP",
+    "@cpIntakeLabel": {
+        "description": "Label for Crude Protein Intake"
+    },
+    "ndfIntakeLabel": "ምውሳድ NDF",
+    "@ndfIntakeLabel": {
+        "description": "Label for Neutral Detergent Fiber Intake"
+    },
+    "concentrateIntakeLabel": "ምውሳድ ምጥን መግቢ",
+    "@concentrateIntakeLabel": {
+        "description": "Label for Concentrate Intake"
+    },
+    "selectRationIngredient": "ናውቲ መግቢ ምረጽ",
+    "@selectRationIngredient": {
+        "description": "Hint text for selecting a ration ingredient"
+    },
+    "freshFeedIntake": "ምውሳድ ሓድሽ መግቢ (ኪሎ/መዓልቲ)",
+    "@freshFeedIntake": {
+        "description": "Label for fresh feed intake input"
+    },
+    "cancel": "ሰርዝ",
+    "@cancel": {
+        "description": "Text for cancel button"
+    },
+    "add": "ወስኽ",
+    "@add": {
+        "description": "Text for add button"
+    },
+    "chooseFodder": "ሳዕሪ ምረጽ",
+    "@chooseFodder": {
+        "description": "Default option for fodder dropdown"
+    },
+    "chooseConcentrate": "ምጥን መግቢ ምረጽ",
+    "@chooseConcentrate": {
+        "description": "Default option for concentrate dropdown"
+    },
+    "pleaseAllFields": "እባኽኩም ኩሎም መስመራት ምልእዎም።",
+    "@pleaseAllFields": {
+        "description": "Error message when fields are not filled"
+    },
+    "dmIntakeLabelWithUnit": "ምውሳድ DM\n(ኪሎ/መዓልቲ)",
+    "@dmIntakeLabelWithUnit": {
+        "description": "Label for Dry Matter Intake in kg per day"
+    },
+    "meIntakeLabelWithUnit": "ምውሳድ ME\n(MJ/መዓልቲ)",
+    "@meIntakeLabelWithUnit": {
+        "description": "Label for Metabolizable Energy Intake in MJ per day"
+    },
+    "cpIntakeLabelWithUnit": "ምውሳድ CP\n(%)",
+    "@cpIntakeLabelWithUnit": {
+        "description": "Label for Crude Protein Intake in percentage"
+    },
+    "ndfIntakeLabelWithUnit": "ምውሳድ NDF\n(%)",
+    "@ndfIntakeLabelWithUnit": {
+        "description": "Label for Neutral Detergent Fiber Intake in percentage"
+    },
+    "caIntakeLabelWithUnit": "ምውሳድ Ca\n(%)",
+    "@caIntakeLabelWithUnit": {
+        "description": "Label for Calcium Intake in percentage"
+    },
+    "pIntakeLabelWithUnit": "ምውሳድ P\n(%)",
+    "@pIntakeLabelWithUnit": {
+        "description": "Label for Phosphorus Intake in percentage"
+    },
+    "concentrateIntakeLabelWithUnit": "ምውሳድ ምጥን መግቢ\n(%)",
+    "@concentrateIntakeLabelWithUnit": {
+        "description": "Label for Concentrate Intake in percentage"
+    },
+    "liveWeight": "ህያው ክብደት (ኪሎ)",
+    "@liveWeight": {
+        "description": "Label for live weight input"
+    },
+    "pregnancy": "ጥንሲ (ወርሒ)",
+    "@pregnancy": {
+        "description": "Label for pregnancy input"
+    },
+    "milkVolumePerDay": "መጠን ጸባ ብመዓልቲ (ኪሎ)",
+    "@milkVolumePerDay": {
+        "description": "Label for daily milk volume input"
+    },
+    "milkFat": "ስብሒ ጸባ (%)",
+    "@milkFat": {
+        "description": "Label for milk fat percentage input"
+    },
+    "milkProtein": "ፕሮቲን ጸባ (%)",
+    "@milkProtein": {
+        "description": "Label for milk protein percentage input"
+    },
+    "lactationStage": "ደረጃ ጸባ",
+    "@lactationStage": {
+        "description": "Label for lactation stage input"
+    },
+    "ingredientLabel": "ናውቲ",
+    "@ingredientLabel": {
+        "description": "Label for the ingredient column"
+    },
+    "freshFeedIntakeLabel": "ምውሳድ ሓድሽ\nመግቢ (ኪሎ/መ)",
+    "@freshFeedIntakeLabel": {
+        "description": "Label for the fresh feed intake column"
+    },
+    "cpIntakeLabelKgPerD": "ምውሳድ CP\n(ኪሎ/መ)",
+    "@cpIntakeLabelKgPerD": {
+        "description": "Label for the crude protein intake column"
+    },
+    "ndfIntakeLabelKgPerD": "ምውሳድ NDF\n(ኪሎ/መ)",
+    "@ndfIntakeLabelKgPerD": {
+        "description": "Label for the neutral detergent fiber intake column"
+    },
+    "caIntakeLabelKgPerD": "ምውሳድ Ca\n(ኪሎ/መ)",
+    "@caIntakeLabelKgPerD": {
+        "description": "Label for the calcium intake column"
+    },
+    "pIntakeLabelKgPerD": "ምውሳድ P\n(ኪሎ/መ)",
+    "@pIntakeLabelKgPerD": {
+        "description": "Label for the phosphorus intake column"
+    },
+    "costLabel": "ዋጋ\n(ERN)",
+    "@costLabel": {
+        "description": "Label for the cost column"
+    },
+    "lactationStageDry": "ደረቕ",
+    "@lactationStageDry": {
+        "description": "Lactation stage: Dry"
+    },
+    "lactationStageEarlyLactation": "ቀዳማይ እዋን ጸባ",
+    "@lactationStageEarlyLactation": {
+        "description": "Lactation stage: Early lactation"
+    },
+    "lactationStageMidLactation": "ማእከላይ እዋን ጸባ",
+    "@lactationStageMidLactation": {
+        "description": "Lactation stage: Mid lactation"
+    },
+    "lactationStageLateLactation": "ዝናብ ዘለዎ ጸባ",
+    "@lactationStageLateLactation": {
+        "description": "Lactation stage: Late lactation"
+    },
+    "concentrateSesameSeedMeal": "ሰሚስሚ ዘርኢ ምግቢ",
+    "@concentrateSesameSeedMeal": {
+        "description": "Concentrate: sesame seed meal"
+    },
+    "concentrateMolasses": "ሞላሰስ",
+    "@concentrateMolasses": {
+        "description": "Concentrate: Molasses"
+    },
+    "concentrateMaizeGrain": "ዕፉን ጥረ",
+    "@concentrateMaizeGrain": {
+        "description": "Concentrate: Maize grain"
+    },
+    "concentrateSoybeanCake": "ሶያ ኬክ",
+    "@concentrateSoybeanCake": {
+        "description": "Concentrate: Soybean cake"
+    },
+    "fodderGreenMaizeForage": "ቆጽሊ ዕፉን መግቢ",
+    "@fodderGreenMaizeForage": {
+        "description": "Fodder: green maize forage"
+    },
+    "fodderAlfafa": "አልፋልፋ",
+    "@fodderAlfafa": {
+        "description": "Fodder: alfafa"
+    },
+    "fodderMoringaLeaves": "ሞሪንጋ ቆጽሊ",
+    "@fodderMoringaLeaves": {
+        "description": "Fodder: moringa leaves"
+    },
+    "fodderSoyaBeanForage": "ሶያ ቆጽሊ መግቢ",
+    "@fodderSoyaBeanForage": {
+        "description": "Fodder: soya bean forage"
+    },
+    "fodderGroundnutSeeds": "ፉል ዘርኢ",
+    "@fodderGroundnutSeeds": {
+        "description": "Fodder: groundnut seeds"
+    },
+    "fodderBanannaStalks": "ሙዝ ግንዲ",
+    "@fodderBanannaStalks": {
+        "description": "Fodder: bananna stalks"
+    },
+    "fodderBananaLeaves": "ሙዝ ቆጽሊ",
+    "@fodderBananaLeaves": {
+        "description": "Fodder: banana leaves"
+    },
+    "fodderSorghumForage": "ማሽላ መግቢ",
+    "@fodderSorghumForage": {
+        "description": "Fodder: sorghum forage"
+    },
+    "fodderSorghumStraw": "ማሽላ ሓሰር",
+    "@fodderSorghumStraw": {
+        "description": "Fodder: sorghum straw"
+    },
+    "fodderMaizeSilage": "ዕፉን ሳይለጅ",
+    "@fodderMaizeSilage": {
+        "description": "Fodder: maize silage"
+    },
+    "fodderMoringaLeavesFresh": "ሓድሽ ሞሪንጋ ቆጽሊ",
+    "@fodderMoringaLeavesFresh": {
+        "description": "Fodder: moringa leaves fresh"
+    },
+    "fodderFreshGrass": "ሓድሽ ሳዕሪ",
+    "@fodderFreshGrass": {
+        "description": "Fodder: Fresh grass"
+    },
+    "fodderRiceHay": "ሩዝ ሓሰር",
+    "@fodderRiceHay": {
+        "description": "Fodder: Rice hay"
+    },
+    "fodderSweetCornTrash": "ጣፍጣፍ ዕፉን ፍሕሲ",
+    "@fodderSweetCornTrash": {
+        "description": "Fodder: Sweet corn trash"
+    },
+    "fodderBeanSilage": "ባኒ ሳይለጅ",
+    "@fodderBeanSilage": {
+        "description": "Fodder: Bean silage"
+    },
+    "fodderRiceBranA": "ሩዝ ፉሽፋሽ A",
+    "@fodderRiceBranA": {
+        "description": "Fodder: Rice bran A"
+    },
+    "fodderRiceBranB": "ሩዝ ፉሽፋሽ B",
+    "@fodderRiceBranB": {
+        "description": "Fodder: Rice bran B"
+    },
+    "fodderRejectPotatoes": "ዝተረፈ ድንሽ",
+    "@fodderRejectPotatoes": {
+        "description": "Fodder: Reject potatoes"
+    },
+    "fodderCornStover": "ዕፉን ሓሰር",
+    "@fodderCornStover": {
+        "description": "Fodder: Corn stover"
+    },
+    "fodderBrewersGrain": "ቢራ ፍርያት",
+    "@fodderBrewersGrain": {
+        "description": "Fodder: Brewers grain"
+    },
+    "fodderSagoChips": "ሳጎ ቺፕስ",
+    "@fodderSagoChips": {
+        "description": "Fodder: Sago chips"
+    },
+    "fodderRiceStraw": "ሩዝ ሓሰር",
+    "@fodderRiceStraw": {
+        "description": "Fodder: Rice straw"
+    },
+    "fodderDiCalciumPhosphate": "ዲ-ካልሲዩም ፎስፌት",
+    "@fodderDiCalciumPhosphate": {
+        "description": "Fodder: Di-calcium phosphate"
+    },
+    "fodderElephantGrassNapierGrass": "ዓባይ ሳዕሪ/ናፒየር ሳዕሪ",
+    "@fodderElephantGrassNapierGrass": {
+        "description": "Fodder: elephant grass/Napier grass"
+    },
+    "fodderElephantGrassHay": "ዓባይ ሳዕሪ ሓሰር",
+    "@fodderElephantGrassHay": {
+        "description": "Fodder: elephant grass hay"
+    },
+    "chooseLiveWeightKg": "ህያው ክብደት ምረጽ (ኪሎ)",
+    "@chooseLiveWeightKg": {
+        "description": "Choose live weight (kg) default selected"
+    },
+    "choosePregnancyMonth": "ጥንሲ ወርሒ ምረጽ",
+    "@choosePregnancyMonth": {
+        "description": "Choose pregnancy month default selected"
+    },
+    "chooseMilkFat": "ጸባ ስብሒ % ምረጽ",
+    "@chooseMilkFat": {
+        "description": "Choose milk fat % default selected"
+    },
+    "chooseMilkProtein": "ጸባ ፕሮቲን % ምረጽ",
+    "@chooseMilkProtein": {
+        "description": "Choose milk protein % default selected"
+    },
+    "chooseLactationStage": "ናይ ጸባ ደረጃ ምረጽ",
+    "@chooseLactationStage": {
+        "description": "Choose lactation stage default selected"
+    },
+    "choose": "ምረጽ",
+    "@choose": {
+        "description": "'Choose' For checking Cow Characteristic's form validity"
+    },
+    "prices": "ዋጋታት",
+    "@prices": {
+        "description": "Label for the prices page"
+    },
+    "costPerKg": "ዋጋ/ኪሎ",
+    "@costPerKg": {
+        "description": "Label for the cost per kg input"
+    },
+    "feedPricesAndAvailability": "መግቢ ዋጋታትን ዝርከብነትን",
+    "@feedPricesAndAvailability": {
+        "description": "Label for the feed prices and availability page"
+    }
+}

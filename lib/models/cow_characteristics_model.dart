@@ -36,4 +36,9 @@ class CowCharacteristics {
       'lactationStage': lactationStage,
     };
   }
+
+  @override
+  String toString() {
+    return 'liveWeight: $liveWeight, pregnancyMonths: $pregnancyMonths, milkVolume: $milkVolume, milkFat: $milkFat, milkProtein: $milkProtein, lactationStage: $lactationStage';
+  }
 }

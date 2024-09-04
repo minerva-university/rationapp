@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import '../models/feed_formula_model.dart';
 import '../services/persistence_manager.dart';
 import '../data/nutrition_tables.dart';
@@ -6,8 +6,12 @@ import '../data/nutrition_tables.dart';
 class FeedState extends ChangeNotifier {
   List<FeedIngredient> fodderItems = [];
   List<FeedIngredient> concentrateItems = [];
+  late BuildContext _context;
 
-  FeedState() {
+  FeedState();
+
+  void initializeWithContext(BuildContext context) {
+    _context = context;
     loadSavedPrices();
   }
 
@@ -28,11 +32,14 @@ class FeedState extends ChangeNotifier {
     if (savedPrices != null) {
       fodderItems = savedPrices.where((item) => item.isFodder).toList();
       concentrateItems = savedPrices.where((item) => !item.isFodder).toList();
-      notifyListeners();
     } else {
-      fodderItems = NutritionTables.fodderItems;
-      concentrateItems = NutritionTables.concentrateItems;
+      final nutritionTables = NutritionTables(_context);
+      fodderItems = nutritionTables.fodderItems;
+      concentrateItems = nutritionTables.concentrateItems;
     }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
   }
 
   void _savePricesAndAvailability() {

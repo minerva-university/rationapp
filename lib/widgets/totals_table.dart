@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rationapp/models/cow_characteristics_model.dart';
 import '../models/cow_requirements_model.dart';
+import '../generated/l10n.dart';
 import '../models/feed_formula_model.dart';
 
 class TotalsTable extends StatelessWidget {
@@ -8,9 +9,11 @@ class TotalsTable extends StatelessWidget {
   final List<FeedIngredient> concentrateItems;
   final CowRequirements cowRequirements;
   final CowCharacteristics cowCharacteristics;
+  final BuildContext context;
 
   TotalsTable(
       {super.key,
+      required this.context,
       required this.fodderItems,
       required this.concentrateItems,
       required this.cowRequirements,
@@ -21,7 +24,7 @@ class TotalsTable extends StatelessWidget {
   List<Map<String, dynamic>> get columns {
     return [
       {
-        'label': 'DM Intake\n(kg/d)',
+        'label': S.of(context).dmIntakeLabelWithUnit,
         'key': 'dmIntake',
         'decimals': 2,
         'reqKey': 'dmIntake',
@@ -29,7 +32,7 @@ class TotalsTable extends StatelessWidget {
         'max': cowRequirements.dmIntake * 1.05
       },
       {
-        'label': 'ME Intake\n(MJ/d)',
+        'label': S.of(context).meIntakeLabelWithUnit,
         'key': 'meIntake',
         'decimals': 2,
         'reqKey': 'meIntake',
@@ -37,7 +40,7 @@ class TotalsTable extends StatelessWidget {
         'max': cowRequirements.meIntake * 1.05
       },
       {
-        'label': 'CP Intake\n(%DM)',
+        'label': S.of(context).cpIntakeLabelWithUnit,
         'key': 'cpIntake',
         'decimals': 2,
         'reqKey': 'cpIntake',
@@ -45,7 +48,7 @@ class TotalsTable extends StatelessWidget {
         'max': isLactating ? 18 : 14,
       },
       {
-        'label': 'NDF Intake\n(%DM)',
+        'label': S.of(context).ndfIntakeLabelWithUnit,
         'key': 'ndfIntake',
         'decimals': 2,
         'reqKey': 'ndfIntake',
@@ -53,7 +56,7 @@ class TotalsTable extends StatelessWidget {
         'max': 40
       },
       {
-        'label': 'Ca Intake\n(%DM)',
+        'label': S.of(context).caIntakeLabelWithUnit,
         'key': 'caIntake',
         'decimals': 2,
         'reqKey': 'caIntake',
@@ -61,7 +64,7 @@ class TotalsTable extends StatelessWidget {
         'max': isLactating ? 1.0 : 0.55,
       },
       {
-        'label': 'P Intake\n(%DM)',
+        'label': S.of(context).pIntakeLabelWithUnit,
         'key': 'pIntake',
         'decimals': 2,
         'reqKey': 'pIntake',
@@ -69,7 +72,7 @@ class TotalsTable extends StatelessWidget {
         'max': isLactating ? 0.45 : 0.40,
       },
       {
-        'label': 'Concentrate Intake\n(%DM)',
+        'label': S.of(context).concentrateIntakeLabelWithUnit,
         'key': 'concentrateIntake',
         'decimals': 2,
         'reqKey': 'concentrateIntake',
@@ -77,7 +80,7 @@ class TotalsTable extends StatelessWidget {
         'max': 60
       },
       {
-        'label': 'Cost\n(ERN)',
+        'label': S.of(context).costLabel,
         'key': 'cost',
         'decimals': 2,
         'reqKey': null,

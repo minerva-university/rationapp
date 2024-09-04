@@ -2,6 +2,7 @@ import '../models/cow_characteristics_model.dart';
 import '../../utils/nutrition_calculator.dart';
 import 'package:flutter/material.dart';
 import '../models/cow_requirements_model.dart';
+import '../generated/l10n.dart';
 
 class CowRequirementsCalculator {
   static void calculateCowRequirements(
@@ -11,13 +12,13 @@ class CowRequirementsCalculator {
       TextEditingController volumeController,
       TextEditingController milkFatController,
       TextEditingController milkProteinController,
-      TextEditingController lactationController) {
+      String lactationStageId) {
     int liveWeight = int.tryParse(liveWeightController.text) ?? 0;
     int pregnancy = int.tryParse(pregnancyController.text) ?? 0;
     double volume = double.tryParse(volumeController.text) ?? 0;
     double milkFat = double.tryParse(milkFatController.text) ?? 0;
     double milkProtein = double.tryParse(milkProteinController.text) ?? 0;
-    String lactation = lactationController.text;
+    String lactation = lactationStageId;
 
     CowCharacteristics cowCharacteristics = CowCharacteristics(
       liveWeight: liveWeight,
@@ -36,12 +37,12 @@ class CowRequirementsCalculator {
         cowCharacteristics.milkVolume,
         cowCharacteristics.milkFat,
         cowCharacteristics.milkProtein);
-    double cpIntake = NutritionCalculator.calculateCPIntake(
-        cowCharacteristics.lactationStage);
-    double caIntake = NutritionCalculator.calculateCaIntake(
-        cowCharacteristics.lactationStage);
-    double pIntake =
-        NutritionCalculator.calculatePIntake(cowCharacteristics.lactationStage);
+    double cpIntake = NutritionCalculator(context)
+        .calculateCPIntake(cowCharacteristics.lactationStage);
+    double caIntake = NutritionCalculator(context)
+        .calculateCaIntake(cowCharacteristics.lactationStage);
+    double pIntake = NutritionCalculator(context)
+        .calculatePIntake(cowCharacteristics.lactationStage);
 
     double ndfIntake = 40.0;
     double concentrateIntake = 60.0;
@@ -60,9 +61,15 @@ class CowRequirementsCalculator {
       useRootNavigator: false,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Cow Requirements'),
+          title: Text(S.of(context).cowRequirements),
           content: Text(
-            'DM Intake: ${dmIntake.toStringAsFixed(2)} kg/day\nME Intake: ${meIntake.toStringAsFixed(2)} MJ/day\nCP Intake: ${(cpIntake * 100).toStringAsFixed(2)}%\nNDF Intake: ${(ndfIntake).toStringAsFixed(2)}%\nCa Intake: ${(caIntake).toStringAsFixed(2)}%\nP Intake: ${(pIntake).toStringAsFixed(2)}%\nConcentrate Intake: ${(concentrateIntake).toStringAsFixed(2)}%',
+            '${S.of(context).dmIntakeLabel}: ${S.of(context).kgPerDay(cowRequirements.dmIntake.toStringAsFixed(2))}\n'
+            '${S.of(context).meIntakeLabel}: ${S.of(context).mjPerDayValue(cowRequirements.meIntake.toStringAsFixed(2))}\n'
+            '${S.of(context).cpIntakeLabel}: ${S.of(context).percentageValue((cowRequirements.cpIntake * 100).toStringAsFixed(2))}\n'
+            '${S.of(context).ndfIntakeLabel}: ${S.of(context).percentageValue(cowRequirements.ndfIntake.toStringAsFixed(2))}\n'
+            '${S.of(context).caIntakeLabel}: ${S.of(context).percentageValue(cowRequirements.caIntake.toStringAsFixed(2))}\n'
+            '${S.of(context).pIntakeLabel}: ${S.of(context).percentageValue(cowRequirements.pIntake.toStringAsFixed(2))}\n'
+            '${S.of(context).concentrateIntakeLabel}: ${S.of(context).percentageValue(cowRequirements.concentrateIntake.toStringAsFixed(2))}',
             style: TextStyle(fontSize: 18),
           ),
           actions: [
@@ -78,7 +85,7 @@ class CowRequirementsCalculator {
                   },
                 );
               },
-              child: const Text('Plan feed'),
+              child: Text(S.of(context).planFeed),
             ),
           ],
         );

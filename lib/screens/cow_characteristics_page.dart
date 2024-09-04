@@ -3,6 +3,7 @@ import '../widgets/custom_text_field.dart';
 import '../widgets/custom_dropdown_field.dart';
 import '../constants/cow_characteristics_constants.dart';
 import '../../utils/cow_requirements_calculator.dart';
+import '../generated/l10n.dart';
 import '../services/persistence_manager.dart';
 import '../models/cow_characteristics_model.dart';
 
@@ -20,6 +21,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
   final TextEditingController milkFatController = TextEditingController();
   final TextEditingController milkProteinController = TextEditingController();
   final TextEditingController lactationController = TextEditingController();
+  String selectedLactationStageKey = '';
 
   @override
   void initState() {
@@ -41,6 +43,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
             savedCharacteristics.milkProtein.toString();
         lactationController.text =
             savedCharacteristics.lactationStage.toString();
+        selectedLactationStageKey = savedCharacteristics.lactationStage;
       });
     } else {
       _setDefaultValues();
@@ -48,30 +51,23 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
   }
 
   void _setDefaultValues() {
-    liveWeightController.text =
-        CowCharacteristicsConstants.liveWeightOptions.first;
-    pregnancyController.text =
-        CowCharacteristicsConstants.pregnancyOptions.first;
+    liveWeightController.text = '';
+    pregnancyController.text = '';
     volumeController.text = '';
-    milkFatController.text = CowCharacteristicsConstants.milkFatOptions.first;
-    milkProteinController.text =
-        CowCharacteristicsConstants.milkProteinOptions.first;
-    lactationController.text =
-        CowCharacteristicsConstants.lactationOptions.first;
+    milkFatController.text = '';
+    milkProteinController.text = '';
+    lactationController.text = '';
+    selectedLactationStageKey = '';
   }
 
   bool _isFormValid() {
-    return liveWeightController.text !=
-            CowCharacteristicsConstants.liveWeightOptions.first &&
-        pregnancyController.text !=
-            CowCharacteristicsConstants.pregnancyOptions.first &&
+    return liveWeightController.text != '' &&
+        pregnancyController.text != '' &&
         volumeController.text.isNotEmpty &&
-        milkFatController.text !=
-            CowCharacteristicsConstants.milkFatOptions.first &&
-        milkProteinController.text !=
-            CowCharacteristicsConstants.milkProteinOptions.first &&
-        lactationController.text !=
-            CowCharacteristicsConstants.lactationOptions.first;
+        milkFatController.text != '' &&
+        milkProteinController.text != '' &&
+        lactationController.text != '' &&
+        selectedLactationStageKey.isNotEmpty;
   }
 
   void _handleButtonPress() {
@@ -84,12 +80,12 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
           volumeController,
           milkFatController,
           milkProteinController,
-          lactationController);
+          selectedLactationStageKey);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content:
-              Text('Please fill in all fields before viewing requirements.'),
+          content: Text(
+              S.of(context).pleaseFillInAllFieldsBeforeViewingRequirements),
           backgroundColor: Colors.red,
         ),
       );
@@ -103,7 +99,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
       milkVolume: double.tryParse(volumeController.text) ?? 0.0,
       milkFat: double.tryParse(milkFatController.text) ?? 0.0,
       milkProtein: double.tryParse(milkProteinController.text) ?? 0.0,
-      lactationStage: lactationController.text,
+      lactationStage: selectedLactationStageKey,
     );
     SharedPrefsService.setCowCharacteristics(cowCharacteristics);
   }
@@ -114,8 +110,8 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
       appBar: AppBar(
         backgroundColor: Colors.green.shade200,
         elevation: 0,
-        title: const Text(
-          'Cow Characteristics',
+        title: Text(
+          S.of(context).cowCharacteristics,
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,
@@ -129,13 +125,13 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
           children: [
             ListTile(
               leading: Icon(Icons.pets, size: 40),
-              title: Text('Cow Characteristics',
+              title: Text(S.of(context).cowCharacteristics,
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-              subtitle: Text('Milk Yield', style: TextStyle(fontSize: 18)),
+              subtitle:
+                  Text(S.of(context).milkYield, style: TextStyle(fontSize: 18)),
             ),
             SizedBox(height: 20),
             CustomDropdownField(
-              hintText: liveWeightController.text,
               options: CowCharacteristicsConstants.liveWeightOptions,
               onChanged: (value) {
                 setState(() {
@@ -143,10 +139,9 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
                 });
               },
               value: liveWeightController.text,
-              labelText: 'Live weight (kg)',
+              labelText: S.of(context).liveWeight,
             ),
             CustomDropdownField(
-              hintText: pregnancyController.text,
               options: CowCharacteristicsConstants.pregnancyOptions,
               onChanged: (value) {
                 setState(() {
@@ -154,13 +149,12 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
                 });
               },
               value: pregnancyController.text,
-              labelText: 'Pregnancy (mth)',
+              labelText: S.of(context).pregnancy,
             ),
             CustomTextField(
-                labelText: 'Milk volume per day (kg)',
+                labelText: S.of(context).milkVolumePerDay,
                 controller: volumeController),
             CustomDropdownField(
-              hintText: milkFatController.text,
               options: CowCharacteristicsConstants.milkFatOptions,
               onChanged: (value) {
                 setState(() {
@@ -168,10 +162,9 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
                 });
               },
               value: milkFatController.text,
-              labelText: 'Milk fat (%)',
+              labelText: S.of(context).milkFat,
             ),
             CustomDropdownField(
-              hintText: milkProteinController.text,
               options: CowCharacteristicsConstants.milkProteinOptions,
               onChanged: (value) {
                 setState(() {
@@ -179,18 +172,24 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
                 });
               },
               value: milkProteinController.text,
-              labelText: 'Milk protein (%)',
+              labelText: S.of(context).milkProtein,
             ),
             CustomDropdownField(
-              hintText: lactationController.text,
-              options: CowCharacteristicsConstants.lactationOptions,
+              options:
+                  CowCharacteristicsConstants(context).lactationStageOptions,
               onChanged: (value) {
-                setState(() {
-                  lactationController.text = value ?? '';
-                });
+                if (value != null) {
+                  setState(() {
+                    selectedLactationStageKey =
+                        CowCharacteristicsConstants(context)
+                            .getLactationStageKey(value);
+                    lactationController.text = value;
+                  });
+                }
               },
-              value: lactationController.text,
-              labelText: 'Lactation stage',
+              value: CowCharacteristicsConstants(context)
+                  .getLactationStageLabel(selectedLactationStageKey),
+              labelText: S.of(context).lactationStage,
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -200,7 +199,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
               ),
-              child: const Text('View Cow requirements'),
+              child: Text(S.of(context).viewCowRequirements),
             ),
           ],
         ),

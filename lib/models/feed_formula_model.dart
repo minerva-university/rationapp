@@ -1,4 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:rationapp/generated/l10n.dart';
+
 class FeedIngredient {
+  final String id;
   final String name;
   final double weight;
   final double dmIntake;
@@ -12,6 +16,7 @@ class FeedIngredient {
   final bool isFodder;
 
   FeedIngredient({
+    required this.id,
     required this.name,
     required this.weight,
     required this.dmIntake,
@@ -27,6 +32,8 @@ class FeedIngredient {
 
   dynamic operator [](String key) {
     switch (key) {
+      case 'id':
+        return id;
       case 'name':
         return name;
       case 'weight':
@@ -56,6 +63,7 @@ class FeedIngredient {
 
   factory FeedIngredient.fromJson(Map<String, dynamic> json) {
     return FeedIngredient(
+      id: json['id'],
       name: json['name'],
       weight: json['weight'],
       dmIntake: json['dmIntake'],
@@ -70,8 +78,13 @@ class FeedIngredient {
     );
   }
 
+  String getName(BuildContext context) {
+    return S.of(context).getTranslation(id);
+  }
+
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'name': name,
       'weight': weight,
       'dmIntake': dmIntake,
@@ -88,6 +101,7 @@ class FeedIngredient {
 
   FeedIngredient copyWith({bool? isAvailable, double? cost}) {
     return FeedIngredient(
+      id: id,
       name: name,
       weight: weight,
       dmIntake: dmIntake,
@@ -104,7 +118,7 @@ class FeedIngredient {
 
   @override
   String toString() {
-    return 'FeedIngredient(name: $name, weight: $weight, dmIntake: $dmIntake, meIntake: $meIntake, cpIntake: $cpIntake, ndfIntake: $ndfIntake, caIntake: $caIntake, pIntake: $pIntake, cost: $cost, isAvailable: $isAvailable, isFodder: $isFodder)';
+    return 'FeedIngredient(id: $id, name: $name, weight: $weight, dmIntake: $dmIntake, meIntake: $meIntake, cpIntake: $cpIntake, ndfIntake: $ndfIntake, caIntake: $caIntake, pIntake: $pIntake, cost: $cost, isAvailable: $isAvailable, isFodder: $isFodder)';
   }
 }
 

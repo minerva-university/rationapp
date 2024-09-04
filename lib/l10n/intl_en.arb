@@ -1,0 +1,457 @@
+{
+    "@@locale": "en",
+    "pleaseFillInAllFieldsBeforeViewingRequirements": "Please fill in all fields before viewing requirements.",
+    "@pleaseFillInAllFieldsBeforeViewingRequirements": {
+        "description": "Error message shown when not all required fields are filled"
+    },
+    "cowCharacteristics": "Cow Characteristics",
+    "@cowCharacteristics": {
+        "description": "Title for the cow characteristics section"
+    },
+    "milkYield": "Milk Yield",
+    "@milkYield": {
+        "description": "Label for milk yield information"
+    },
+    "viewCowRequirements": "View Cow requirements",
+    "@viewCowRequirements": {
+        "description": "Button text to view cow requirements"
+    },
+    "feedFormula": "Feed Formula",
+    "@feedFormula": {
+        "description": "Title for the feed formula section"
+    },
+    "addFodder": "Add Fodder",
+    "@addFodder": {
+        "description": "Button text to add fodder to the feed formula"
+    },
+    "addConcentrate": "Add Concentrate",
+    "@addConcentrate": {
+        "description": "Button text to add concentrate to the feed formula"
+    },
+    "concentrate": "Concentrate",
+    "@concentrate": {
+        "description": "Label for concentrate feed type"
+    },
+    "totals": "Totals",
+    "@totals": {
+        "description": "Label for the totals section in feed formula"
+    },
+    "fodder": "Fodder",
+    "@fodder": {
+        "description": "Label for fodder feed type"
+    },
+    "cowRequirements": "Cow Requirements",
+    "@cowRequirements": {
+        "description": "Title for the cow requirements section"
+    },
+    "allOptionsHaveBeenAdded": "All {type} options have been added.",
+    "@allOptionsHaveBeenAdded": {
+        "description": "Message when all options of a type have been added",
+        "placeholders": {
+            "type": {
+                "type": "String",
+                "example": "fodder"
+            }
+        }
+    },
+    "feedingGuidelines": "Feeding Guidelines",
+    "@feedingGuidelines": {
+        "description": "Feeding guidelines label"
+    },
+    "kgValue": "{value} kg",
+    "@kgValue": {
+        "description": "kg unit",
+        "placeholders": {
+            "value": {
+                "type": "String",
+                "example": "16.5"
+            }
+        }
+    },
+    "kgPerDay": "{value} kg/day",
+    "@kgPerDay": {
+        "description": "Format for kg per day values",
+        "placeholders": {
+            "value": {
+                "type": "String",
+                "example": "16.50"
+            }
+        }
+    },
+    "mjPerDayValue": "{value} MJ/day",
+    "@mjPerDayValue": {
+        "description": "MJ/day unit",
+        "placeholders": {
+            "value": {
+                "type": "String",
+                "example": "179.96"
+            }
+        }
+    },
+    "percentageValue": "{value}%",
+    "@percentageValue": {
+        "description": "Generic percentage value",
+        "placeholders": {
+            "value": {
+                "type": "String",
+                "example": "16"
+            }
+        }
+    },
+    "dryMatterIntakeLabel": "Dry Matter Intake",
+    "@dryMatterIntakeLabel": {
+        "description": "Label for dry matter intake in feeding guidelines"
+    },
+    "meIntakeLabel": "ME Intake",
+    "@meIntakeLabel": {
+        "description": "Label for ME intake in feeding guidelines"
+    },
+    "crudeProteinLabel": "Crude Protein",
+    "@crudeProteinLabel": {
+        "description": "Label for crude protein in feeding guidelines"
+    },
+    "ndfLabel": "NDF",
+    "@ndfLabel": {
+        "description": "Label for NDF in feeding guidelines"
+    },
+    "caIntakeLabel": "Ca Intake",
+    "@caIntakeLabel": {
+        "description": "Label for calcium intake in feeding guidelines"
+    },
+    "pIntakeLabel": "P Intake",
+    "@pIntakeLabel": {
+        "description": "Label for phosphorus intake in feeding guidelines"
+    },
+    "period": "Period",
+    "@period": {
+        "description": "Period label"
+    },
+    "earlyLactationFeeding": "Early Lactation Feeding",
+    "@earlyLactationFeeding": {
+        "description": "Title for early lactation feeding guidelines"
+    },
+    "earlyLactationPeriod": "Early Lactation (14-100 days)",
+    "@earlyLactationPeriod": {
+        "description": "Period description for early lactation"
+    },
+    "midLactationFeeding": "Mid Lactation Feeding",
+    "@midLactationFeeding": {
+        "description": "Title for mid lactation feeding guidelines"
+    },
+    "midLactationPeriod": "Mid lactation (100 to 200 days)",
+    "@midLactationPeriod": {
+        "description": "Period description for mid lactation"
+    },
+    "lateLactationFeeding": "Late Lactation Feeding",
+    "@lateLactationFeeding": {
+        "description": "Title for late lactation feeding guidelines"
+    },
+    "lateLactationPeriod": "Late Lactation (>200 days)",
+    "@lateLactationPeriod": {
+        "description": "Period description for late lactation"
+    },
+    "dryCowFeeding": "Dry Cow Feeding",
+    "@dryCowFeeding": {
+        "description": "Title for dry cow feeding guidelines"
+    },
+    "dryCowPeriod": "Due to calve in 45 to 60 days",
+    "@dryCowPeriod": {
+        "description": "Period description for dry cow feeding"
+    },
+    "planFeed": "Plan feed",
+    "@planFeed": {
+        "description": "Button text to plan feed"
+    },
+    "dmIntakeLabel": "DM Intake",
+    "@dmIntakeLabel": {
+        "description": "Label for Dry Matter Intake"
+    },
+    "cpIntakeLabel": "CP Intake",
+    "@cpIntakeLabel": {
+        "description": "Label for Crude Protein Intake"
+    },
+    "ndfIntakeLabel": "NDF Intake",
+    "@ndfIntakeLabel": {
+        "description": "Label for Neutral Detergent Fiber Intake"
+    },
+    "concentrateIntakeLabel": "Concentrate Intake",
+    "@concentrateIntakeLabel": {
+        "description": "Label for Concentrate Intake"
+    },
+    "selectRationIngredient": "Select Ration Ingredient",
+    "@selectRationIngredient": {
+        "description": "Hint text for selecting a ration ingredient"
+    },
+    "freshFeedIntake": "Fresh feed intake (kg/d)",
+    "@freshFeedIntake": {
+        "description": "Label for fresh feed intake input"
+    },
+    "cancel": "Cancel",
+    "@cancel": {
+        "description": "Text for cancel button"
+    },
+    "add": "Add",
+    "@add": {
+        "description": "Text for add button"
+    },
+    "chooseFodder": "Choose fodder",
+    "@chooseFodder": {
+        "description": "Default option for fodder dropdown"
+    },
+    "chooseConcentrate": "Choose concentrate",
+    "@chooseConcentrate": {
+        "description": "Default option for concentrate dropdown"
+    },
+    "pleaseAllFields": "Please fill in all fields.",
+    "@pleaseAllFields": {
+        "description": "Error message when fields are not filled"
+    },
+    "dmIntakeLabelWithUnit": "DM Intake\n(kg/day)",
+    "@dmIntakeLabelWithUnit": {
+        "description": "Label for Dry Matter Intake in kg per day"
+    },
+    "meIntakeLabelWithUnit": "ME Intake\n(MJ/day)",
+    "@meIntakeLabelWithUnit": {
+        "description": "Label for Metabolizable Energy Intake in MJ per day"
+    },
+    "cpIntakeLabelWithUnit": "CP Intake\n(%)",
+    "@cpIntakeLabelWithUnit": {
+        "description": "Label for Crude Protein Intake in percentage"
+    },
+    "ndfIntakeLabelWithUnit": "NDF Intake\n(%)",
+    "@ndfIntakeLabelWithUnit": {
+        "description": "Label for Neutral Detergent Fiber Intake in percentage"
+    },
+    "caIntakeLabelWithUnit": "Ca Intake\n(%)",
+    "@caIntakeLabelWithUnit": {
+        "description": "Label for Calcium Intake in percentage"
+    },
+    "pIntakeLabelWithUnit": "P Intake\n(%)",
+    "@pIntakeLabelWithUnit": {
+        "description": "Label for Phosphorus Intake in percentage"
+    },
+    "concentrateIntakeLabelWithUnit": "Concentrate Intake\n(%)",
+    "@concentrateIntakeLabelWithUnit": {
+        "description": "Label for Concentrate Intake in percentage"
+    },
+    "liveWeight": "Live weight (kg)",
+    "@liveWeight": {
+        "description": "Label for live weight input"
+    },
+    "pregnancy": "Pregnancy (mth)",
+    "@pregnancy": {
+        "description": "Label for pregnancy input"
+    },
+    "milkVolumePerDay": "Milk volume per day (kg)",
+    "@milkVolumePerDay": {
+        "description": "Label for daily milk volume input"
+    },
+    "milkFat": "Milk fat (%)",
+    "@milkFat": {
+        "description": "Label for milk fat percentage input"
+    },
+    "milkProtein": "Milk protein (%)",
+    "@milkProtein": {
+        "description": "Label for milk protein percentage input"
+    },
+    "lactationStage": "Lactation stage",
+    "@lactationStage": {
+        "description": "Label for lactation stage input"
+    },
+    "ingredientLabel": "Ingredient",
+    "@ingredientLabel": {
+        "description": "Label for the ingredient column"
+    },
+    "freshFeedIntakeLabel": "Fresh feed\nintake (kg/d)",
+    "@freshFeedIntakeLabel": {
+        "description": "Label for the fresh feed intake column"
+    },
+    "cpIntakeLabelKgPerD": "CP Intake\n(kg/d)",
+    "@cpIntakeLabelKgPerD": {
+        "description": "Label for the crude protein intake column"
+    },
+    "ndfIntakeLabelKgPerD": "NDF Intake\n(kg/d)",
+    "@ndfIntakeLabelKgPerD": {
+        "description": "Label for the neutral detergent fiber intake column"
+    },
+    "caIntakeLabelKgPerD": "Ca Intake\n(kg/d)",
+    "@caIntakeLabelKgPerD": {
+        "description": "Label for the calcium intake column"
+    },
+    "pIntakeLabelKgPerD": "P Intake\n(kg/d)",
+    "@pIntakeLabelKgPerD": {
+        "description": "Label for the phosphorus intake column"
+    },
+    "costLabel": "Cost\n(ERN)",
+    "@costLabel": {
+        "description": "Label for the cost column"
+    },
+    "lactationStageDry": "Dry",
+    "@lactationStageDry": {
+        "description": "Lactation stage: Dry"
+    },
+    "lactationStageEarlyLactation": "Early lactation",
+    "@lactationStageEarlyLactation": {
+        "description": "Lactation stage: Early lactation"
+    },
+    "lactationStageMidLactation": "Mid lactation",
+    "@lactationStageMidLactation": {
+        "description": "Lactation stage: Mid lactation"
+    },
+    "lactationStageLateLactation": "Late lactation",
+    "@lactationStageLateLactation": {
+        "description": "Lactation stage: Late lactation"
+    },
+    "concentrateSesameSeedMeal": "sesame seed meal",
+    "@concentrateSesameSeedMeal": {
+        "description": "Concentrate: sesame seed meal"
+    },
+    "concentrateMolasses": "Molasses",
+    "@concentrateMolasses": {
+        "description": "Concentrate: Molasses"
+    },
+    "concentrateMaizeGrain": "Maize grain",
+    "@concentrateMaizeGrain": {
+        "description": "Concentrate: Maize grain"
+    },
+    "concentrateSoybeanCake": "Soybean cake",
+    "@concentrateSoybeanCake": {
+        "description": "Concentrate: Soybean cake"
+    },
+    "fodderGreenMaizeForage": "green maize forage",
+    "@fodderGreenMaizeForage": {
+        "description": "Fodder: green maize forage"
+    },
+    "fodderAlfafa": "alfafa",
+    "@fodderAlfafa": {
+        "description": "Fodder: alfafa"
+    },
+    "fodderMoringaLeaves": "moringa leaves",
+    "@fodderMoringaLeaves": {
+        "description": "Fodder: moringa leaves"
+    },
+    "fodderSoyaBeanForage": "soya bean forage",
+    "@fodderSoyaBeanForage": {
+        "description": "Fodder: soya bean forage"
+    },
+    "fodderGroundnutSeeds": "groundnut seeds",
+    "@fodderGroundnutSeeds": {
+        "description": "Fodder: groundnut seeds"
+    },
+    "fodderBanannaStalks": "bananna stalks",
+    "@fodderBanannaStalks": {
+        "description": "Fodder: bananna stalks"
+    },
+    "fodderBananaLeaves": "banana leaves",
+    "@fodderBananaLeaves": {
+        "description": "Fodder: banana leaves"
+    },
+    "fodderSorghumForage": "sorghum forage",
+    "@fodderSorghumForage": {
+        "description": "Fodder: sorghum forage"
+    },
+    "fodderSorghumStraw": "sorghum straw",
+    "@fodderSorghumStraw": {
+        "description": "Fodder: sorghum straw"
+    },
+    "fodderMaizeSilage": "maize silage",
+    "@fodderMaizeSilage": {
+        "description": "Fodder: maize silage"
+    },
+    "fodderMoringaLeavesFresh": "moringa leaves fresh",
+    "@fodderMoringaLeavesFresh": {
+        "description": "Fodder: moringa leaves fresh"
+    },
+    "fodderFreshGrass": "Fresh grass",
+    "@fodderFreshGrass": {
+        "description": "Fodder: Fresh grass"
+    },
+    "fodderRiceHay": "Rice hay",
+    "@fodderRiceHay": {
+        "description": "Fodder: Rice hay"
+    },
+    "fodderSweetCornTrash": "Sweet corn trash",
+    "@fodderSweetCornTrash": {
+        "description": "Fodder: Sweet corn trash"
+    },
+    "fodderBeanSilage": "Bean silage",
+    "@fodderBeanSilage": {
+        "description": "Fodder: Bean silage"
+    },
+    "fodderRiceBranA": "Rice bran A",
+    "@fodderRiceBranA": {
+        "description": "Fodder: Rice bran A"
+    },
+    "fodderRiceBranB": "Rice bran B",
+    "@fodderRiceBranB": {
+        "description": "Fodder: Rice bran B"
+    },
+    "fodderRejectPotatoes": "Reject potatoes",
+    "@fodderRejectPotatoes": {
+        "description": "Fodder: Reject potatoes"
+    },
+    "fodderCornStover": "Corn stover",
+    "@fodderCornStover": {
+        "description": "Fodder: Corn stover"
+    },
+    "fodderBrewersGrain": "Brewers grain",
+    "@fodderBrewersGrain": {
+        "description": "Fodder: Brewers grain"
+    },
+    "fodderSagoChips": "Sago chips",
+    "@fodderSagoChips": {
+        "description": "Fodder: Sago chips"
+    },
+    "fodderRiceStraw": "Rice straw",
+    "@fodderRiceStraw": {
+        "description": "Fodder: Rice straw"
+    },
+    "fodderDiCalciumPhosphate": "Di-calcium phosphate",
+    "@fodderDiCalciumPhosphate": {
+        "description": "Fodder: Di-calcium phosphate"
+    },
+    "fodderElephantGrassNapierGrass": "elephant grass/Napier grass",
+    "@fodderElephantGrassNapierGrass": {
+        "description": "Fodder: elephant grass/Napier grass"
+    },
+    "fodderElephantGrassHay": "elephant grass hay",
+    "@fodderElephantGrassHay": {
+        "description": "Fodder: elephant grass hay"
+    },
+    "chooseLiveWeightKg": "Choose live weight (kg)",
+    "@chooseLiveWeightKg": {
+        "description": "Choose live weight (kg) default selected"
+    },
+    "choosePregnancyMonth": "Choose pregnancy month",
+    "@choosePregnancyMonth": {
+        "description": "Choose pregnancy month default selected"
+    },
+    "chooseMilkFat": "Choose milk fat %",
+    "@chooseMilkFat": {
+        "description": "Choose milk fat % default selected"
+    },
+    "chooseMilkProtein": "Choose milk protein %",
+    "@chooseMilkProtein": {
+        "description": "Choose milk protein % default selected"
+    },
+    "chooseLactationStage": "Choose lactation stage",
+    "@chooseLactationStage": {
+        "description": "Choose lactation stage default selected"
+    },
+    "choose": "Choose",
+    "@choose": {
+        "description": "'Choose' For checking Cow Characteristic's form validity"
+    },
+    "prices": "Prices",
+    "@prices": {
+        "description": "Label for the prices page"
+    },
+    "costPerKg": "Cost/kg",
+    "@costPerKg": {
+        "description": "Label for the cost per kg input"
+    },
+    "feedPricesAndAvailability": "Feed Prices and Availability",
+    "@feedPricesAndAvailability": {
+        "description": "Label for the feed prices and availability page"
+    }
+}

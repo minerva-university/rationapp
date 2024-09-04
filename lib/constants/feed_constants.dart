@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../feed_state.dart';
+import '../models/feed_formula_model.dart';
 
 class FeedConstants {
-  List<String> getFodderOptions(BuildContext context) {
+  List<FeedIngredient> getFodderOptions(BuildContext context) {
     final fodder =
         Provider.of<FeedState>(context, listen: false).availableFodderItems;
-    return ['Choose fodder', ...fodder.map((item) => item.name)];
+    return [...fodder];
   }
 
-  List<String> getConcentrateOptions(BuildContext context) {
+  List<FeedIngredient> getConcentrateOptions(BuildContext context) {
     final concentrate = Provider.of<FeedState>(context, listen: false)
         .availableConcentrateItems;
-    return ['Choose concentrate', ...concentrate.map((item) => item.name)];
+    return [...concentrate];
+  }
+
+  String getFeedIngredientLabel(BuildContext context, String id) {
+    final feedState = Provider.of<FeedState>(context, listen: false);
+    final allItems = [...feedState.fodderItems, ...feedState.concentrateItems];
+    final item = allItems.firstWhere((item) => item.id == id);
+    return item.getName(context);
   }
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'custom_dropdown_field.dart';
 import 'custom_text_field.dart';
+import '../generated/l10n.dart';
+import '../models/feed_formula_model.dart';
 
 class AddIngredientDialog extends StatefulWidget {
   final bool isFodder;
-  final List<String> availableOptions;
+  final List<FeedIngredient> availableOptions;
   final Function(String, double) onAdd;
   final double? initialWeight;
 
@@ -21,13 +23,15 @@ class AddIngredientDialog extends StatefulWidget {
 }
 
 class _AddIngredientDialogState extends State<AddIngredientDialog> {
-  String? selectedIngredient;
+  String? selectedIngredientId;
   late TextEditingController feedWeightController;
 
   @override
   void initState() {
     super.initState();
-    selectedIngredient = widget.availableOptions.first;
+    selectedIngredientId = widget.initialWeight != null // when editing
+        ? widget.availableOptions.first.id
+        : '';
     feedWeightController = TextEditingController(
       text: widget.initialWeight?.toString() ?? '',
     );
@@ -36,18 +40,34 @@ class _AddIngredientDialogState extends State<AddIngredientDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Add ${widget.isFodder ? 'Fodder' : 'Concentrate'}'),
+      title: Text(widget.isFodder
+          ? S.of(context).addFodder
+          : S.of(context).addConcentrate),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           CustomDropdownField(
-            hintText: 'Select Ration Ingredient',
-            options: widget.availableOptions,
-            onChanged: (value) => selectedIngredient = value,
-            value: selectedIngredient,
+            options: widget.availableOptions
+                .map((option) => option.getName(context))
+                .toList(),
+            value: selectedIngredientId != ''
+                ? widget.availableOptions
+                    .firstWhere((option) => option.id == selectedIngredientId)
+                    .getName(context)
+                : '',
+            onChanged: (value) {
+              setState(() {
+                selectedIngredientId = widget.availableOptions
+                    .firstWhere((option) => option.getName(context) == value)
+                    .id;
+              });
+            },
+            labelText: widget.isFodder
+                ? S.of(context).chooseFodder
+                : S.of(context).chooseConcentrate,
           ),
           CustomTextField(
-            labelText: 'Fresh feed intake (kg/d)',
+            labelText: S.of(context).freshFeedIntake,
             controller: feedWeightController,
           ),
         ],
@@ -55,27 +75,25 @@ class _AddIngredientDialogState extends State<AddIngredientDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: Text('Cancel'),
+          child: Text(S.of(context).cancel),
         ),
         TextButton(
           onPressed: () {
-            if (selectedIngredient != null &&
-                selectedIngredient !=
-                    'Choose ${widget.isFodder ? 'fodder' : 'concentrate'}' &&
+            if (selectedIngredientId != '' &&
                 feedWeightController.text.isNotEmpty) {
               double weight = double.tryParse(feedWeightController.text) ?? 0;
-              widget.onAdd(selectedIngredient!, weight);
+              widget.onAdd(selectedIngredientId!, weight);
               Navigator.pop(context);
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text('Please fill in all fields.'),
+                  content: Text(S.of(context).pleaseAllFields),
                   backgroundColor: Colors.red,
                 ),
               );
             }
           },
-          child: Text('Add'),
+          child: Text(S.of(context).add),
         ),
       ],
     );

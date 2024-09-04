@@ -3,7 +3,7 @@ import 'package:rationapp/main.dart'; // Replace with your actual import
 
 void main() {
   testWidgets('Home page smoke test', (WidgetTester tester) async {
-    await tester.pumpWidget(const RationCalculatorApp());
+    await tester.pumpWidget(RationCalculatorApp());
 
     expect(find.text('Ration Calculator'), findsOneWidget);
     expect(find.text('Ration Formulation'), findsOneWidget);

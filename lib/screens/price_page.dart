@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/feed_formula_model.dart';
 import '../feed_state.dart';
+import '../generated/l10n.dart';
 
 class PricesPage extends StatelessWidget {
   @override
@@ -10,7 +11,7 @@ class PricesPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green.shade200,
         elevation: 0,
-        title: const Text('Feed Prices and Availability',
+        title: Text(S.of(context).feedPricesAndAvailability,
             style: TextStyle(color: Colors.white, fontSize: 20)),
         centerTitle: true,
       ),
@@ -18,12 +19,12 @@ class PricesPage extends StatelessWidget {
         builder: (context, feedState, child) {
           return ListView(
             children: [
-              _buildSectionTitle('Fodder'),
+              _buildSectionTitle(S.of(context).fodder),
               ...feedState.fodderItems
-                  .map((item) => _buildFeedItemTile(item, feedState)),
-              _buildSectionTitle('Concentrates'),
+                  .map((item) => _buildFeedItemTile(item, feedState, context)),
+              _buildSectionTitle(S.of(context).concentrate),
               ...feedState.concentrateItems
-                  .map((item) => _buildFeedItemTile(item, feedState)),
+                  .map((item) => _buildFeedItemTile(item, feedState, context)),
             ],
           );
         },
@@ -39,9 +40,10 @@ class PricesPage extends StatelessWidget {
     );
   }
 
-  Widget _buildFeedItemTile(FeedIngredient item, FeedState feedState) {
+  Widget _buildFeedItemTile(
+      FeedIngredient item, FeedState feedState, BuildContext context) {
     return ListTile(
-      title: Text(item.name),
+      title: Text(item.getName(context)),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -56,7 +58,7 @@ class PricesPage extends StatelessWidget {
             width: 100,
             child: TextFormField(
               initialValue: item.cost.toStringAsFixed(2),
-              decoration: InputDecoration(labelText: 'Price/kg'),
+              decoration: InputDecoration(labelText: S.of(context).costPerKg),
               keyboardType: TextInputType.numberWithOptions(decimal: true),
               onChanged: (value) {
                 final newPrice = double.tryParse(value) ?? item.cost;
