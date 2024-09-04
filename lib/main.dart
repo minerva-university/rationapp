@@ -9,7 +9,12 @@ import 'feed_state.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPrefsService.init();
-  runApp(RationCalculatorApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => FeedState(),
+      child: RationCalculatorApp(),
+    ),
+  );
 }
 
 class RationCalculatorApp extends StatelessWidget {
