@@ -12,13 +12,13 @@ class CowRequirementsCalculator {
       TextEditingController volumeController,
       TextEditingController milkFatController,
       TextEditingController milkProteinController,
-      TextEditingController lactationController) {
+      String lactationStageId) {
     int liveWeight = int.tryParse(liveWeightController.text) ?? 0;
     int pregnancy = int.tryParse(pregnancyController.text) ?? 0;
     double volume = double.tryParse(volumeController.text) ?? 0;
     double milkFat = double.tryParse(milkFatController.text) ?? 0;
     double milkProtein = double.tryParse(milkProteinController.text) ?? 0;
-    String lactation = lactationController.text;
+    String lactation = lactationStageId;
 
     CowCharacteristics cowCharacteristics = CowCharacteristics(
       liveWeight: liveWeight,

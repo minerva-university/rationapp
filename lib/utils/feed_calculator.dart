@@ -24,6 +24,7 @@ class FeedCalculator {
     }
 
     return FeedIngredient(
+        id: ingredient['id'],
         name: name,
         weight: weight,
         dmIntake: dmIntake,

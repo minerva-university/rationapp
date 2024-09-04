@@ -21,6 +21,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
   final TextEditingController milkFatController = TextEditingController();
   final TextEditingController milkProteinController = TextEditingController();
   final TextEditingController lactationController = TextEditingController();
+  String selectedLactationStageKey = '';
 
   @override
   void initState() {
@@ -42,6 +43,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
             savedCharacteristics.milkProtein.toString();
         lactationController.text =
             savedCharacteristics.lactationStage.toString();
+        selectedLactationStageKey = savedCharacteristics.lactationStage;
       });
     } else {
       _setDefaultValues();
@@ -55,6 +57,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
     milkFatController.text = '';
     milkProteinController.text = '';
     lactationController.text = '';
+    selectedLactationStageKey = '';
   }
 
   bool _isFormValid() {
@@ -63,7 +66,8 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
         volumeController.text.isNotEmpty &&
         milkFatController.text != '' &&
         milkProteinController.text != '' &&
-        lactationController.text != '';
+        lactationController.text != '' &&
+        selectedLactationStageKey.isNotEmpty;
   }
 
   void _handleButtonPress() {
@@ -76,7 +80,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
           volumeController,
           milkFatController,
           milkProteinController,
-          lactationController);
+          selectedLactationStageKey);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -95,7 +99,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
       milkVolume: double.tryParse(volumeController.text) ?? 0.0,
       milkFat: double.tryParse(milkFatController.text) ?? 0.0,
       milkProtein: double.tryParse(milkProteinController.text) ?? 0.0,
-      lactationStage: lactationController.text,
+      lactationStage: selectedLactationStageKey,
     );
     SharedPrefsService.setCowCharacteristics(cowCharacteristics);
   }
@@ -171,13 +175,20 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
               labelText: S.of(context).milkProtein,
             ),
             CustomDropdownField(
-              options: CowCharacteristicsConstants(context).lactationOptions,
+              options:
+                  CowCharacteristicsConstants(context).lactationStageOptions,
               onChanged: (value) {
-                setState(() {
-                  lactationController.text = value ?? '';
-                });
+                if (value != null) {
+                  setState(() {
+                    selectedLactationStageKey =
+                        CowCharacteristicsConstants(context)
+                            .getLactationStageKey(value);
+                    lactationController.text = value;
+                  });
+                }
               },
-              value: lactationController.text,
+              value: CowCharacteristicsConstants(context)
+                  .getLactationStageLabel(selectedLactationStageKey),
               labelText: S.of(context).lactationStage,
             ),
             const SizedBox(height: 20),

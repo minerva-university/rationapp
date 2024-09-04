@@ -34,25 +34,29 @@ class NutritionTables {
   List<Map<String, dynamic>> get lactationStageRequirements {
     return [
       {
-        "stage": S.of(context).lactationStageDry,
+        "id": "dry",
+        "name": S.of(context).lactationStageDry,
         "proteinReq": 12,
         "caReq": 0.40,
         "pReq": 0.20
       },
       {
-        "stage": S.of(context).lactationStageEarlyLactation,
+        "id": "early",
+        "name": S.of(context).lactationStageEarlyLactation,
         "proteinReq": 16,
         "caReq": 0.80,
         "pReq": 0.40
       },
       {
-        "stage": S.of(context).lactationStageMidLactation,
+        "id": "mid",
+        "name": S.of(context).lactationStageMidLactation,
         "proteinReq": 14,
         "caReq": 0.70,
         "pReq": 0.35
       },
       {
-        "stage": S.of(context).lactationStageLateLactation,
+        "id": "late",
+        "name": S.of(context).lactationStageLateLactation,
         "proteinReq": 12,
         "caReq": 0.40,
         "pReq": 0.20
@@ -378,6 +382,7 @@ class NutritionTables {
   List<FeedIngredient> get concentrateItems {
     return [
       FeedIngredient(
+          id: 'concentrateSesameSeedMeal',
           name: S.of(context).concentrateSesameSeedMeal,
           weight: 0,
           dmIntake: 92.8,
@@ -389,6 +394,7 @@ class NutritionTables {
           cost: 25,
           isFodder: false),
       FeedIngredient(
+          id: 'concentrateMolasses',
           name: S.of(context).concentrateMolasses,
           weight: 0,
           dmIntake: 80,
@@ -400,6 +406,7 @@ class NutritionTables {
           cost: 0,
           isFodder: false),
       FeedIngredient(
+          id: 'concentrateMaizeGrain',
           name: S.of(context).concentrateMaizeGrain,
           weight: 0,
           dmIntake: 90,
@@ -411,6 +418,7 @@ class NutritionTables {
           cost: 0,
           isFodder: false),
       FeedIngredient(
+          id: 'concentrateSoybeanCake',
           name: S.of(context).concentrateSoybeanCake,
           weight: 0,
           dmIntake: 90,
@@ -427,6 +435,7 @@ class NutritionTables {
   List<FeedIngredient> get fodderItems {
     return [
       FeedIngredient(
+          id: 'fodderGreenMaizeForage',
           name: S.of(context).fodderGreenMaizeForage,
           weight: 0,
           dmIntake: 23.3,
@@ -438,6 +447,7 @@ class NutritionTables {
           cost: 10,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderAlfafa',
           name: S.of(context).fodderAlfafa,
           weight: 0,
           dmIntake: 90.6,
@@ -449,6 +459,7 @@ class NutritionTables {
           cost: 12,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderMoringaLeaves',
           name: S.of(context).fodderMoringaLeaves,
           weight: 0,
           dmIntake: 26.2,
@@ -460,6 +471,7 @@ class NutritionTables {
           cost: 13,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderSoyaBeanForage',
           name: S.of(context).fodderSoyaBeanForage,
           weight: 0,
           dmIntake: 24,
@@ -471,6 +483,7 @@ class NutritionTables {
           cost: 15,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderGroundnutSeeds',
           name: S.of(context).fodderGroundnutSeeds,
           weight: 0,
           dmIntake: 95.5,
@@ -482,6 +495,7 @@ class NutritionTables {
           cost: 16,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderBanannaStalks',
           name: S.of(context).fodderBanannaStalks,
           weight: 0,
           dmIntake: 7.2,
@@ -493,6 +507,7 @@ class NutritionTables {
           cost: 18,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderBananaLeaves',
           name: S.of(context).fodderBananaLeaves,
           weight: 0,
           dmIntake: 20.7,
@@ -504,6 +519,7 @@ class NutritionTables {
           cost: 19,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderSorghumForage',
           name: S.of(context).fodderSorghumForage,
           weight: 0,
           dmIntake: 28.1,
@@ -515,6 +531,7 @@ class NutritionTables {
           cost: 21,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderSorghumStraw',
           name: S.of(context).fodderSorghumStraw,
           weight: 0,
           dmIntake: 93.3,
@@ -526,6 +543,7 @@ class NutritionTables {
           cost: 22,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderMaizeSilage',
           name: S.of(context).fodderMaizeSilage,
           weight: 0,
           dmIntake: 23.5,
@@ -537,6 +555,7 @@ class NutritionTables {
           cost: 24,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderMoringaLeavesFresh',
           name: S.of(context).fodderMoringaLeavesFresh,
           weight: 0,
           dmIntake: 26.2,
@@ -548,6 +567,7 @@ class NutritionTables {
           cost: 27,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderFreshGrass',
           name: S.of(context).fodderFreshGrass,
           weight: 0,
           dmIntake: 20,
@@ -559,6 +579,7 @@ class NutritionTables {
           cost: 10,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderRiceHay',
           name: S.of(context).fodderRiceHay,
           weight: 0,
           dmIntake: 85,
@@ -570,6 +591,7 @@ class NutritionTables {
           cost: 12,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderSweetCornTrash',
           name: S.of(context).fodderSweetCornTrash,
           weight: 0,
           dmIntake: 15,
@@ -581,6 +603,7 @@ class NutritionTables {
           cost: 13,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderBeanSilage',
           name: S.of(context).fodderBeanSilage,
           weight: 0,
           dmIntake: 20,
@@ -592,6 +615,7 @@ class NutritionTables {
           cost: 15,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderRiceBranA',
           name: S.of(context).fodderRiceBranA,
           weight: 0,
           dmIntake: 90,
@@ -603,6 +627,7 @@ class NutritionTables {
           cost: 16,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderRiceBranB',
           name: S.of(context).fodderRiceBranB,
           weight: 0,
           dmIntake: 90,
@@ -614,6 +639,7 @@ class NutritionTables {
           cost: 18,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderRejectPotatoes',
           name: S.of(context).fodderRejectPotatoes,
           weight: 0,
           dmIntake: 15,
@@ -625,6 +651,7 @@ class NutritionTables {
           cost: 19,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderCornStover',
           name: S.of(context).fodderCornStover,
           weight: 0,
           dmIntake: 23,
@@ -636,6 +663,7 @@ class NutritionTables {
           cost: 21,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderBrewersGrain',
           name: S.of(context).fodderBrewersGrain,
           weight: 0,
           dmIntake: 80,
@@ -647,6 +675,7 @@ class NutritionTables {
           cost: 22,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderSagoChips',
           name: S.of(context).fodderSagoChips,
           weight: 0,
           dmIntake: 88,
@@ -658,6 +687,7 @@ class NutritionTables {
           cost: 24,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderRiceStraw',
           name: S.of(context).fodderRiceStraw,
           weight: 0,
           dmIntake: 90,
@@ -669,6 +699,7 @@ class NutritionTables {
           cost: 27,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderDiCalciumPhosphate',
           name: S.of(context).fodderDiCalciumPhosphate,
           weight: 0,
           dmIntake: 97.5,
@@ -680,6 +711,7 @@ class NutritionTables {
           cost: 24,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderElephantGrassNapierGrass',
           name: S.of(context).fodderElephantGrassNapierGrass,
           weight: 0,
           dmIntake: 17.9,
@@ -691,6 +723,7 @@ class NutritionTables {
           cost: 24,
           isFodder: true),
       FeedIngredient(
+          id: 'fodderElephantGrassHay',
           name: S.of(context).fodderElephantGrassHay,
           weight: 0,
           dmIntake: 89.3,

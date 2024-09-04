@@ -50,8 +50,7 @@ class NutritionCalculator {
 
     var stageReq =
         NutritionTables(context).lactationStageRequirements.firstWhere(
-              (req) =>
-                  req["stage"].toLowerCase() == lactationStage.toLowerCase(),
+              (req) => req["id"].toLowerCase() == lactationStage.toLowerCase(),
               orElse: () => {"proteinReq": 0.0},
             );
 
@@ -65,8 +64,7 @@ class NutritionCalculator {
 
     var stageReq =
         NutritionTables(context).lactationStageRequirements.firstWhere(
-              (req) =>
-                  req["stage"].toLowerCase() == lactationStage.toLowerCase(),
+              (req) => req["id"].toLowerCase() == lactationStage.toLowerCase(),
               orElse: () => {"caReq": 0.0},
             );
 
@@ -80,8 +78,7 @@ class NutritionCalculator {
 
     var stageReq =
         NutritionTables(context).lactationStageRequirements.firstWhere(
-              (req) =>
-                  req["stage"].toLowerCase() == lactationStage.toLowerCase(),
+              (req) => req["id"].toLowerCase() == lactationStage.toLowerCase(),
               orElse: () => {"pReq": 0.0},
             );
 

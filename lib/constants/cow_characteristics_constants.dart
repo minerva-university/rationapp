@@ -81,12 +81,35 @@ class CowCharacteristicsConstants {
     '3.6'
   ];
 
-  List<String> get lactationOptions {
+  List<String> get lactationStageOptions {
     return [
       S.of(context).lactationStageDry,
       S.of(context).lactationStageEarlyLactation,
       S.of(context).lactationStageMidLactation,
-      S.of(context).lactationStageLateLactation
+      S.of(context).lactationStageLateLactation,
     ];
+  }
+
+  String getLactationStageKey(String label) {
+    if (label == S.of(context).lactationStageDry) return 'dry';
+    if (label == S.of(context).lactationStageEarlyLactation) return 'early';
+    if (label == S.of(context).lactationStageMidLactation) return 'mid';
+    if (label == S.of(context).lactationStageLateLactation) return 'late';
+    return '';
+  }
+
+  String getLactationStageLabel(String key) {
+    switch (key) {
+      case 'dry':
+        return S.of(context).lactationStageDry;
+      case 'early':
+        return S.of(context).lactationStageEarlyLactation;
+      case 'mid':
+        return S.of(context).lactationStageMidLactation;
+      case 'late':
+        return S.of(context).lactationStageLateLactation;
+      default:
+        return '';
+    }
   }
 }
