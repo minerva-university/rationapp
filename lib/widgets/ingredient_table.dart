@@ -92,7 +92,8 @@ class IngredientTable extends StatelessWidget {
                 final item = items[index];
                 return DataRow(
                   cells: columns
-                      .map((col) => DataCell(Text(_formatValue(item, col))))
+                      .map((col) =>
+                          DataCell(Text(_formatValue(item, col, context))))
                       .toList(),
                 );
               }),
@@ -138,10 +139,11 @@ class IngredientTable extends StatelessWidget {
     );
   }
 
-  String _formatValue(FeedIngredient item, ColumnDefinition col) {
+  String _formatValue(
+      FeedIngredient item, ColumnDefinition col, BuildContext context) {
     final value = item[col.key];
     return col.key == 'name'
-        ? value.toString()
+        ? item.getName(context)
         : (value as num).toStringAsFixed(col.decimalPlaces);
   }
 }

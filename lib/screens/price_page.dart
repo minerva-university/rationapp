@@ -43,7 +43,7 @@ class PricesPage extends StatelessWidget {
   Widget _buildFeedItemTile(
       FeedIngredient item, FeedState feedState, BuildContext context) {
     return ListTile(
-      title: Text(item.name),
+      title: Text(item.getName(context)),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

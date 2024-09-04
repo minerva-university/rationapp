@@ -176,13 +176,12 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
   }
 
   void _showAddIngredientDialog(bool isFodder, BuildContext context) {
-    List<String> availableOptions = (isFodder
-            ? FeedConstants().getFodderOptions(context)
-            : FeedConstants().getConcentrateOptions(context))
-        .where((option) => !(isFodder
-                ? selectedFodderItems
-                : selectedConcentrateItems)
-            .any((item) => item['name'].toLowerCase() == option.toLowerCase()))
+    List<FeedIngredient> availableOptions = (isFodder
+            ? feedConstants.getFodderOptions(context)
+            : feedConstants.getConcentrateOptions(context))
+        .where((option) =>
+            !(isFodder ? selectedFodderItems : selectedConcentrateItems)
+                .any((item) => item.id == option.id))
         .toList();
     if (availableOptions.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -200,15 +199,15 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
       builder: (context) => AddIngredientDialog(
         isFodder: isFodder,
         availableOptions: availableOptions,
-        onAdd: (name, weight) => _addIngredient(name, weight, isFodder),
+        onAdd: (id, weight) => _addIngredient(id, weight, isFodder),
       ),
     );
   }
 
-  void _addIngredient(String name, double weight, bool isFodder) {
+  void _addIngredient(String id, double weight, bool isFodder) {
     setState(() {
       final newItem = FeedCalculator()
-          .calculateIngredientValues(name, weight, isFodder, context);
+          .calculateIngredientValues(id, weight, isFodder, context);
       if (isFodder) {
         selectedFodderItems.add(newItem);
       } else {
@@ -227,12 +226,12 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
       useRootNavigator: false,
       builder: (context) => AddIngredientDialog(
         isFodder: isFodder,
-        availableOptions: [item['name']], // only editing weight
-        initialWeight: item['weight'],
-        onAdd: (name, weight) {
+        availableOptions: [item],
+        initialWeight: item.weight,
+        onAdd: (id, weight) {
           setState(() {
             final updatedItem = FeedCalculator()
-                .calculateIngredientValues(name, weight, isFodder, context);
+                .calculateIngredientValues(id, weight, isFodder, context);
             items[index] = updatedItem;
             _saveFeedFormula();
           });

@@ -5,34 +5,32 @@ import 'package:provider/provider.dart';
 
 class FeedCalculator {
   FeedIngredient calculateIngredientValues(
-      String name, double weight, bool isFodder, BuildContext context) {
+      String id, double weight, bool isFodder, BuildContext context) {
     final feedState = Provider.of<FeedState>(context, listen: false);
     final fodderItems = feedState.availableFodderItems;
     final concentrateItems = feedState.availableConcentrateItems;
 
     final table = isFodder ? fodderItems : concentrateItems;
-    final ingredient = table
-        .firstWhere((item) => item['name'].toLowerCase() == name.toLowerCase());
+    final ingredient = table.firstWhere((item) => item.id == id);
 
-    final dmIntake =
-        ((ingredient['dmIntake'])?.toDouble() ?? 0.0) * weight / 100;
-    final meIntake = ((ingredient['meIntake'])?.toDouble() ?? 0.0) * dmIntake;
-    final cost = ((ingredient['cost'])?.toDouble() ?? 0.0) * weight;
+    final dmIntake = ingredient.dmIntake * weight / 100;
+    final meIntake = ingredient.meIntake * dmIntake;
+    final cost = ingredient.cost * weight;
 
-    double calculateValue(String key) {
-      return ((ingredient[key])?.toDouble() ?? 0.0) * dmIntake / 100;
+    double calculateValue(double value) {
+      return value * dmIntake / 100;
     }
 
     return FeedIngredient(
-        id: ingredient['id'],
-        name: name,
+        id: ingredient.id,
+        name: ingredient.name,
         weight: weight,
         dmIntake: dmIntake,
         meIntake: meIntake,
-        cpIntake: calculateValue('cpIntake'),
-        ndfIntake: calculateValue('ndfIntake'),
-        caIntake: calculateValue('caIntake'),
-        pIntake: calculateValue('pIntake'),
+        cpIntake: calculateValue(ingredient.cpIntake),
+        ndfIntake: calculateValue(ingredient.ndfIntake),
+        caIntake: calculateValue(ingredient.caIntake),
+        pIntake: calculateValue(ingredient.pIntake),
         cost: cost,
         isFodder: isFodder);
   }

@@ -1109,6 +1109,72 @@ class S {
       args: [],
     );
   }
+
+  /// `Get translation`
+  String getTranslation(String key) {
+    switch (key) {
+      case 'concentrateSesameSeedMeal':
+        return concentrateSesameSeedMeal;
+      case 'concentrateMolasses':
+        return concentrateMolasses;
+      case 'concentrateMaizeGrain':
+        return concentrateMaizeGrain;
+      case 'concentrateSoybeanCake':
+        return concentrateSoybeanCake;
+      case 'fodderGreenMaizeForage':
+        return fodderGreenMaizeForage;
+      case 'fodderAlfafa':
+        return fodderAlfafa;
+      case 'fodderMoringaLeaves':
+        return fodderMoringaLeaves;
+      case 'fodderSoyaBeanForage':
+        return fodderSoyaBeanForage;
+      case 'fodderGroundnutSeeds':
+        return fodderGroundnutSeeds;
+      case 'fodderBanannaStalks':
+        return fodderBanannaStalks;
+      case 'fodderBananaLeaves':
+        return fodderBananaLeaves;
+      case 'fodderSorghumForage':
+        return fodderSorghumForage;
+      case 'fodderSorghumStraw':
+        return fodderSorghumStraw;
+      case 'fodderMaizeSilage':
+        return fodderMaizeSilage;
+      case 'fodderMoringaLeavesFresh':
+        return fodderMoringaLeavesFresh;
+      case 'fodderFreshGrass':
+        return fodderFreshGrass;
+      case 'fodderRiceHay':
+        return fodderRiceHay;
+      case 'fodderSweetCornTrash':
+        return fodderSweetCornTrash;
+      case 'fodderBeanSilage':
+        return fodderBeanSilage;
+      case 'fodderRiceBranA':
+        return fodderRiceBranA;
+      case 'fodderRiceBranB':
+        return fodderRiceBranB;
+      case 'fodderRejectPotatoes':
+        return fodderRejectPotatoes;
+      case 'fodderCornStover':
+        return fodderCornStover;
+      case 'fodderBrewersGrain':
+        return fodderBrewersGrain;
+      case 'fodderSagoChips':
+        return fodderSagoChips;
+      case 'fodderRiceStraw':
+        return fodderRiceStraw;
+      case 'fodderDiCalciumPhosphate':
+        return fodderDiCalciumPhosphate;
+      case 'fodderElephantGrassNapierGrass':
+        return fodderElephantGrassNapierGrass;
+      case 'fodderElephantGrassHay':
+        return fodderElephantGrassHay;
+      default:
+        return key;
+    }
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

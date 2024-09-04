@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:rationapp/generated/l10n.dart';
+
 class FeedIngredient {
   final String id;
   final String name;
@@ -73,6 +76,10 @@ class FeedIngredient {
       isAvailable: json['isAvailable'] ?? true,
       isFodder: json['isFodder'] ?? true,
     );
+  }
+
+  String getName(BuildContext context) {
+    return S.of(context).getTranslation(id);
   }
 
   Map<String, dynamic> toJson() {
