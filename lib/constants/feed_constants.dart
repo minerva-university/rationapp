@@ -1,38 +1,17 @@
-class FeedConstants {
-  static const List<String> fodderOptions = [
-    'Choose fodder',
-    'green maize forage',
-    'alfafa',
-    'moringa leaves',
-    'soya bean forage',
-    'groundnut seeds',
-    'bananna stalks',
-    'banana leaves',
-    'sorghum forage',
-    'sorghum straw',
-    'maize silage',
-    'moringa leaves fresh',
-    'Fresh grass',
-    'Rice hay',
-    'Sweet corn trash',
-    'Bean silage',
-    'Rice bran A',
-    'Rice bran B',
-    'Reject potatoes',
-    'Corn stover',
-    'Brewers grain',
-    'Sago chips',
-    'Rice straw',
-    'Di-calcium phosphate',
-    'elephant grass/Napier grass',
-    'elephant grass hay'
-  ];
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../feed_state.dart';
 
-  static const List<String> concentrateOptions = [
-    'Choose concentrate',
-    'sesame seed meal',
-    'Molasses',
-    'Maize grain',
-    'Soybean cake'
-  ];
+class FeedConstants {
+  List<String> getFodderOptions(BuildContext context) {
+    final fodder =
+        Provider.of<FeedState>(context, listen: false).availableFodderItems;
+    return ['Choose fodder', ...fodder.map((item) => item.name)];
+  }
+
+  List<String> getConcentrateOptions(BuildContext context) {
+    final concentrate = Provider.of<FeedState>(context, listen: false)
+        .availableConcentrateItems;
+    return ['Choose concentrate', ...concentrate.map((item) => item.name)];
+  }
 }

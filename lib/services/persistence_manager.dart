@@ -7,6 +7,7 @@ class SharedPrefsService {
   static SharedPreferences? _prefs;
   static const String _cowCharacteristicsKey = 'cow_characteristics';
   static const String _feedFormulaKey = 'feed_formula';
+  static const String _feedPricesKey = 'feed_prices';
 
   static Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
@@ -46,12 +47,33 @@ class SharedPrefsService {
     return null;
   }
 
+  static Future<bool> setFeedPricesAndAvailability(
+      List<FeedIngredient> feedIngredients) async {
+    final List<Map<String, dynamic>> ingredientsJson =
+        feedIngredients.map((ingredient) => ingredient.toJson()).toList();
+    final String pricesJson = json.encode(ingredientsJson);
+    return await _prefs?.setString(_feedPricesKey, pricesJson) ?? false;
+  }
+
+  static List<FeedIngredient>? getFeedPricesAndAvailability() {
+    final String? pricesJson = _prefs?.getString(_feedPricesKey);
+    if (pricesJson != null) {
+      final List<dynamic> decodedList = json.decode(pricesJson);
+      return decodedList.map((json) => FeedIngredient.fromJson(json)).toList();
+    }
+    return null;
+  }
+
   static Future<bool> clearCowCharacteristics() async {
     return await _prefs?.remove(_cowCharacteristicsKey) ?? false;
   }
 
   static Future<bool> clearFeedFormula() async {
     return await _prefs?.remove(_feedFormulaKey) ?? false;
+  }
+
+  static Future<bool> clearFeedPrices() async {
+    return await _prefs?.remove(_feedPricesKey) ?? false;
   }
 
   static Future<bool> clearAll() async {

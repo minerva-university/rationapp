@@ -7,7 +7,9 @@ class FeedIngredient {
   final double ndfIntake;
   final double caIntake;
   final double pIntake;
-  final double cost;
+  double cost;
+  bool isAvailable;
+  final bool isFodder;
 
   FeedIngredient({
     required this.name,
@@ -19,6 +21,8 @@ class FeedIngredient {
     required this.caIntake,
     required this.pIntake,
     required this.cost,
+    this.isAvailable = true,
+    required this.isFodder,
   });
 
   dynamic operator [](String key) {
@@ -41,6 +45,10 @@ class FeedIngredient {
         return pIntake;
       case 'cost':
         return cost;
+      case 'isAvailable':
+        return isAvailable;
+      case 'isFodder':
+        return isFodder;
       default:
         throw ArgumentError('Invalid key: $key');
     }
@@ -56,7 +64,9 @@ class FeedIngredient {
       ndfIntake: json['ndfIntake'],
       caIntake: json['caIntake'],
       pIntake: json['pIntake'],
-      cost: json['cost'],
+      cost: json['cost'] ?? 0.0,
+      isAvailable: json['isAvailable'] ?? true,
+      isFodder: json['isFodder'] ?? true,
     );
   }
 
@@ -71,7 +81,30 @@ class FeedIngredient {
       'caIntake': caIntake,
       'pIntake': pIntake,
       'cost': cost,
+      'isAvailable': isAvailable,
+      'isFodder': isFodder,
     };
+  }
+
+  FeedIngredient copyWith({bool? isAvailable, double? cost}) {
+    return FeedIngredient(
+      name: name,
+      weight: weight,
+      dmIntake: dmIntake,
+      meIntake: meIntake,
+      cpIntake: cpIntake,
+      ndfIntake: ndfIntake,
+      caIntake: caIntake,
+      pIntake: pIntake,
+      cost: cost ?? this.cost,
+      isAvailable: isAvailable ?? this.isAvailable,
+      isFodder: isFodder,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'FeedIngredient(name: $name, weight: $weight, dmIntake: $dmIntake, meIntake: $meIntake, cpIntake: $cpIntake, ndfIntake: $ndfIntake, caIntake: $caIntake, pIntake: $pIntake, cost: $cost, isAvailable: $isAvailable, isFodder: $isFodder)';
   }
 }
 
@@ -100,5 +133,10 @@ class FeedFormula {
       'fodder': fodder.map((item) => item.toJson()).toList(),
       'concentrate': concentrate.map((item) => item.toJson()).toList(),
     };
+  }
+
+  @override
+  String toString() {
+    return 'FeedFormula(fodder: $fodder, concentrate: $concentrate)';
   }
 }

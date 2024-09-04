@@ -1,18 +1,23 @@
 import 'package:rationapp/models/feed_formula_model.dart';
-
-import '../data/nutrition_tables.dart';
+import 'package:flutter/material.dart';
+import '../feed_state.dart';
+import 'package:provider/provider.dart';
 
 class FeedCalculator {
-  static FeedIngredient calculateIngredientValues(
-      String name, double weight, bool isFodder) {
-    final table =
-        isFodder ? NutritionTables.fodder : NutritionTables.concentrates;
-    final ingredient =
-        table.firstWhere((e) => e['name'].toLowerCase() == name.toLowerCase());
+  FeedIngredient calculateIngredientValues(
+      String name, double weight, bool isFodder, BuildContext context) {
+    final feedState = Provider.of<FeedState>(context, listen: false);
+    final fodderItems = feedState.availableFodderItems;
+    final concentrateItems = feedState.availableConcentrateItems;
 
-    final dmIntake = ((ingredient['dm'])?.toDouble() ?? 0.0) * weight / 100;
-    final meIntake = ((ingredient['me'])?.toDouble() ?? 0.0) * dmIntake;
-    final cost = ((ingredient['costPerKg'])?.toDouble() ?? 0.0) * weight;
+    final table = isFodder ? fodderItems : concentrateItems;
+    final ingredient = table
+        .firstWhere((item) => item['name'].toLowerCase() == name.toLowerCase());
+
+    final dmIntake =
+        ((ingredient['dmIntake'])?.toDouble() ?? 0.0) * weight / 100;
+    final meIntake = ((ingredient['meIntake'])?.toDouble() ?? 0.0) * dmIntake;
+    final cost = ((ingredient['cost'])?.toDouble() ?? 0.0) * weight;
 
     double calculateValue(String key) {
       return ((ingredient[key])?.toDouble() ?? 0.0) * dmIntake / 100;
@@ -23,10 +28,11 @@ class FeedCalculator {
         weight: weight,
         dmIntake: dmIntake,
         meIntake: meIntake,
-        cpIntake: calculateValue('cp'),
-        ndfIntake: calculateValue('ndf'),
-        caIntake: calculateValue('ca'),
-        pIntake: calculateValue('p'),
-        cost: cost);
+        cpIntake: calculateValue('cpIntake'),
+        ndfIntake: calculateValue('ndfIntake'),
+        caIntake: calculateValue('caIntake'),
+        pIntake: calculateValue('pIntake'),
+        cost: cost,
+        isFodder: isFodder);
   }
 }
