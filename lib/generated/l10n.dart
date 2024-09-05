@@ -870,12 +870,12 @@ class S {
     );
   }
 
-  /// `Brewers by-product`
-  String get concentrateBrewersByProduct {
+  /// `Brewers by-product fresh`
+  String get concentrateBrewersByProductFresh {
     return Intl.message(
-      'Brewers by-product',
-      name: 'concentrateBrewersByProduct',
-      desc: 'Concentrate: Brewers by-product',
+      'Brewers by-product fresh',
+      name: 'concentrateBrewersByProductFresh',
+      desc: 'Concentrate: Brewers by-product fresh',
       args: [],
     );
   }
@@ -920,252 +920,212 @@ class S {
     );
   }
 
-  /// `green maize forage`
+  /// `Green maize forage`
   String get fodderGreenMaizeForage {
     return Intl.message(
-      'green maize forage',
+      'Green maize forage',
       name: 'fodderGreenMaizeForage',
-      desc: 'Fodder: green maize forage',
+      desc: 'Fodder: Green maize forage',
       args: [],
     );
   }
 
-  /// `alfafa`
+  /// `Alfafa`
   String get fodderAlfafa {
     return Intl.message(
-      'alfafa',
+      'Alfafa',
       name: 'fodderAlfafa',
-      desc: 'Fodder: alfafa',
+      desc: 'Fodder: Alfafa',
       args: [],
     );
   }
 
-  /// `moringa leaves`
-  String get fodderMoringaLeaves {
+  /// `Banana stalks`
+  String get fodderBananaStalks {
     return Intl.message(
-      'moringa leaves',
-      name: 'fodderMoringaLeaves',
-      desc: 'Fodder: moringa leaves',
+      'Banana stalks',
+      name: 'fodderBananaStalks',
+      desc: 'Fodder: Bananna stalks',
       args: [],
     );
   }
 
-  /// `soya bean forage`
-  String get fodderSoyaBeanForage {
-    return Intl.message(
-      'soya bean forage',
-      name: 'fodderSoyaBeanForage',
-      desc: 'Fodder: soya bean forage',
-      args: [],
-    );
-  }
-
-  /// `groundnut seeds`
-  String get fodderGroundnutSeeds {
-    return Intl.message(
-      'groundnut seeds',
-      name: 'fodderGroundnutSeeds',
-      desc: 'Fodder: groundnut seeds',
-      args: [],
-    );
-  }
-
-  /// `bananna stalks`
-  String get fodderBanannaStalks {
-    return Intl.message(
-      'bananna stalks',
-      name: 'fodderBanannaStalks',
-      desc: 'Fodder: bananna stalks',
-      args: [],
-    );
-  }
-
-  /// `banana leaves`
+  /// `Banana leaves`
   String get fodderBananaLeaves {
     return Intl.message(
-      'banana leaves',
+      'Banana leaves',
       name: 'fodderBananaLeaves',
-      desc: 'Fodder: banana leaves',
+      desc: 'Fodder: Banana leaves',
       args: [],
     );
   }
 
-  /// `sorghum forage`
+  /// `Sorghum forage`
   String get fodderSorghumForage {
     return Intl.message(
-      'sorghum forage',
+      'Sorghum forage',
       name: 'fodderSorghumForage',
-      desc: 'Fodder: sorghum forage',
+      desc: 'Fodder: Sorghum forage',
       args: [],
     );
   }
 
-  /// `sorghum straw`
-  String get fodderSorghumStraw {
+  /// `Sorghum stalk`
+  String get fodderSorghumStalk {
     return Intl.message(
-      'sorghum straw',
-      name: 'fodderSorghumStraw',
-      desc: 'Fodder: sorghum straw',
+      'Sorghum stalk',
+      name: 'fodderSorghumStalk',
+      desc: 'Fodder: Sorghum stalk',
       args: [],
     );
   }
 
-  /// `maize silage`
+  /// `Maize silage`
   String get fodderMaizeSilage {
     return Intl.message(
-      'maize silage',
+      'Maize silage',
       name: 'fodderMaizeSilage',
-      desc: 'Fodder: maize silage',
+      desc: 'Fodder: Maize silage',
       args: [],
     );
   }
 
-  /// `moringa leaves fresh`
-  String get fodderMoringaLeavesFresh {
+  /// `Sorghum bi-product residue`
+  String get fodderSorghumBiProductResidue {
     return Intl.message(
-      'moringa leaves fresh',
-      name: 'fodderMoringaLeavesFresh',
-      desc: 'Fodder: moringa leaves fresh',
+      'Sorghum bi-product residue',
+      name: 'fodderSorghumBiProductResidue',
+      desc: 'Fodder: Sorghum bi-product residue',
       args: [],
     );
   }
 
-  /// `Fresh grass`
-  String get fodderFreshGrass {
+  /// `Pearl millet stalk`
+  String get fodderPearlMilletStalk {
     return Intl.message(
-      'Fresh grass',
-      name: 'fodderFreshGrass',
-      desc: 'Fodder: Fresh grass',
+      'Pearl millet stalk',
+      name: 'fodderPearlMilletStalk',
+      desc: 'Fodder: Pearl millet stalk',
       args: [],
     );
   }
 
-  /// `Rice hay`
-  String get fodderRiceHay {
+  /// `Pearl millet fresh forage`
+  String get fodderPearlMilletFreshForage {
     return Intl.message(
-      'Rice hay',
-      name: 'fodderRiceHay',
-      desc: 'Fodder: Rice hay',
+      'Pearl millet fresh forage',
+      name: 'fodderPearlMilletFreshForage',
+      desc: 'Fodder: Pearl millet fresh forage',
       args: [],
     );
   }
 
-  /// `Sweet corn trash`
-  String get fodderSweetCornTrash {
+  /// `Wheat straw`
+  String get fodderWheatStraw {
     return Intl.message(
-      'Sweet corn trash',
-      name: 'fodderSweetCornTrash',
-      desc: 'Fodder: Sweet corn trash',
+      'Wheat straw',
+      name: 'fodderWheatStraw',
+      desc: 'Fodder: Wheat straw',
       args: [],
     );
   }
 
-  /// `Bean silage`
-  String get fodderBeanSilage {
+  /// `Barley straw`
+  String get fodderBarleyStraw {
     return Intl.message(
-      'Bean silage',
-      name: 'fodderBeanSilage',
-      desc: 'Fodder: Bean silage',
+      'Barley straw',
+      name: 'fodderBarleyStraw',
+      desc: 'Fodder: Barley straw',
       args: [],
     );
   }
 
-  /// `Rice bran A`
-  String get fodderRiceBranA {
+  /// `Cabbage`
+  String get fodderCabbage {
     return Intl.message(
-      'Rice bran A',
-      name: 'fodderRiceBranA',
-      desc: 'Fodder: Rice bran A',
+      'Cabbage',
+      name: 'fodderCabbage',
+      desc: 'Fodder: Cabbage',
       args: [],
     );
   }
 
-  /// `Rice bran B`
-  String get fodderRiceBranB {
+  /// `Elephant grass`
+  String get fodderElephantGrass {
     return Intl.message(
-      'Rice bran B',
-      name: 'fodderRiceBranB',
-      desc: 'Fodder: Rice bran B',
+      'Elephant grass',
+      name: 'fodderElephantGrass',
+      desc: 'Fodder: Elephant grass',
       args: [],
     );
   }
 
-  /// `Reject potatoes`
-  String get fodderRejectPotatoes {
+  /// `Eragrostis tef hay`
+  String get fodderEragrostisTefHay {
     return Intl.message(
-      'Reject potatoes',
-      name: 'fodderRejectPotatoes',
-      desc: 'Fodder: Reject potatoes',
+      'Eragrostis tef hay',
+      name: 'fodderEragrostisTefHay',
+      desc: 'Fodder: Eragrostis tef hay',
       args: [],
     );
   }
 
-  /// `Corn stover`
-  String get fodderCornStover {
+  /// `Banana fruit`
+  String get fodderBananaFruit {
     return Intl.message(
-      'Corn stover',
-      name: 'fodderCornStover',
-      desc: 'Fodder: Corn stover',
+      'Banana fruit',
+      name: 'fodderBananaFruit',
+      desc: 'Fodder: Banana fruit',
       args: [],
     );
   }
 
-  /// `Brewers grain`
-  String get fodderBrewersGrain {
+  /// `Wild grass fresh`
+  String get fodderWildGrassFresh {
     return Intl.message(
-      'Brewers grain',
-      name: 'fodderBrewersGrain',
-      desc: 'Fodder: Brewers grain',
+      'Wild grass fresh',
+      name: 'fodderWildGrassFresh',
+      desc: 'Fodder: Wild grass fresh',
       args: [],
     );
   }
 
-  /// `Sago chips`
-  String get fodderSagoChips {
+  /// `Wild grass hay`
+  String get fodderWildGrassHay {
     return Intl.message(
-      'Sago chips',
-      name: 'fodderSagoChips',
-      desc: 'Fodder: Sago chips',
+      'Wild grass hay',
+      name: 'fodderWildGrassHay',
+      desc: 'Fodder: Wild grass hay',
       args: [],
     );
   }
 
-  /// `Rice straw`
-  String get fodderRiceStraw {
-    return Intl.message(
-      'Rice straw',
-      name: 'fodderRiceStraw',
-      desc: 'Fodder: Rice straw',
-      args: [],
-    );
-  }
-
-  /// `Di-calcium phosphate`
-  String get fodderDiCalciumPhosphate {
-    return Intl.message(
-      'Di-calcium phosphate',
-      name: 'fodderDiCalciumPhosphate',
-      desc: 'Fodder: Di-calcium phosphate',
-      args: [],
-    );
-  }
-
-  /// `elephant grass/Napier grass`
-  String get fodderElephantGrassNapierGrass {
-    return Intl.message(
-      'elephant grass/Napier grass',
-      name: 'fodderElephantGrassNapierGrass',
-      desc: 'Fodder: elephant grass/Napier grass',
-      args: [],
-    );
-  }
-
-  /// `elephant grass hay`
+  /// `Elephant grass hay`
   String get fodderElephantGrassHay {
     return Intl.message(
-      'elephant grass hay',
+      'Elephant grass hay',
       name: 'fodderElephantGrassHay',
-      desc: 'Fodder: elephant grass hay',
+      desc: 'Fodder: Elephant grass hay',
+      args: [],
+    );
+  }
+
+  /// `Barley hay`
+  String get fodderBarleyHay {
+    return Intl.message(
+      'Barley hay',
+      name: 'fodderBarleyHay',
+      desc: 'Fodder: Barley hay',
+      args: [],
+    );
+  }
+
+  /// `Wheat hay`
+  String get fodderWheatHay {
+    return Intl.message(
+      'Wheat hay',
+      name: 'fodderWheatHay',
+      desc: 'Fodder: Wheat hay',
       args: [],
     );
   }
@@ -1265,62 +1225,70 @@ class S {
     switch (key) {
       case 'concentrateSesameSeedMeal':
         return concentrateSesameSeedMeal;
-      case 'concentrateMolasses':
-        return concentrateMolasses;
-      case 'concentrateMaizeGrain':
-        return concentrateMaizeGrain;
-      case 'concentrateSoybeanCake':
-        return concentrateSoybeanCake;
+      case 'concentrateSorghumGrain':
+        return concentrateSorghumGrain;
+      case 'concentratePearlMilletGrain':
+        return concentratePearlMilletGrain;
+      case 'concentrateGroundnutMeal':
+        return concentrateGroundnutMeal;
+      case 'concentrateChickpeaMeal':
+        return concentrateChickpeaMeal;
+      case 'concentrateMaizeBran':
+        return concentrateMaizeBran;
+      case 'concentrateBrewersByProductFresh':
+        return concentrateBrewersByProductFresh;
+      case 'concentrateMineralLick':
+        return concentrateMineralLick;
+      case 'concentrateSalt':
+        return concentrateSalt;
+      case 'concentrateDryBread':
+        return concentrateDryBread;
+      case 'concentrateSorghumBrewersGrainFresh':
+        return concentrateSorghumBrewersGrainFresh;
+      case 'concentrateWheatBran':
+        return concentrateWheatBran;
       case 'fodderGreenMaizeForage':
         return fodderGreenMaizeForage;
       case 'fodderAlfafa':
         return fodderAlfafa;
-      case 'fodderMoringaLeaves':
-        return fodderMoringaLeaves;
-      case 'fodderSoyaBeanForage':
-        return fodderSoyaBeanForage;
-      case 'fodderGroundnutSeeds':
-        return fodderGroundnutSeeds;
-      case 'fodderBanannaStalks':
-        return fodderBanannaStalks;
+      case 'fodderBananaStalks':
+        return fodderBananaStalks;
       case 'fodderBananaLeaves':
         return fodderBananaLeaves;
       case 'fodderSorghumForage':
         return fodderSorghumForage;
-      case 'fodderSorghumStraw':
-        return fodderSorghumStraw;
+      case 'fodderSorghumStalk':
+        return fodderSorghumStalk;
       case 'fodderMaizeSilage':
         return fodderMaizeSilage;
-      case 'fodderMoringaLeavesFresh':
-        return fodderMoringaLeavesFresh;
-      case 'fodderFreshGrass':
-        return fodderFreshGrass;
-      case 'fodderRiceHay':
-        return fodderRiceHay;
-      case 'fodderSweetCornTrash':
-        return fodderSweetCornTrash;
-      case 'fodderBeanSilage':
-        return fodderBeanSilage;
-      case 'fodderRiceBranA':
-        return fodderRiceBranA;
-      case 'fodderRiceBranB':
-        return fodderRiceBranB;
-      case 'fodderRejectPotatoes':
-        return fodderRejectPotatoes;
-      case 'fodderCornStover':
-        return fodderCornStover;
-      case 'fodderBrewersGrain':
-        return fodderBrewersGrain;
-      case 'fodderSagoChips':
-        return fodderSagoChips;
-      case 'fodderRiceStraw':
-        return fodderRiceStraw;
-      case 'fodderDiCalciumPhosphate':
-        return fodderDiCalciumPhosphate;
-      case 'fodderElephantGrassNapierGrass':
-        return fodderElephantGrassNapierGrass;
+      case 'fodderSorghumBiProductResidue':
+        return fodderSorghumBiProductResidue;
+      case 'fodderPearlMilletStalk':
+        return fodderPearlMilletStalk;
+      case 'fodderPearlMilletFreshForage':
+        return fodderPearlMilletFreshForage;
+      case 'fodderWheatStraw':
+        return fodderWheatStraw;
+      case 'fodderBarleyStraw':
+        return fodderBarleyStraw;
+      case 'fodderCabbage':
+        return fodderCabbage;
+      case 'fodderElephantGrass':
+        return fodderElephantGrass;
+      case 'fodderEragrostisTefHay':
+        return fodderEragrostisTefHay;
+      case 'fodderBananaFruit':
+        return fodderBananaFruit;
+      case 'fodderWildGrassFresh':
+        return fodderWildGrassFresh;
+      case 'fodderWildGrassHay':
+        return fodderWildGrassHay;
       case 'fodderElephantGrassHay':
         return fodderElephantGrassHay;
+      case 'fodderBarleyHay':
+        return fodderBarleyHay;
+      case 'fodderWheatHay':
+        return fodderWheatHay;
       default:
         return key;
     }
