@@ -398,8 +398,8 @@
     "@fodderGroundnutSeeds": {
         "description": "Fodder: groundnut seeds"
     },
-    "fodderBanannaStalks": "Tallos de plátano",
-    "@fodderBanannaStalks": {
+    "fodderBananaStalks": "Tallos de plátano",
+    "@fodderBananaStalks": {
         "description": "Fodder: bananna stalks"
     },
     "fodderBananaLeaves": "Hojas de plátano",

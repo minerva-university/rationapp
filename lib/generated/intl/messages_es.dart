@@ -89,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "fodder" : MessageLookupByLibrary.simpleMessage("Forraje"),
     "fodderAlfafa" : MessageLookupByLibrary.simpleMessage("Alfalfa"),
     "fodderBananaLeaves" : MessageLookupByLibrary.simpleMessage("Hojas de plátano"),
+    "fodderBananaStalks" : MessageLookupByLibrary.simpleMessage("Tallos de plátano"),
     "fodderElephantGrassHay" : MessageLookupByLibrary.simpleMessage("Heno de pasto elefante"),
     "fodderGreenMaizeForage" : MessageLookupByLibrary.simpleMessage("Forraje de maíz verde"),
     "fodderMaizeSilage" : MessageLookupByLibrary.simpleMessage("Ensilaje de maíz"),

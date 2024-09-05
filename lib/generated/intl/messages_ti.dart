@@ -75,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "fodder" : MessageLookupByLibrary.simpleMessage("ሳዕሪ"),
     "fodderAlfafa" : MessageLookupByLibrary.simpleMessage("አልፋልፋ"),
     "fodderBananaLeaves" : MessageLookupByLibrary.simpleMessage("ሙዝ ቆጽሊ"),
+    "fodderBananaStalks" : MessageLookupByLibrary.simpleMessage("ሙዝ ግንዲ"),
     "fodderElephantGrassHay" : MessageLookupByLibrary.simpleMessage("ዓባይ ሳዕሪ ሓሰር"),
     "fodderGreenMaizeForage" : MessageLookupByLibrary.simpleMessage("ቆጽሊ ዕፉን መግቢ"),
     "fodderMaizeSilage" : MessageLookupByLibrary.simpleMessage("ዕፉን ሳይለጅ"),

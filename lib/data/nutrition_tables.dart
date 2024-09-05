@@ -555,7 +555,7 @@ class NutritionTables {
           cost: 6.00,
           isFodder: true),
       FeedIngredient(
-          id: 'fodderBanannaStalks',
+          id: 'fodderBananaStalks',
           name: S.of(context).fodderBananaStalks,
           weight: 0,
           dmIntake: 7.2,
