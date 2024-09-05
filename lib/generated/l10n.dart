@@ -10,7 +10,7 @@ import 'intl/messages_all.dart';
 
 // ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
 // ignore_for_file: join_return_with_assignment, prefer_final_in_for_each
-// ignore_for_file: avoid_redundant_argument_values, avoid_escaping_inner_quotes
+// ignore_for_file: avoid_redundant_argument_values
 
 class S {
   S();
@@ -161,7 +161,7 @@ class S {
   }
 
   /// `All {type} options have been added.`
-  String allOptionsHaveBeenAdded(String type) {
+  String allOptionsHaveBeenAdded(Object type) {
     return Intl.message(
       'All $type options have been added.',
       name: 'allOptionsHaveBeenAdded',
@@ -181,7 +181,7 @@ class S {
   }
 
   /// `{value} kg`
-  String kgValue(String value) {
+  String kgValue(Object value) {
     return Intl.message(
       '$value kg',
       name: 'kgValue',
@@ -191,7 +191,7 @@ class S {
   }
 
   /// `{value} kg/day`
-  String kgPerDay(String value) {
+  String kgPerDay(Object value) {
     return Intl.message(
       '$value kg/day',
       name: 'kgPerDay',
@@ -201,7 +201,7 @@ class S {
   }
 
   /// `{value} MJ/day`
-  String mjPerDayValue(String value) {
+  String mjPerDayValue(Object value) {
     return Intl.message(
       '$value MJ/day',
       name: 'mjPerDayValue',
@@ -211,7 +211,7 @@ class S {
   }
 
   /// `{value}%`
-  String percentageValue(String value) {
+  String percentageValue(Object value) {
     return Intl.message(
       '$value%',
       name: 'percentageValue',
@@ -766,6 +766,156 @@ class S {
       'Soybean cake',
       name: 'concentrateSoybeanCake',
       desc: 'Concentrate: Soybean cake',
+      args: [],
+    );
+  }
+
+  /// `Wheat bran`
+  String get concentrateWheatBran {
+    return Intl.message(
+      'Wheat bran',
+      name: 'concentrateWheatBran',
+      desc: 'Concentrate: Wheat bran',
+      args: [],
+    );
+  }
+
+  /// `Sorghum grain`
+  String get concentrateSorghumGrain {
+    return Intl.message(
+      'Sorghum grain',
+      name: 'concentrateSorghumGrain',
+      desc: 'Concentrate: Sorghum grain',
+      args: [],
+    );
+  }
+
+  /// `Pearl millet grain`
+  String get concentratePearlMilletGrain {
+    return Intl.message(
+      'Pearl millet grain',
+      name: 'concentratePearlMilletGrain',
+      desc: 'Concentrate: Pearl millet grain',
+      args: [],
+    );
+  }
+
+  /// `Groundnut meal`
+  String get concentrateGroundnutMeal {
+    return Intl.message(
+      'Groundnut meal',
+      name: 'concentrateGroundnutMeal',
+      desc: 'Concentrate: Groundnut meal',
+      args: [],
+    );
+  }
+
+  /// `Chickpea meal`
+  String get concentrateChickpeaMeal {
+    return Intl.message(
+      'Chickpea meal',
+      name: 'concentrateChickpeaMeal',
+      desc: 'Concentrate: Chickpea meal',
+      args: [],
+    );
+  }
+
+  /// `Maize bran`
+  String get concentrateMaizeBran {
+    return Intl.message(
+      'Maize bran',
+      name: 'concentrateMaizeBran',
+      desc: 'Concentrate: Maize bran',
+      args: [],
+    );
+  }
+
+  /// `Wheat grain`
+  String get concentrateWheatGrain {
+    return Intl.message(
+      'Wheat grain',
+      name: 'concentrateWheatGrain',
+      desc: 'Concentrate: Wheat grain',
+      args: [],
+    );
+  }
+
+  /// `Soybean meal`
+  String get concentrateSoybeanMeal {
+    return Intl.message(
+      'Soybean meal',
+      name: 'concentrateSoybeanMeal',
+      desc: 'Concentrate: Soybean meal',
+      args: [],
+    );
+  }
+
+  /// `Soybean hulls`
+  String get concentrateSoybeanHulls {
+    return Intl.message(
+      'Soybean hulls',
+      name: 'concentrateSoybeanHulls',
+      desc: 'Concentrate: Soybean hulls',
+      args: [],
+    );
+  }
+
+  /// `Soybean oil`
+  String get concentrateSoybeanOil {
+    return Intl.message(
+      'Soybean oil',
+      name: 'concentrateSoybeanOil',
+      desc: 'Concentrate: Soybean oil',
+      args: [],
+    );
+  }
+
+  /// `Brewers by-product`
+  String get concentrateBrewersByProduct {
+    return Intl.message(
+      'Brewers by-product',
+      name: 'concentrateBrewersByProduct',
+      desc: 'Concentrate: Brewers by-product',
+      args: [],
+    );
+  }
+
+  /// `Mineral lick`
+  String get concentrateMineralLick {
+    return Intl.message(
+      'Mineral lick',
+      name: 'concentrateMineralLick',
+      desc: 'Concentrate: Mineral lick',
+      args: [],
+    );
+  }
+
+  /// `Dry bread`
+  String get concentrateDryBread {
+    return Intl.message(
+      'Dry bread',
+      name: 'concentrateDryBread',
+      desc: 'Concentrate: Dry bread',
+      args: [],
+    );
+  }
+
+  /// `Sorghum brewers grain fresh`
+  String get concentrateSorghumBrewersGrainFresh {
+    return Intl.message(
+      'Sorghum brewers grain fresh',
+      name: 'concentrateSorghumBrewersGrainFresh',
+      desc: 'Concentrate: Sorghum brewers grain fresh',
+      args: [],
+    );
+  }
+
+  /// `Salt`
+  String get concentrateSalt {
+    return Intl.message(
+      'Salt',
+      name: 'concentrateSalt',
+      desc: 'Concentrate: Salt',
       args: [],
     );
   }

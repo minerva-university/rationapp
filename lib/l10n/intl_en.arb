@@ -318,6 +318,66 @@
     "@concentrateSoybeanCake": {
         "description": "Concentrate: Soybean cake"
     },
+    "concentrateWheatBran": "Wheat bran",
+    "@concentrateWheatBran": {
+        "description": "Concentrate: Wheat bran"
+    },
+    "concentrateSorghumGrain": "Sorghum grain",
+    "@concentrateSorghumGrain": {
+        "description": "Concentrate: Sorghum grain"
+    },
+    "concentratePearlMilletGrain": "Pearl millet grain",
+    "@concentratePearlMilletGrain": {
+        "description": "Concentrate: Pearl millet grain"
+    },
+    "concentrateGroundnutMeal": "Groundnut meal",
+    "@concentrateGroundnutMeal": {
+        "description": "Concentrate: Groundnut meal"
+    },
+    "concentrateChickpeaMeal": "Chickpea meal",
+    "@concentrateChickpeaMeal": {
+        "description": "Concentrate: Chickpea meal"
+    },
+    "concentrateMaizeBran": "Maize bran",
+    "@concentrateMaizeBran": {
+        "description": "Concentrate: Maize bran"
+    },
+    "concentrateWheatGrain": "Wheat grain",
+    "@concentrateWheatGrain": {
+        "description": "Concentrate: Wheat grain"
+    },
+    "concentrateSoybeanMeal": "Soybean meal",
+    "@concentrateSoybeanMeal": {
+        "description": "Concentrate: Soybean meal"
+    },
+    "concentrateSoybeanHulls": "Soybean hulls",
+    "@concentrateSoybeanHulls": {
+        "description": "Concentrate: Soybean hulls"
+    },
+    "concentrateSoybeanOil": "Soybean oil",
+    "@concentrateSoybeanOil": {
+        "description": "Concentrate: Soybean oil"
+    },
+    "concentrateBrewersByProduct": "Brewers by-product",
+    "@concentrateBrewersByProduct": {
+        "description": "Concentrate: Brewers by-product"
+    },
+    "concentrateMineralLick": "Mineral lick",
+    "@concentrateMineralLick": {
+        "description": "Concentrate: Mineral lick"
+    },
+    "concentrateDryBread": "Dry bread",
+    "@concentrateDryBread": {
+        "description": "Concentrate: Dry bread"
+    },
+    "concentrateSorghumBrewersGrainFresh": "Sorghum brewers grain fresh",
+    "@concentrateSorghumBrewersGrainFresh": {
+        "description": "Concentrate: Sorghum brewers grain fresh"
+    },
+    "concentrateSalt": "Salt",
+    "@concentrateSalt": {
+        "description": "Concentrate: Salt"
+    },
     "fodderGreenMaizeForage": "green maize forage",
     "@fodderGreenMaizeForage": {
         "description": "Fodder: green maize forage"
