@@ -93,7 +93,7 @@ class FeedingGuidelinesPage extends StatelessWidget {
                 period: S.of(context).dryCowPeriod,
                 dryMatterIntake: S.of(context).kgValue('16.5'),
                 meIntake: S.of(context).mjPerDayValue('90'),
-                crudeProtein: S.of(context).percentageValue('16'),
+                crudeProtein: S.of(context).percentageValue('12'),
                 ndf: S.of(context).percentageValue('40'),
                 caIntake: S.of(context).percentageValue('0.40'),
                 pIntake: S.of(context).percentageValue('0.20'),
