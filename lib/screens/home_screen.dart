@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       ),
       Destination(
         label: S.of(context).feedingGuidelines,
-        icon: Icons.list,
+        icon: Icons.menu_book,
         builder: (context) => FeedingGuidelinesPage(),
       ),
     ];

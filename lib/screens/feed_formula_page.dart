@@ -42,6 +42,9 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green.shade200,
@@ -51,7 +54,8 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(S.of(context).feedFormula,
-            style: TextStyle(color: Colors.white, fontSize: 20)),
+            style: TextStyle(
+                color: Colors.white, fontSize: isLandscape ? 16 : 20)),
         centerTitle: true,
       ),
       body: Consumer<FeedState>(
@@ -84,19 +88,21 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
           return Column(
             children: [
               // Fixed Cow Requirements section
-              Container(
-                padding: const EdgeInsets.all(8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    _buildSectionTitle(
-                        S.of(context).cowRequirements, Icons.label_important),
-                    CowRequirementsTable(
-                        cowRequirements: widget.cowRequirements),
-                  ],
+              // Cow Requirements section is not fixed in landscape mode
+              if (!isLandscape)
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      _buildSectionTitle(
+                          S.of(context).cowRequirements, Icons.label_important),
+                      CowRequirementsTable(
+                          cowRequirements: widget.cowRequirements),
+                    ],
+                  ),
                 ),
-              ),
-              const Divider(height: 1, thickness: 2),
+              if (!isLandscape) const Divider(height: 1, thickness: 2),
               // Scrollable content
               Expanded(
                 child: SingleChildScrollView(
@@ -105,6 +111,18 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
+                        // Cow Requirements section in scrollable area for landscape mode
+                        if (isLandscape)
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              _buildSectionTitle(S.of(context).cowRequirements,
+                                  Icons.label_important),
+                              CowRequirementsTable(
+                                  cowRequirements: widget.cowRequirements),
+                              SizedBox(height: 16),
+                            ],
+                          ),
                         _buildSectionTitle(S.of(context).fodder, Icons.grass),
                         IngredientTable(
                           context: context,
@@ -117,7 +135,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
                               _showAddIngredientDialog(true, context),
                           child: Text(S.of(context).addFodder),
                         ),
-                        SizedBox(height: 8),
+                        SizedBox(height: isLandscape ? 8 : 16),
                         _buildSectionTitle(
                             S.of(context).concentrate, Icons.scatter_plot),
                         IngredientTable(
@@ -131,28 +149,46 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
                               _showAddIngredientDialog(false, context),
                           child: Text(S.of(context).addConcentrate),
                         ),
+                        // Totals section in scrollable area for landscape mode
+                        if (isLandscape)
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              SizedBox(height: 8),
+                              _buildSectionTitle(
+                                  S.of(context).totals, Icons.calculate),
+                              TotalsTable(
+                                context: context,
+                                fodderItems: selectedFodderItems,
+                                concentrateItems: selectedConcentrateItems,
+                                cowRequirements: widget.cowRequirements,
+                                cowCharacteristics: widget.cowCharacteristics,
+                              ),
+                            ],
+                          ),
                       ],
                     ),
                   ),
                 ),
               ),
-              // Footer image
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    _buildSectionTitle(S.of(context).totals, Icons.calculate),
-                    TotalsTable(
-                      context: context,
-                      fodderItems: selectedFodderItems,
-                      concentrateItems: selectedConcentrateItems,
-                      cowRequirements: widget.cowRequirements,
-                      cowCharacteristics: widget.cowCharacteristics,
-                    ),
-                    // Image.asset('assets/sense-200px.png', height: 20),
-                  ],
+              // Totals section is not fixed in landscape mode
+              if (!isLandscape)
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      _buildSectionTitle(S.of(context).totals, Icons.calculate),
+                      TotalsTable(
+                        context: context,
+                        fodderItems: selectedFodderItems,
+                        concentrateItems: selectedConcentrateItems,
+                        cowRequirements: widget.cowRequirements,
+                        cowCharacteristics: widget.cowCharacteristics,
+                      ),
+                      // Image.asset('assets/sense-200px.png', height: 20),
+                    ],
+                  ),
                 ),
-              ),
             ],
           );
         },
@@ -161,15 +197,18 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
   }
 
   Widget _buildSectionTitle(String title, IconData icon) {
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      padding: EdgeInsets.symmetric(vertical: isLandscape ? 5.0 : 10.0),
       child: Row(
         children: [
-          Icon(icon, size: 30),
-          const SizedBox(width: 10),
+          Icon(icon, size: isLandscape ? 20 : 30),
+          SizedBox(width: isLandscape ? 5 : 10),
           Text(title,
-              style:
-                  const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              style: TextStyle(
+                  fontSize: isLandscape ? 16 : 18,
+                  fontWeight: FontWeight.bold)),
         ],
       ),
     );
