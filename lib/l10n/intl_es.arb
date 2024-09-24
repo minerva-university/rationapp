@@ -318,6 +318,66 @@
     "@concentrateSoybeanCake": {
         "description": "Concentrate: Soybean cake"
     },
+    "concentrateWheatBran": "Salvado de trigo",
+    "@concentrateWheatBran": {
+        "description": "Concentrate: Wheat bran"
+    },
+    "concentrateSorghumGrain": "Grano de sorgo",
+    "@concentrateSorghumGrain": {
+        "description": "Concentrate: Sorghum grain"
+    },
+    "concentratePearlMilletGrain": "Grano de mijo perla",
+    "@concentratePearlMilletGrain": {
+        "description": "Concentrate: Pearl millet grain"
+    },
+    "concentrateGroundnutMeal": "Harina de cacahuete",
+    "@concentrateGroundnutMeal": {
+        "description": "Concentrate: Groundnut meal"
+    },
+    "concentrateChickpeaMeal": "Harina de garbanzo",
+    "@concentrateChickpeaMeal": {
+        "description": "Concentrate: Chickpea meal"
+    },
+    "concentrateMaizeBran": "Salvado de maíz",
+    "@concentrateMaizeBran": {
+        "description": "Concentrate: Maize bran"
+    },
+    "concentrateWheatGrain": "Grano de trigo",
+    "@concentrateWheatGrain": {
+        "description": "Concentrate: Wheat grain"
+    },
+    "concentrateSoybeanMeal": "Harina de soja",
+    "@concentrateSoybeanMeal": {
+        "description": "Concentrate: Soybean meal"
+    },
+    "concentrateSoybeanHulls": "Cáscaras de soja",
+    "@concentrateSoybeanHulls": {
+        "description": "Concentrate: Soybean hulls"
+    },
+    "concentrateSoybeanOil": "Aceite de soja",
+    "@concentrateSoybeanOil": {
+        "description": "Concentrate: Soybean oil"
+    },
+    "concentrateBrewersByProduct": "Subproducto de cervecería",
+    "@concentrateBrewersByProduct": {
+        "description": "Concentrate: Brewers by-product"
+    },
+    "concentrateMineralLick": "Bloque mineral",
+    "@concentrateMineralLick": {
+        "description": "Concentrate: Mineral lick"
+    },
+    "concentrateDryBread": "Pan seco",
+    "@concentrateDryBread": {
+        "description": "Concentrate: Dry bread"
+    },
+    "concentrateSorghumBrewersGrainFresh": "Grano fresco de sorgo de cervecería",
+    "@concentrateSorghumBrewersGrainFresh": {
+        "description": "Concentrate: Sorghum brewers grain fresh"
+    },
+    "concentrateSalt": "Sal",
+    "@concentrateSalt": {
+        "description": "Concentrate: Salt"
+    },
     "fodderGreenMaizeForage": "Forraje de maíz verde",
     "@fodderGreenMaizeForage": {
         "description": "Fodder: green maize forage"
@@ -338,8 +398,8 @@
     "@fodderGroundnutSeeds": {
         "description": "Fodder: groundnut seeds"
     },
-    "fodderBanannaStalks": "Tallos de plátano",
-    "@fodderBanannaStalks": {
+    "fodderBananaStalks": "Tallos de plátano",
+    "@fodderBananaStalks": {
         "description": "Fodder: bananna stalks"
     },
     "fodderBananaLeaves": "Hojas de plátano",

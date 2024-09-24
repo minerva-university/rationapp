@@ -40,6 +40,7 @@ dependencies:
   intl_utils: any
   shared_preferences: ^2.3.2
   provider: ^6.1.2
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +67,8 @@ flutter:
   assets:
     - assets/sense.webp
     - assets/sense-200px.png
+    - assets/cow_icon.svg
+    - assets/cow2.svg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

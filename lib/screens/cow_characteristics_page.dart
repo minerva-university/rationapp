@@ -6,6 +6,7 @@ import '../../utils/cow_requirements_calculator.dart';
 import '../generated/l10n.dart';
 import '../services/persistence_manager.dart';
 import '../models/cow_characteristics_model.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CowCharacteristicsPage extends StatefulWidget {
   const CowCharacteristicsPage({super.key});
@@ -124,7 +125,11 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
         child: ListView(
           children: [
             ListTile(
-              leading: Icon(Icons.pets, size: 40),
+              leading: SvgPicture.asset(
+                'assets/cow_icon.svg',
+                width: 80,
+                height: 80,
+              ),
               title: Text(S.of(context).cowCharacteristics,
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
               subtitle:

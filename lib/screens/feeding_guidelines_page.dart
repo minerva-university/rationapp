@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../generated/l10n.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class FeedingGuidelinesPage extends StatelessWidget {
   @override
@@ -20,7 +21,11 @@ class FeedingGuidelinesPage extends StatelessWidget {
       body: ListView(
         children: [
           ExpansionTile(
-            leading: const Icon(Icons.pets, size: 40),
+            leading: SvgPicture.asset(
+              'assets/cow_icon.svg',
+              width: 80,
+              height: 80,
+            ),
             title: Text(S.of(context).earlyLactationFeeding),
             children: [
               _buildGuidelineTable(
@@ -36,7 +41,11 @@ class FeedingGuidelinesPage extends StatelessWidget {
             ],
           ),
           ExpansionTile(
-            leading: const Icon(Icons.pets, size: 40),
+            leading: SvgPicture.asset(
+              'assets/cow_icon.svg',
+              width: 80,
+              height: 80,
+            ),
             title: Text(S.of(context).midLactationFeeding),
             children: [
               _buildGuidelineTable(
@@ -52,7 +61,11 @@ class FeedingGuidelinesPage extends StatelessWidget {
             ],
           ),
           ExpansionTile(
-            leading: const Icon(Icons.pets, size: 40),
+            leading: SvgPicture.asset(
+              'assets/cow_icon.svg',
+              width: 80,
+              height: 80,
+            ),
             title: Text(S.of(context).lateLactationFeeding),
             children: [
               _buildGuidelineTable(
@@ -68,7 +81,11 @@ class FeedingGuidelinesPage extends StatelessWidget {
             ],
           ),
           ExpansionTile(
-            leading: const Icon(Icons.pets, size: 40),
+            leading: SvgPicture.asset(
+              'assets/cow_icon.svg',
+              width: 80,
+              height: 80,
+            ),
             title: Text(S.of(context).dryCowFeeding),
             children: [
               _buildGuidelineTable(
@@ -76,7 +93,7 @@ class FeedingGuidelinesPage extends StatelessWidget {
                 period: S.of(context).dryCowPeriod,
                 dryMatterIntake: S.of(context).kgValue('16.5'),
                 meIntake: S.of(context).mjPerDayValue('90'),
-                crudeProtein: S.of(context).percentageValue('16'),
+                crudeProtein: S.of(context).percentageValue('12'),
                 ndf: S.of(context).percentageValue('40'),
                 caIntake: S.of(context).percentageValue('0.40'),
                 pIntake: S.of(context).percentageValue('0.20'),

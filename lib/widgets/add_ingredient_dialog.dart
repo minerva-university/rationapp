@@ -40,37 +40,40 @@ class _AddIngredientDialogState extends State<AddIngredientDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      insetPadding: EdgeInsets.all(8.0),
       title: Text(widget.isFodder
           ? S.of(context).addFodder
           : S.of(context).addConcentrate),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CustomDropdownField(
-            options: widget.availableOptions
-                .map((option) => option.getName(context))
-                .toList(),
-            value: selectedIngredientId != ''
-                ? widget.availableOptions
-                    .firstWhere((option) => option.id == selectedIngredientId)
-                    .getName(context)
-                : '',
-            onChanged: (value) {
-              setState(() {
-                selectedIngredientId = widget.availableOptions
-                    .firstWhere((option) => option.getName(context) == value)
-                    .id;
-              });
-            },
-            labelText: widget.isFodder
-                ? S.of(context).chooseFodder
-                : S.of(context).chooseConcentrate,
-          ),
-          CustomTextField(
-            labelText: S.of(context).freshFeedIntake,
-            controller: feedWeightController,
-          ),
-        ],
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CustomDropdownField(
+              options: widget.availableOptions
+                  .map((option) => option.getName(context))
+                  .toList(),
+              value: selectedIngredientId != ''
+                  ? widget.availableOptions
+                      .firstWhere((option) => option.id == selectedIngredientId)
+                      .getName(context)
+                  : '',
+              onChanged: (value) {
+                setState(() {
+                  selectedIngredientId = widget.availableOptions
+                      .firstWhere((option) => option.getName(context) == value)
+                      .id;
+                });
+              },
+              labelText: widget.isFodder
+                  ? S.of(context).chooseFodder
+                  : S.of(context).chooseConcentrate,
+            ),
+            CustomTextField(
+              labelText: S.of(context).freshFeedIntake,
+              controller: feedWeightController,
+            ),
+          ],
+        ),
       ),
       actions: [
         TextButton(

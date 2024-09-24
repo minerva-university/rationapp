@@ -318,105 +318,149 @@
     "@concentrateSoybeanCake": {
         "description": "Concentrate: Soybean cake"
     },
-    "fodderGreenMaizeForage": "green maize forage",
+    "concentrateWheatBran": "Wheat bran",
+    "@concentrateWheatBran": {
+        "description": "Concentrate: Wheat bran"
+    },
+    "concentrateSorghumGrain": "Sorghum grain",
+    "@concentrateSorghumGrain": {
+        "description": "Concentrate: Sorghum grain"
+    },
+    "concentratePearlMilletGrain": "Pearl millet grain",
+    "@concentratePearlMilletGrain": {
+        "description": "Concentrate: Pearl millet grain"
+    },
+    "concentrateGroundnutMeal": "Groundnut meal",
+    "@concentrateGroundnutMeal": {
+        "description": "Concentrate: Groundnut meal"
+    },
+    "concentrateChickpeaMeal": "Chickpea meal",
+    "@concentrateChickpeaMeal": {
+        "description": "Concentrate: Chickpea meal"
+    },
+    "concentrateMaizeBran": "Maize bran",
+    "@concentrateMaizeBran": {
+        "description": "Concentrate: Maize bran"
+    },
+    "concentrateWheatGrain": "Wheat grain",
+    "@concentrateWheatGrain": {
+        "description": "Concentrate: Wheat grain"
+    },
+    "concentrateSoybeanMeal": "Soybean meal",
+    "@concentrateSoybeanMeal": {
+        "description": "Concentrate: Soybean meal"
+    },
+    "concentrateSoybeanHulls": "Soybean hulls",
+    "@concentrateSoybeanHulls": {
+        "description": "Concentrate: Soybean hulls"
+    },
+    "concentrateSoybeanOil": "Soybean oil",
+    "@concentrateSoybeanOil": {
+        "description": "Concentrate: Soybean oil"
+    },
+    "concentrateBrewersByProductFresh": "Brewers by-product fresh",
+    "@concentrateBrewersByProductFresh": {
+        "description": "Concentrate: Brewers by-product fresh"
+    },
+    "concentrateMineralLick": "Mineral lick",
+    "@concentrateMineralLick": {
+        "description": "Concentrate: Mineral lick"
+    },
+    "concentrateDryBread": "Dry bread",
+    "@concentrateDryBread": {
+        "description": "Concentrate: Dry bread"
+    },
+    "concentrateSorghumBrewersGrainFresh": "Sorghum brewers grain fresh",
+    "@concentrateSorghumBrewersGrainFresh": {
+        "description": "Concentrate: Sorghum brewers grain fresh"
+    },
+    "concentrateSalt": "Salt",
+    "@concentrateSalt": {
+        "description": "Concentrate: Salt"
+    },
+    "fodderGreenMaizeForage": "Green maize forage",
     "@fodderGreenMaizeForage": {
-        "description": "Fodder: green maize forage"
+        "description": "Fodder: Green maize forage"
     },
-    "fodderAlfafa": "alfafa",
+    "fodderAlfafa": "Alfafa",
     "@fodderAlfafa": {
-        "description": "Fodder: alfafa"
+        "description": "Fodder: Alfafa"
     },
-    "fodderMoringaLeaves": "moringa leaves",
-    "@fodderMoringaLeaves": {
-        "description": "Fodder: moringa leaves"
+    "fodderBananaStalks": "Banana stalks",
+    "@fodderBananaStalks": {
+        "description": "Fodder: Bananna stalks"
     },
-    "fodderSoyaBeanForage": "soya bean forage",
-    "@fodderSoyaBeanForage": {
-        "description": "Fodder: soya bean forage"
-    },
-    "fodderGroundnutSeeds": "groundnut seeds",
-    "@fodderGroundnutSeeds": {
-        "description": "Fodder: groundnut seeds"
-    },
-    "fodderBanannaStalks": "bananna stalks",
-    "@fodderBanannaStalks": {
-        "description": "Fodder: bananna stalks"
-    },
-    "fodderBananaLeaves": "banana leaves",
+    "fodderBananaLeaves": "Banana leaves",
     "@fodderBananaLeaves": {
-        "description": "Fodder: banana leaves"
+        "description": "Fodder: Banana leaves"
     },
-    "fodderSorghumForage": "sorghum forage",
+    "fodderSorghumForage": "Sorghum forage",
     "@fodderSorghumForage": {
-        "description": "Fodder: sorghum forage"
+        "description": "Fodder: Sorghum forage"
     },
-    "fodderSorghumStraw": "sorghum straw",
-    "@fodderSorghumStraw": {
-        "description": "Fodder: sorghum straw"
+    "fodderSorghumStalk": "Sorghum stalk",
+    "@fodderSorghumStalk": {
+        "description": "Fodder: Sorghum stalk"
     },
-    "fodderMaizeSilage": "maize silage",
+    "fodderMaizeSilage": "Maize silage",
     "@fodderMaizeSilage": {
-        "description": "Fodder: maize silage"
+        "description": "Fodder: Maize silage"
     },
-    "fodderMoringaLeavesFresh": "moringa leaves fresh",
-    "@fodderMoringaLeavesFresh": {
-        "description": "Fodder: moringa leaves fresh"
+    "fodderSorghumBiProductResidue": "Sorghum bi-product residue",
+    "@fodderSorghumBiProductResidue": {
+        "description": "Fodder: Sorghum bi-product residue"
     },
-    "fodderFreshGrass": "Fresh grass",
-    "@fodderFreshGrass": {
-        "description": "Fodder: Fresh grass"
+    "fodderPearlMilletStalk": "Pearl millet stalk",
+    "@fodderPearlMilletStalk": {
+        "description": "Fodder: Pearl millet stalk"
     },
-    "fodderRiceHay": "Rice hay",
-    "@fodderRiceHay": {
-        "description": "Fodder: Rice hay"
+    "fodderPearlMilletFreshForage": "Pearl millet fresh forage",
+    "@fodderPearlMilletFreshForage": {
+        "description": "Fodder: Pearl millet fresh forage"
     },
-    "fodderSweetCornTrash": "Sweet corn trash",
-    "@fodderSweetCornTrash": {
-        "description": "Fodder: Sweet corn trash"
+    "fodderWheatStraw": "Wheat straw",
+    "@fodderWheatStraw": {
+        "description": "Fodder: Wheat straw"
     },
-    "fodderBeanSilage": "Bean silage",
-    "@fodderBeanSilage": {
-        "description": "Fodder: Bean silage"
+    "fodderBarleyStraw": "Barley straw",
+    "@fodderBarleyStraw": {
+        "description": "Fodder: Barley straw"
     },
-    "fodderRiceBranA": "Rice bran A",
-    "@fodderRiceBranA": {
-        "description": "Fodder: Rice bran A"
+    "fodderCabbage": "Cabbage",
+    "@fodderCabbage": {
+        "description": "Fodder: Cabbage"
     },
-    "fodderRiceBranB": "Rice bran B",
-    "@fodderRiceBranB": {
-        "description": "Fodder: Rice bran B"
+    "fodderElephantGrass": "Elephant grass",
+    "@fodderElephantGrass": {
+        "description": "Fodder: Elephant grass"
     },
-    "fodderRejectPotatoes": "Reject potatoes",
-    "@fodderRejectPotatoes": {
-        "description": "Fodder: Reject potatoes"
+    "fodderEragrostisTefHay": "Eragrostis tef hay",
+    "@fodderEragrostisTefHay": {
+        "description": "Fodder: Eragrostis tef hay"
     },
-    "fodderCornStover": "Corn stover",
-    "@fodderCornStover": {
-        "description": "Fodder: Corn stover"
+    "fodderBananaFruit": "Banana fruit",
+    "@fodderBananaFruit": {
+        "description": "Fodder: Banana fruit"
     },
-    "fodderBrewersGrain": "Brewers grain",
-    "@fodderBrewersGrain": {
-        "description": "Fodder: Brewers grain"
+    "fodderWildGrassFresh": "Wild grass fresh",
+    "@fodderWildGrassFresh": {
+        "description": "Fodder: Wild grass fresh"
     },
-    "fodderSagoChips": "Sago chips",
-    "@fodderSagoChips": {
-        "description": "Fodder: Sago chips"
+    "fodderWildGrassHay": "Wild grass hay",
+    "@fodderWildGrassHay": {
+        "description": "Fodder: Wild grass hay"
     },
-    "fodderRiceStraw": "Rice straw",
-    "@fodderRiceStraw": {
-        "description": "Fodder: Rice straw"
-    },
-    "fodderDiCalciumPhosphate": "Di-calcium phosphate",
-    "@fodderDiCalciumPhosphate": {
-        "description": "Fodder: Di-calcium phosphate"
-    },
-    "fodderElephantGrassNapierGrass": "elephant grass/Napier grass",
-    "@fodderElephantGrassNapierGrass": {
-        "description": "Fodder: elephant grass/Napier grass"
-    },
-    "fodderElephantGrassHay": "elephant grass hay",
+    "fodderElephantGrassHay": "Elephant grass hay",
     "@fodderElephantGrassHay": {
-        "description": "Fodder: elephant grass hay"
+        "description": "Fodder: Elephant grass hay"
+    },
+    "fodderBarleyHay": "Barley hay",
+    "@fodderBarleyHay": {
+        "description": "Fodder: Barley hay"
+    },
+    "fodderWheatHay": "Wheat hay",
+    "@fodderWheatHay": {
+        "description": "Fodder: Wheat hay"
     },
     "chooseLiveWeightKg": "Choose live weight (kg)",
     "@chooseLiveWeightKg": {

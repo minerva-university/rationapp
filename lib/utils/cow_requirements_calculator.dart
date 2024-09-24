@@ -62,15 +62,17 @@ class CowRequirementsCalculator {
       builder: (context) {
         return AlertDialog(
           title: Text(S.of(context).cowRequirements),
-          content: Text(
-            '${S.of(context).dmIntakeLabel}: ${S.of(context).kgPerDay(cowRequirements.dmIntake.toStringAsFixed(2))}\n'
-            '${S.of(context).meIntakeLabel}: ${S.of(context).mjPerDayValue(cowRequirements.meIntake.toStringAsFixed(2))}\n'
-            '${S.of(context).cpIntakeLabel}: ${S.of(context).percentageValue((cowRequirements.cpIntake * 100).toStringAsFixed(2))}\n'
-            '${S.of(context).ndfIntakeLabel}: ${S.of(context).percentageValue(cowRequirements.ndfIntake.toStringAsFixed(2))}\n'
-            '${S.of(context).caIntakeLabel}: ${S.of(context).percentageValue(cowRequirements.caIntake.toStringAsFixed(2))}\n'
-            '${S.of(context).pIntakeLabel}: ${S.of(context).percentageValue(cowRequirements.pIntake.toStringAsFixed(2))}\n'
-            '${S.of(context).concentrateIntakeLabel}: ${S.of(context).percentageValue(cowRequirements.concentrateIntake.toStringAsFixed(2))}',
-            style: TextStyle(fontSize: 18),
+          content: SingleChildScrollView(
+            child: Text(
+              '${S.of(context).dmIntakeLabel}: ${S.of(context).kgPerDay(cowRequirements.dmIntake.toStringAsFixed(2))}\n'
+              '${S.of(context).meIntakeLabel}: ${S.of(context).mjPerDayValue(cowRequirements.meIntake.toStringAsFixed(2))}\n'
+              '${S.of(context).cpIntakeLabel}: ${S.of(context).percentageValue((cowRequirements.cpIntake * 100).toStringAsFixed(2))}\n'
+              '${S.of(context).ndfIntakeLabel}: ${S.of(context).percentageValue(cowRequirements.ndfIntake.toStringAsFixed(2))}\n'
+              '${S.of(context).caIntakeLabel}: ${S.of(context).percentageValue(cowRequirements.caIntake.toStringAsFixed(2))}\n'
+              '${S.of(context).pIntakeLabel}: ${S.of(context).percentageValue(cowRequirements.pIntake.toStringAsFixed(2))}\n'
+              '${S.of(context).concentrateIntakeLabel}: ${S.of(context).percentageValue(cowRequirements.concentrateIntake.toStringAsFixed(2))}',
+              style: TextStyle(fontSize: 18),
+            ),
           ),
           actions: [
             ElevatedButton(
