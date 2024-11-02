@@ -30,10 +30,8 @@ void main() {
     mockCalculator = MockCowRequirementsCalculator();
 
     when(mockSharedPrefsService.getCowCharacteristics()).thenReturn(null);
-
-    // Mock SVG loading
-    TestWidgetsFlutterBinding.ensureInitialized();
-    FlutterError.onError = null;
+    when(mockSharedPrefsService.setCowCharacteristics(any))
+        .thenAnswer((_) => Future.value(true));
   });
 
   Widget createTestWidget() {
@@ -55,10 +53,6 @@ void main() {
           calculator: mockCalculator,
         ),
       ),
-      // home: CowCharacteristicsPage(
-      //   sharedPrefsService: mockSharedPrefsService,
-      //   calculator: mockCalculator,
-      // ),
     );
   }
 
@@ -86,13 +80,10 @@ void main() {
       expect(find.text('25.0'), findsOneWidget);
       expect(find.text('3.5'), findsOneWidget);
       expect(find.text('3.2'), findsOneWidget);
-      // expect(find.text('Dry'), findsOneWidget);
     });
 
     testWidgets('shows empty fields when no saved data exists',
         (WidgetTester tester) async {
-      when(mockSharedPrefsService.getCowCharacteristics()).thenReturn(null);
-
       await tester.pumpWidget(createTestWidget());
       await tester.pumpAndSettle();
 
@@ -115,8 +106,6 @@ void main() {
 
     testWidgets('validates form before submission',
         (WidgetTester tester) async {
-      when(mockSharedPrefsService.getCowCharacteristics()).thenReturn(null);
-
       await tester.pumpWidget(createTestWidget());
       await tester.pumpAndSettle();
 
@@ -141,9 +130,6 @@ void main() {
     testWidgets(
         'saves characteristics and calculates requirements on valid submission',
         (WidgetTester tester) async {
-      when(mockSharedPrefsService.setCowCharacteristics(any))
-          .thenAnswer((_) => Future.value(true));
-
       await tester.pumpWidget(createTestWidget());
       await tester.pumpAndSettle();
 
@@ -151,10 +137,7 @@ void main() {
       await tester.tap(find.text(selectLiveWeight));
       final selectedLiveWeight = find.text('100');
       await tester.pumpAndSettle();
-      // Debug: Print all text widgets
-      // tester.widgetList<Text>(find.byType(Text)).forEach((text) {
-      //   print('Found text: "${text.data}"');
-      // });
+
       await tester.tap(selectedLiveWeight);
       await tester.pumpAndSettle();
 
