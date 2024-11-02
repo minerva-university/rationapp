@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import '../models/feed_formula_model.dart';
 import '../services/persistence_manager.dart';
 import '../data/nutrition_tables.dart';
+import 'package:provider/provider.dart';
 
 class FeedState extends ChangeNotifier {
   List<FeedIngredient> fodderItems = [];
   List<FeedIngredient> concentrateItems = [];
   late BuildContext _context;
+  late SharedPrefsService sharedPrefsService;
 
   FeedState();
 
   void initializeWithContext(BuildContext context) {
     _context = context;
+    sharedPrefsService = Provider.of<SharedPrefsService>(_context);
     loadSavedPrices();
   }
 
@@ -28,7 +31,7 @@ class FeedState extends ChangeNotifier {
   }
 
   void loadSavedPrices() {
-    final savedPrices = SharedPrefsService.getFeedPricesAndAvailability();
+    final savedPrices = sharedPrefsService.getFeedPricesAndAvailability();
     if (savedPrices != null) {
       fodderItems = savedPrices.where((item) => item.isFodder).toList();
       concentrateItems = savedPrices.where((item) => !item.isFodder).toList();
@@ -44,7 +47,7 @@ class FeedState extends ChangeNotifier {
 
   void _savePricesAndAvailability() {
     List<FeedIngredient> allItems = [...fodderItems, ...concentrateItems];
-    SharedPrefsService.setFeedPricesAndAvailability(allItems);
+    sharedPrefsService.setFeedPricesAndAvailability(allItems);
   }
 
   List<FeedIngredient> get availableFodderItems =>

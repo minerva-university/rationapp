@@ -9,7 +9,14 @@ import '../models/cow_characteristics_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CowCharacteristicsPage extends StatefulWidget {
-  const CowCharacteristicsPage({super.key});
+  final SharedPrefsService sharedPrefsService;
+  final CowRequirementsCalculator calculator;
+
+  const CowCharacteristicsPage({
+    super.key,
+    required this.sharedPrefsService,
+    required this.calculator,
+  });
 
   @override
   State<CowCharacteristicsPage> createState() => _CowCharacteristicsPageState();
@@ -31,7 +38,8 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
   }
 
   void _loadSavedCharacteristics() {
-    final savedCharacteristics = SharedPrefsService.getCowCharacteristics();
+    final savedCharacteristics =
+        widget.sharedPrefsService.getCowCharacteristics();
     if (savedCharacteristics != null) {
       setState(() {
         liveWeightController.text =
@@ -74,7 +82,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
   void _handleButtonPress() {
     if (_isFormValid()) {
       _saveCowCharacteristics();
-      CowRequirementsCalculator.calculateCowRequirements(
+      widget.calculator.calculateCowRequirements(
           context,
           liveWeightController,
           pregnancyController,
@@ -102,7 +110,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
       milkProtein: double.tryParse(milkProteinController.text) ?? 0.0,
       lactationStage: selectedLactationStageKey,
     );
-    SharedPrefsService.setCowCharacteristics(cowCharacteristics);
+    widget.sharedPrefsService.setCowCharacteristics(cowCharacteristics);
   }
 
   @override
@@ -198,6 +206,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
+              key: const Key('submit_button'),
               onPressed: _handleButtonPress,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green.shade200,
