@@ -11,6 +11,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class CowCharacteristicsPage extends StatefulWidget {
   final SharedPrefsService sharedPrefsService;
   final CowRequirementsCalculator calculator;
+  static const submitButtonKey = Key('submit_button');
 
   const CowCharacteristicsPage({
     super.key,
@@ -206,7 +207,7 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              key: const Key('submit_button'),
+              key: CowCharacteristicsPage.submitButtonKey,
               onPressed: _handleButtonPress,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green.shade200,
