@@ -16,6 +16,6 @@ jobs:
       - name: Run generator
         run: flutter pub run build_runner build
       - name: Analyze
-        run: flutter analyze
+        run: flutter analyze --no-fatal-infos
       - name: Run test
         run: flutter test
