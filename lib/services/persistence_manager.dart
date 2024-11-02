@@ -13,7 +13,7 @@ class SharedPrefsService {
     _prefs = await SharedPreferences.getInstance();
   }
 
-  static Future<bool> setCowCharacteristics(
+  Future<bool> setCowCharacteristics(
       CowCharacteristics cowCharacteristics) async {
     final String cowCharacteristicsJson =
         json.encode(cowCharacteristics.toJson());
@@ -22,7 +22,7 @@ class SharedPrefsService {
         false;
   }
 
-  static CowCharacteristics? getCowCharacteristics() {
+  CowCharacteristics? getCowCharacteristics() {
     final String? cowCharacteristicsJson =
         _prefs?.getString(_cowCharacteristicsKey);
     if (cowCharacteristicsJson != null) {
@@ -47,7 +47,7 @@ class SharedPrefsService {
     return null;
   }
 
-  static Future<bool> setFeedPricesAndAvailability(
+  Future<bool> setFeedPricesAndAvailability(
       List<FeedIngredient> feedIngredients) async {
     final List<Map<String, dynamic>> ingredientsJson =
         feedIngredients.map((ingredient) => ingredient.toJson()).toList();
@@ -55,7 +55,7 @@ class SharedPrefsService {
     return await _prefs?.setString(_feedPricesKey, pricesJson) ?? false;
   }
 
-  static List<FeedIngredient>? getFeedPricesAndAvailability() {
+  List<FeedIngredient>? getFeedPricesAndAvailability() {
     final String? pricesJson = _prefs?.getString(_feedPricesKey);
     if (pricesJson != null) {
       final List<dynamic> decodedList = json.decode(pricesJson);

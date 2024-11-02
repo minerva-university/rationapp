@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rationapp/utils/cow_requirements_calculator.dart';
 import 'screens/home_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import '../generated/l10n.dart';
@@ -9,15 +10,23 @@ import 'feed_state.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPrefsService.init();
+  final cowRequirementsCalculator = CowRequirementsCalculator();
+  final sharedPrefsService = SharedPrefsService();
+
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => FeedState(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => FeedState()),
+        Provider.value(value: sharedPrefsService),
+        Provider.value(value: cowRequirementsCalculator),
+      ],
       child: RationCalculatorApp(),
     ),
   );
 }
 
 class RationCalculatorApp extends StatelessWidget {
+  const RationCalculatorApp({super.key});
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(

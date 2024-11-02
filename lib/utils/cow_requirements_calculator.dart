@@ -5,7 +5,7 @@ import '../models/cow_requirements_model.dart';
 import '../generated/l10n.dart';
 
 class CowRequirementsCalculator {
-  static void calculateCowRequirements(
+  void calculateCowRequirements(
       BuildContext context,
       TextEditingController liveWeightController,
       TextEditingController pregnancyController,
