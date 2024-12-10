@@ -6,6 +6,7 @@ import '../utils/cow_requirements_calculator.dart';
 import 'package:provider/provider.dart';
 
 class CowRequirementsView extends StatelessWidget {
+  static const navigatorKey = Key('cow_requirements_navigator');
   const CowRequirementsView({super.key});
 
   @override
@@ -14,6 +15,7 @@ class CowRequirementsView extends StatelessWidget {
     final calculator = Provider.of<CowRequirementsCalculator>(context);
 
     return Navigator(
+      key: navigatorKey,
       onGenerateRoute: (RouteSettings settings) {
         return MaterialPageRoute(
           settings: settings,
