@@ -9,6 +9,7 @@ import 'package:rationapp/screens/feed_formula_page.dart';
 import 'package:rationapp/services/persistence_manager.dart';
 import 'package:rationapp/utils/cow_requirements_calculator.dart';
 import 'package:rationapp/models/cow_characteristics_model.dart';
+import 'package:rationapp/models/feed_formula_model.dart';
 import 'package:rationapp/models/cow_requirements_model.dart';
 import 'package:rationapp/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -48,6 +49,8 @@ void main() {
     mockFeedState = MockFeedState();
 
     when(mockSharedPrefsService.getCowCharacteristics()).thenReturn(null);
+    when(mockSharedPrefsService.getFeedFormula())
+        .thenReturn(FeedFormula(fodder: [], concentrate: []));
   });
 
   Widget createTestWidget({String? initialRoute, Object? arguments}) {
