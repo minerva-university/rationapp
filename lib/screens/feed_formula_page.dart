@@ -14,11 +14,13 @@ import '../generated/l10n.dart';
 import '../services/persistence_manager.dart';
 
 class FeedFormulaPage extends StatefulWidget {
+  final SharedPrefsService sharedPrefsService;
   final CowCharacteristics cowCharacteristics;
   final CowRequirements cowRequirements;
 
   FeedFormulaPage({
     super.key,
+    required this.sharedPrefsService,
     required this.cowCharacteristics,
     required this.cowRequirements,
   });
@@ -37,7 +39,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
       fodder: selectedFodderItems,
       concentrate: selectedConcentrateItems,
     );
-    SharedPrefsService.setFeedFormula(feedFormula);
+    widget.sharedPrefsService.setFeedFormula(feedFormula);
   }
 
   @override
@@ -60,7 +62,7 @@ class _FeedFormulaPageState extends State<FeedFormulaPage> {
       ),
       body: Consumer<FeedState>(
         builder: (context, feedState, child) {
-          final savedFormula = SharedPrefsService.getFeedFormula() ??
+          final savedFormula = widget.sharedPrefsService.getFeedFormula() ??
               FeedFormula(fodder: [], concentrate: []);
 
           selectedFodderItems = savedFormula.fodder

@@ -29,9 +29,9 @@ class CowRequirementsView extends StatelessWidget {
               case '/feed_formula':
                 final args = settings.arguments as Map<String, dynamic>;
                 return FeedFormulaPage(
-                  cowCharacteristics: args['cowCharacteristics'],
-                  cowRequirements: args['cowRequirements'],
-                );
+                    cowCharacteristics: args['cowCharacteristics'],
+                    cowRequirements: args['cowRequirements'],
+                    sharedPrefsService: sharedPrefsService);
               default:
                 return const SizedBox();
             }
