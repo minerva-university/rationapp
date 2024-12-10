@@ -554,11 +554,6 @@ void main() {
         return text.data!.replaceAll(RegExp(r'[^0-9.]'), '');
       }
 
-      // Get the initial total DM value for comparison later
-      final initialDataTable =
-          tester.widget<DataTable>(find.byType(DataTable).last);
-      final initialDMTotal = getCellValue(initialDataTable.rows.first, 0);
-
       // Find and tap the add concentrate button
       final addButton =
           find.widgetWithText(ElevatedButton, S.current.addConcentrate);
