@@ -46,6 +46,16 @@ class MockSharedPrefsService extends _i1.Mock
       ) as _i3.Future<bool>);
 
   @override
+  _i3.Future<bool> setFeedFormula(_i5.FeedFormula? feedFormula) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setFeedFormula,
+          [feedFormula],
+        ),
+        returnValue: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
+
+  @override
   _i3.Future<bool> setFeedPricesAndAvailability(
           List<_i5.FeedIngredient>? feedIngredients) =>
       (super.noSuchMethod(

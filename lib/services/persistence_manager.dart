@@ -33,12 +33,12 @@ class SharedPrefsService {
     return null;
   }
 
-  static Future<bool> setFeedFormula(FeedFormula feedFormula) async {
-    final String feedFormulaJson = json.encode(feedFormula.toJson());
+  Future<bool> setFeedFormula(FeedFormula? feedFormula) async {
+    final String feedFormulaJson = json.encode(feedFormula!.toJson());
     return await _prefs?.setString(_feedFormulaKey, feedFormulaJson) ?? false;
   }
 
-  static FeedFormula? getFeedFormula() {
+  FeedFormula? getFeedFormula() {
     final String? feedFormulaJson = _prefs?.getString(_feedFormulaKey);
     if (feedFormulaJson != null) {
       final Map<String, dynamic> feedFormulaMap = json.decode(feedFormulaJson);
