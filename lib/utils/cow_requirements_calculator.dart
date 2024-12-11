@@ -29,9 +29,9 @@ class CowRequirementsCalculator {
       lactationStage: lactation,
     );
 
-    double dmIntake = NutritionCalculator.calculateDMRequirement(
-        cowCharacteristics.liveWeight);
-    double meIntake = NutritionCalculator.calculateMEIntake(
+    double dmIntake = NutritionCalculator(context)
+        .calculateDMRequirement(cowCharacteristics.liveWeight);
+    double meIntake = NutritionCalculator(context).calculateMEIntake(
         cowCharacteristics.liveWeight,
         cowCharacteristics.pregnancyMonths,
         cowCharacteristics.milkVolume,
