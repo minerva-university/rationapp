@@ -106,6 +106,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ndfIntakeLabelKgPerD" : MessageLookupByLibrary.simpleMessage("ምውሳድ NDF\n(ኪሎ/መ)"),
     "ndfIntakeLabelWithUnit" : MessageLookupByLibrary.simpleMessage("ምውሳድ NDF\n(%)"),
     "ndfLabel" : MessageLookupByLibrary.simpleMessage("NDF"),
+    "noOptimalSolutionFound" : MessageLookupByLibrary.simpleMessage("No optimal solution found"),
     "pIntakeLabel" : MessageLookupByLibrary.simpleMessage("ምውሳድ P"),
     "pIntakeLabelKgPerD" : MessageLookupByLibrary.simpleMessage("ምውሳድ P\n(ኪሎ/መ)"),
     "pIntakeLabelWithUnit" : MessageLookupByLibrary.simpleMessage("ምውሳድ P\n(%)"),
@@ -113,11 +114,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "period" : MessageLookupByLibrary.simpleMessage("እዋን"),
     "planFeed" : MessageLookupByLibrary.simpleMessage("መግቢ ምሕሳብ"),
     "pleaseAllFields" : MessageLookupByLibrary.simpleMessage("እባኽኩም ኩሎም መስመራት ምልእዎም።"),
+    "pleaseFillInAllFieldsBeforeOptimizing" : MessageLookupByLibrary.simpleMessage("Please fill in all fields before optimizing"),
     "pleaseFillInAllFieldsBeforeViewingRequirements" : MessageLookupByLibrary.simpleMessage("እባኽኩም ቅድሚ ምርኣይ ድሌታት ኩሎም መስመራት ምልእዎም።"),
     "pregnancy" : MessageLookupByLibrary.simpleMessage("ጥንሲ (ወርሒ)"),
     "prices" : MessageLookupByLibrary.simpleMessage("ዋጋታት"),
     "selectRationIngredient" : MessageLookupByLibrary.simpleMessage("ናውቲ መግቢ ምረጽ"),
     "totals" : MessageLookupByLibrary.simpleMessage("ድምር"),
-    "viewCowRequirements" : MessageLookupByLibrary.simpleMessage("ድሌታት ላሕሚ ርአ")
+    "viewCowRequirements" : MessageLookupByLibrary.simpleMessage("ድሌታት ላሕሚ ርአ"),
+    "viewOptimalMincostFeed" : MessageLookupByLibrary.simpleMessage("✨ View Optimal MinCost Feed ✨")
   };
 }

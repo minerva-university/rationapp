@@ -120,6 +120,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ndfIntakeLabelKgPerD" : MessageLookupByLibrary.simpleMessage("Ingesta de FDN\n(kg/día)"),
     "ndfIntakeLabelWithUnit" : MessageLookupByLibrary.simpleMessage("Ingesta de FDN\n(%)"),
     "ndfLabel" : MessageLookupByLibrary.simpleMessage("FDN"),
+    "noOptimalSolutionFound" : MessageLookupByLibrary.simpleMessage("No optimal solution found"),
     "pIntakeLabel" : MessageLookupByLibrary.simpleMessage("Ingesta de P"),
     "pIntakeLabelKgPerD" : MessageLookupByLibrary.simpleMessage("Ingesta de P\n(kg/día)"),
     "pIntakeLabelWithUnit" : MessageLookupByLibrary.simpleMessage("Ingesta de P\n(%)"),
@@ -127,11 +128,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "period" : MessageLookupByLibrary.simpleMessage("Período"),
     "planFeed" : MessageLookupByLibrary.simpleMessage("Planificar alimentación"),
     "pleaseAllFields" : MessageLookupByLibrary.simpleMessage("Por favor, complete todos los campos."),
+    "pleaseFillInAllFieldsBeforeOptimizing" : MessageLookupByLibrary.simpleMessage("Please fill in all fields before optimizing"),
     "pleaseFillInAllFieldsBeforeViewingRequirements" : MessageLookupByLibrary.simpleMessage("Por favor, complete todos los campos antes de ver los requisitos."),
     "pregnancy" : MessageLookupByLibrary.simpleMessage("Gestación (meses)"),
     "prices" : MessageLookupByLibrary.simpleMessage("Precios"),
     "selectRationIngredient" : MessageLookupByLibrary.simpleMessage("Seleccionar Ingrediente de Ración"),
     "totals" : MessageLookupByLibrary.simpleMessage("Totales"),
-    "viewCowRequirements" : MessageLookupByLibrary.simpleMessage("Ver Requisitos de la Vaca")
+    "viewCowRequirements" : MessageLookupByLibrary.simpleMessage("Ver Requisitos de la Vaca"),
+    "viewOptimalMincostFeed" : MessageLookupByLibrary.simpleMessage("✨ View Optimal MinCost Feed ✨")
   };
 }

@@ -1220,6 +1220,36 @@ class S {
     );
   }
 
+  /// `No optimal solution found`
+  String get noOptimalSolutionFound {
+    return Intl.message(
+      'No optimal solution found',
+      name: 'noOptimalSolutionFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please fill in all fields before optimizing`
+  String get pleaseFillInAllFieldsBeforeOptimizing {
+    return Intl.message(
+      'Please fill in all fields before optimizing',
+      name: 'pleaseFillInAllFieldsBeforeOptimizing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `✨ View Optimal MinCost Feed ✨`
+  String get viewOptimalMincostFeed {
+    return Intl.message(
+      '✨ View Optimal MinCost Feed ✨',
+      name: 'viewOptimalMincostFeed',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Get translation`
   String getTranslation(String key) {
     switch (key) {
