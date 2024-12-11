@@ -47,7 +47,7 @@ class IngredientTable extends StatelessWidget {
         'decimals': 5
       },
       {
-        'label': S.of(context).caIntakeLabelKgPerD,
+        'label': S.of(context).cpIntakeLabelWithUnit,
         'key': 'cpIntake',
         'decimals': 5
       },
