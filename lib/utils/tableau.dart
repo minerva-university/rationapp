@@ -77,9 +77,9 @@ List<MapEntry<K, V>> convertToList<K, V>(
 
 Set<T> convertToSet<T>(dynamic set) {
   if (set == true) {
-    return Set<T>.from([true as T]);
+    return <T>{true as T};
   } else if (set == false) {
-    return Set<T>();
+    return <T>{};
   } else if (set is Set<T>) {
     return set;
   } else if (set is Iterable<T>) {
@@ -94,8 +94,8 @@ TableauModel<VarKey, ConKey> tableauModel<VarKey, ConKey>(
 ) {
   final direction = model.direction;
   final objective = model.objective;
-  final binaries = model.binaries;
-  final sign = direction == "minimize" ? -1.0 : 1.0;
+  // final binaries = model.binaries;
+  final sign = direction == OptimizationDirection.minimize ? -1.0 : 1.0;
 
   final constraintsIter = convertToList(model.constraints);
   final variablesIter = convertToList(model.variables);

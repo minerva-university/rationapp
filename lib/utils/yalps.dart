@@ -67,17 +67,17 @@ final defaultOptionValues = Options(
   includeZeroVariables: false,
 );
 
-/**
- * The default options used by the solver.
- */
+///
+/// The default options used by the solver.
+///
 final defaultOptions = defaultOptionValues.copyWith();
 
-// /**
-//  * Runs the solver on the given model and using the given options (if any).
-//  * @see `Model` on how to specify/create the model.
-//  * @see `Options` for the kinds of options available.
-//  * @see `Solution` for more detailed information on what is returned.
-//  */
+///
+/// Runs the solver on the given model and using the given options (if any).
+/// @see `Model` on how to specify/create the model.
+/// @see `Options` for the kinds of options available.
+/// @see `Solution` for more detailed information on what is returned.
+///
 Solution<VarKey> solve<VarKey, ConKey>(Model<VarKey, ConKey> model,
     [Options? options]) {
   final tabmod = tableauModel(model);

@@ -83,11 +83,12 @@ List<dynamic> phase2(Tableau tableau, Options options) {
         col = c;
       }
     }
-    if (col == 0)
+    if (col == 0) {
       return [
         SolutionStatus.optimal,
         roundToPrecision(index(tableau, 0, 0), precision)
       ];
+    }
 
     // Find the leaving row/variable
     var row = 0;
@@ -105,8 +106,9 @@ List<dynamic> phase2(Tableau tableau, Options options) {
     }
     if (row == 0) return [SolutionStatus.unbounded, col];
 
-    if (checkCycles && hasCycle(pivotHistory, tableau, row, col))
+    if (checkCycles && hasCycle(pivotHistory, tableau, row, col)) {
       return [SolutionStatus.cycled, double.nan];
+    }
 
     pivot(tableau, row, col);
   }
@@ -148,8 +150,9 @@ List<dynamic> phase1(Tableau tableau, Options options) {
     }
     if (col == 0) return [SolutionStatus.infeasible, double.nan];
 
-    if (checkCycles && hasCycle(pivotHistory, tableau, row, col))
+    if (checkCycles && hasCycle(pivotHistory, tableau, row, col)) {
       return [SolutionStatus.cycled, double.nan];
+    }
 
     pivot(tableau, row, col);
   }
