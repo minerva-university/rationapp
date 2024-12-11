@@ -5,7 +5,7 @@ import 'types.dart';
 import 'tableau.dart';
 import 'util.dart';
 // import 'simplex.dart';
-import "package:rationapp/utils/simplex.dart";
+import "package:rationapp/utils/optimization/simplex.dart";
 
 // Creates a solution object representing the optimal solution (if any).
 Solution<VarKey> solution<VarKey, ConKey>(
