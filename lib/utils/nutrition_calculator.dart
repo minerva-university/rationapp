@@ -5,35 +5,38 @@ class NutritionCalculator {
   final BuildContext context;
 
   NutritionCalculator(this.context);
-  static double calculateDMRequirement(int liveWeight) {
-    var matchingRow = NutritionTables.weightRequirement.firstWhere(
-      (row) => row["weight"] == liveWeight,
-      orElse: () => {"dm": 0.0},
-    );
+  double calculateDMRequirement(int liveWeight) {
+    var matchingRow = NutritionTables(context).weightRequirement.firstWhere(
+          (row) => row["weight"] == liveWeight,
+          orElse: () => {"dm": 0.0},
+        );
     return matchingRow["dm"];
   }
 
-  static double calculateMEIntake(int liveWeight, int pregnancy, double volume,
+  double calculateMEIntake(int liveWeight, int pregnancy, double volume,
       double milkFat, double milkProtein) {
     double meIntake = 0;
 
     // Part 1: ME from live weight
-    var weightRow = NutritionTables.weightRequirement.firstWhere(
-      (row) => row["weight"] == liveWeight,
-      orElse: () => {"meReq": 0.0},
-    );
+    var weightRow = NutritionTables(context).weightRequirement.firstWhere(
+          (row) => row["weight"] == liveWeight,
+          orElse: () => {"meReq": 0.0},
+        );
     meIntake += weightRow["meReq"];
 
     // Part 2: ME from pregnancy
-    var pregnancyRow = NutritionTables.agePregnancyRequirements.firstWhere(
-      (row) => row["pregnancyMonth"] == pregnancy,
-      orElse: () => {"meReq": 0.0},
-    );
+    var pregnancyRow =
+        NutritionTables(context).agePregnancyRequirements.firstWhere(
+              (row) => row["pregnancyMonth"] == pregnancy,
+              orElse: () => {"meReq": 0.0},
+            );
     meIntake += pregnancyRow["meReq"];
 
     // Part 3: ME from milk production
-    if (NutritionTables.energyProteinRequirements.containsKey(milkFat)) {
-      var fatRow = NutritionTables.energyProteinRequirements[milkFat]!;
+    if (NutritionTables(context)
+        .energyProteinRequirements
+        .containsKey(milkFat)) {
+      var fatRow = NutritionTables(context).energyProteinRequirements[milkFat]!;
       if (fatRow.containsKey(milkProtein)) {
         double energyProteinFactor = fatRow[milkProtein]!;
         meIntake += volume * energyProteinFactor;
