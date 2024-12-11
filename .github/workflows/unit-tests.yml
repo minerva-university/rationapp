@@ -14,8 +14,17 @@ jobs:
       - name: Install packages
         run: flutter pub get
       - name: Run generator
-        run: flutter pub run build_runner build --delete-conflicting-outputs
+        run: dart run build_runner build
       - name: Analyze
         run: flutter analyze --no-fatal-infos
-      - name: Run test
-        run: flutter test
+      - name: Run flutter tests (with coverage)
+        run: flutter test --coverage
+      - name: Setup LCOV
+        uses: hrishikesh-kadam/setup-lcov@v1
+      - name: Report Code Coverage
+        uses: zgosalvez/github-actions-report-lcov@v3
+        with:
+          coverage-files: coverage/lcov.info
+          minimum-coverage: 95
+          artifact-name: code-coverage-report
+          github-token: ${{ secrets.GITHUB_TOKEN }}
