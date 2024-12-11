@@ -3,15 +3,19 @@ import '../widgets/custom_text_field.dart';
 import '../widgets/custom_dropdown_field.dart';
 import '../constants/cow_characteristics_constants.dart';
 import '../../utils/cow_requirements_calculator.dart';
+import '../../utils/feed_optimizer.dart';
 import '../generated/l10n.dart';
 import '../services/persistence_manager.dart';
 import '../models/cow_characteristics_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import '../feed_state.dart';
 
 class CowCharacteristicsPage extends StatefulWidget {
   final SharedPrefsService sharedPrefsService;
   final CowRequirementsCalculator calculator;
   static const submitButtonKey = Key('submit_button');
+  static const optimizeButtonKey = Key('optimize_button');
 
   const CowCharacteristicsPage({
     super.key,
@@ -96,6 +100,77 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
         SnackBar(
           content: Text(
               S.of(context).pleaseFillInAllFieldsBeforeViewingRequirements),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
+  void _handleOptimizeButtonPress() async {
+    if (_isFormValid()) {
+      final feedState = Provider.of<FeedState>(context, listen: false);
+
+      // Get cow requirements
+      final cowCharacteristics = CowCharacteristics(
+        liveWeight: int.tryParse(liveWeightController.text) ?? 0,
+        pregnancyMonths: int.tryParse(pregnancyController.text) ?? 0,
+        milkVolume: double.tryParse(volumeController.text) ?? 0.0,
+        milkFat: double.tryParse(milkFatController.text) ?? 0.0,
+        milkProtein: double.tryParse(milkProteinController.text) ?? 0.0,
+        lactationStage: selectedLactationStageKey,
+      );
+
+      // Calculate requirements using the existing calculator
+      final requirements = widget.calculator.calculateRequirementsOnly(
+        context,
+        cowCharacteristics.liveWeight,
+        cowCharacteristics.pregnancyMonths,
+        cowCharacteristics.milkVolume,
+        cowCharacteristics.milkFat,
+        cowCharacteristics.milkProtein,
+        cowCharacteristics.lactationStage,
+      );
+
+      // Get available ingredients
+      final availableFodder = feedState.availableFodderItems;
+      final availableConcentrates = feedState.availableConcentrateItems;
+
+      // Run optimization
+      final optimizer = FeedOptimizer();
+      final optimizedFeed = optimizer.optimize(
+        requirements: requirements,
+        availableFodder: availableFodder,
+        availableConcentrates: availableConcentrates,
+      );
+
+      if (optimizedFeed != null) {
+        // Save the optimized feed formula to SharedPreferences
+        await widget.sharedPrefsService.setFeedFormula(optimizedFeed);
+
+        // Check if widget is still mounted before using BuildContext
+        if (!mounted) return;
+
+        // Navigate to feed formula page with optimized results
+        Navigator.pushNamed(
+          context,
+          '/feed_formula',
+          arguments: {
+            'cowCharacteristics': cowCharacteristics,
+            'cowRequirements': requirements
+          },
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(S.of(context).noOptimalSolutionFound),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(S.of(context).pleaseFillInAllFieldsBeforeOptimizing),
           backgroundColor: Colors.red,
         ),
       );
@@ -215,6 +290,18 @@ class _CowCharacteristicsPageState extends State<CowCharacteristicsPage> {
                     const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
               ),
               child: Text(S.of(context).viewCowRequirements),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              key: CowCharacteristicsPage.optimizeButtonKey,
+              onPressed: _handleOptimizeButtonPress,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue.shade200,
+                // backgroundColor: const Color.fromARGB(255, 119, 190, 122),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+              ),
+              child: Text(S.of(context).viewOptimalMincostFeed),
             ),
           ],
         ),

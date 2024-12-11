@@ -5,6 +5,45 @@ import '../models/cow_requirements_model.dart';
 import '../generated/l10n.dart';
 
 class CowRequirementsCalculator {
+  CowRequirements calculateRequirementsOnly(
+    BuildContext context,
+    int liveWeight,
+    int pregnancy,
+    double volume,
+    double milkFat,
+    double milkProtein,
+    String lactationStage,
+  ) {
+    double dmIntake =
+        NutritionCalculator(context).calculateDMRequirement(liveWeight);
+    double meIntake = NutritionCalculator(context).calculateMEIntake(
+      liveWeight,
+      pregnancy,
+      volume,
+      milkFat,
+      milkProtein,
+    );
+    double cpIntake =
+        NutritionCalculator(context).calculateCPIntake(lactationStage);
+    double caIntake =
+        NutritionCalculator(context).calculateCaIntake(lactationStage);
+    double pIntake =
+        NutritionCalculator(context).calculatePIntake(lactationStage);
+
+    double ndfIntake = 40.0;
+    double concentrateIntake = 60.0;
+
+    return CowRequirements(
+      dmIntake: dmIntake,
+      meIntake: meIntake,
+      cpIntake: cpIntake,
+      ndfIntake: ndfIntake,
+      caIntake: caIntake,
+      pIntake: pIntake,
+      concentrateIntake: concentrateIntake,
+    );
+  }
+
   void calculateCowRequirements(
       BuildContext context,
       TextEditingController liveWeightController,
