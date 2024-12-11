@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../generated/l10n.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class FeedingGuidelinesPage extends StatelessWidget {
   @override
@@ -7,14 +9,8 @@ class FeedingGuidelinesPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green.shade200,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: const Text(
-          'Feeding Guidelines',
+        title: Text(
+          S.of(context).feedingGuidelines,
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,
@@ -22,598 +18,139 @@ class FeedingGuidelinesPage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: [
-            ListTile(
-              leading: const Icon(Icons.pets, size: 40),
-              title: const Text('Early Lactation Feeding'),
-              trailing: const Icon(Icons.arrow_forward),
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: const Text('Early Lactation Feeding Guidelines'),
-                      content: SingleChildScrollView(
-                        child: Table(
-                          border: TableBorder.all(color: Colors.black),
-                          columnWidths: const {
-                            0: FlexColumnWidth(1),
-                            1: FlexColumnWidth(2),
-                          },
-                          children: const [
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Period',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('Early Lactation (14-100 days)'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Dry Matter Intake',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('16.5 kg'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'ME Intake',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('179.96 MJ/day'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Crude Protein',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('16%'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'NDF',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('40%'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Ca Intake',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('0.80%'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'P Intake',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('0.40%'),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      actions: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('Close'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
+      body: ListView(
+        children: [
+          ExpansionTile(
+            leading: SvgPicture.asset(
+              'assets/cow_icon.svg',
+              width: 80,
+              height: 80,
             ),
-            ListTile(
-              leading: const Icon(Icons.pets, size: 40),
-              title: const Text('Mid Lactation Feeding'),
-              trailing: const Icon(Icons.arrow_forward),
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: const Text('Early Lactation Feeding Guidelines'),
-                      content: SingleChildScrollView(
-                        child: Table(
-                          border: TableBorder.all(color: Colors.black),
-                          columnWidths: const {
-                            0: FlexColumnWidth(1),
-                            1: FlexColumnWidth(2),
-                          },
-                          children: const [
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Period',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child:
-                                      Text('Mid lactation (100 to 200 days)'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Dry Matter Intake',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('16.5 kg'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'ME Intake',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('149,72 MJ/day'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Crude Protein',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('14%'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'NDF',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('40%'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Ca Intake',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('0.70%'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'P Intake',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('0.35%'),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      actions: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('Close'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
+            title: Text(S.of(context).earlyLactationFeeding),
+            children: [
+              _buildGuidelineTable(
+                context: context,
+                period: S.of(context).earlyLactationPeriod,
+                dryMatterIntake: S.of(context).kgValue('16.5'),
+                meIntake: S.of(context).mjPerDayValue('179.96'),
+                crudeProtein: S.of(context).percentageValue('16'),
+                ndf: S.of(context).percentageValue('40'),
+                caIntake: S.of(context).percentageValue('0.80'),
+                pIntake: S.of(context).percentageValue('0.40'),
+              ),
+            ],
+          ),
+          ExpansionTile(
+            leading: SvgPicture.asset(
+              'assets/cow_icon.svg',
+              width: 80,
+              height: 80,
             ),
-            ListTile(
-              leading: const Icon(Icons.pets, size: 40),
-              title: const Text('Late Lactation Feeding'),
-              trailing: const Icon(Icons.arrow_forward),
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: const Text('Late Lactation Feeding Guidelines'),
-                      content: SingleChildScrollView(
-                        child: Table(
-                          border: TableBorder.all(color: Colors.black),
-                          columnWidths: const {
-                            0: FlexColumnWidth(1),
-                            1: FlexColumnWidth(2),
-                          },
-                          children: const [
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Period',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('Early Lactation (14-100 days)'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Dry Matter Intake',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('16.5 kg'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'ME Intake',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('109.32 Mi/day'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Crude Protein',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('12%'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'NDF',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('40%'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Ca Intake',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('0.40%'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'P Intake',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('0.20%'),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      actions: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('Close'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
+            title: Text(S.of(context).midLactationFeeding),
+            children: [
+              _buildGuidelineTable(
+                context: context,
+                period: S.of(context).midLactationPeriod,
+                dryMatterIntake: S.of(context).kgValue('16.5'),
+                meIntake: S.of(context).mjPerDayValue('149.72'),
+                crudeProtein: S.of(context).percentageValue('14'),
+                ndf: S.of(context).percentageValue('40'),
+                caIntake: S.of(context).percentageValue('0.70'),
+                pIntake: S.of(context).percentageValue('0.35'),
+              ),
+            ],
+          ),
+          ExpansionTile(
+            leading: SvgPicture.asset(
+              'assets/cow_icon.svg',
+              width: 80,
+              height: 80,
             ),
-            ListTile(
-              leading: const Icon(Icons.pets, size: 40),
-              title: const Text('Dry Cow Feeding'),
-              trailing: const Icon(Icons.arrow_forward),
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: const Text('Dry Cow Feeding Guidelines'),
-                      content: SingleChildScrollView(
-                        child: Table(
-                          border: TableBorder.all(color: Colors.black),
-                          columnWidths: const {
-                            0: FlexColumnWidth(1),
-                            1: FlexColumnWidth(2),
-                          },
-                          children: const [
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Period',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('Due to calve in 45 to 60 days'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Dry Matter Intake',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('16.5 kg'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'ME Intake',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('90 MJ/day'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Crude Protein',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('16%'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'NDF',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('40%'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Ca Intake',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('0.40%'),
-                                ),
-                              ],
-                            ),
-                            TableRow(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'P Intake',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text('0.20%'),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      actions: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('Close'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
+            title: Text(S.of(context).lateLactationFeeding),
+            children: [
+              _buildGuidelineTable(
+                context: context,
+                period: S.of(context).lateLactationPeriod,
+                dryMatterIntake: S.of(context).kgValue('16.5'),
+                meIntake: S.of(context).mjPerDayValue('109.32'),
+                crudeProtein: S.of(context).percentageValue('12'),
+                ndf: S.of(context).percentageValue('40'),
+                caIntake: S.of(context).percentageValue('0.40'),
+                pIntake: S.of(context).percentageValue('0.20'),
+              ),
+            ],
+          ),
+          ExpansionTile(
+            leading: SvgPicture.asset(
+              'assets/cow_icon.svg',
+              width: 80,
+              height: 80,
             ),
-          ],
-        ),
+            title: Text(S.of(context).dryCowFeeding),
+            children: [
+              _buildGuidelineTable(
+                context: context,
+                period: S.of(context).dryCowPeriod,
+                dryMatterIntake: S.of(context).kgValue('16.5'),
+                meIntake: S.of(context).mjPerDayValue('90'),
+                crudeProtein: S.of(context).percentageValue('12'),
+                ndf: S.of(context).percentageValue('40'),
+                caIntake: S.of(context).percentageValue('0.40'),
+                pIntake: S.of(context).percentageValue('0.20'),
+              ),
+            ],
+          ),
+        ],
       ),
+    );
+  }
+
+  Widget _buildGuidelineTable({
+    required BuildContext context,
+    required String period,
+    required String dryMatterIntake,
+    required String meIntake,
+    required String crudeProtein,
+    required String ndf,
+    required String caIntake,
+    required String pIntake,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Table(
+        border: TableBorder.all(color: Colors.black),
+        columnWidths: const {
+          0: FlexColumnWidth(1),
+          1: FlexColumnWidth(2),
+        },
+        children: [
+          _buildTableRow(S.of(context).period, period),
+          _buildTableRow(S.of(context).dryMatterIntakeLabel, dryMatterIntake),
+          _buildTableRow(S.of(context).meIntakeLabel, meIntake),
+          _buildTableRow(S.of(context).crudeProteinLabel, crudeProtein),
+          _buildTableRow(S.of(context).ndfLabel, ndf),
+          _buildTableRow(S.of(context).caIntakeLabel, caIntake),
+          _buildTableRow(S.of(context).pIntakeLabel, pIntake),
+        ],
+      ),
+    );
+  }
+
+  TableRow _buildTableRow(String label, String value) {
+    return TableRow(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            label,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(value),
+        ),
+      ],
     );
   }
 }

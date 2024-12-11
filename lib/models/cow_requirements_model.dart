@@ -4,8 +4,8 @@ class CowRequirements {
   final double cpIntake;
   final double ndfIntake;
   final double caIntake;
-  final String pIntake;
-  final String concentrateIntake;
+  final double pIntake;
+  final double concentrateIntake;
 
   CowRequirements(
       {required this.dmIntake,

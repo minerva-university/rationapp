@@ -1,35 +1,42 @@
 import '../../data/nutrition_tables.dart';
+import 'package:flutter/material.dart';
 
 class NutritionCalculator {
-  static double calculateDMRequirement(double liveWeight) {
-    var matchingRow = NutritionTables.weightRequirement.firstWhere(
-      (row) => row["weight"] == liveWeight,
-      orElse: () => {"dm": 0.0},
-    );
+  final BuildContext context;
+
+  NutritionCalculator(this.context);
+  double calculateDMRequirement(int liveWeight) {
+    var matchingRow = NutritionTables(context).weightRequirement.firstWhere(
+          (row) => row["weight"] == liveWeight,
+          orElse: () => {"dm": 0.0},
+        );
     return matchingRow["dm"];
   }
 
-  static double calculateMEIntake(double liveWeight, double pregnancy,
-      double volume, double milkFat, double milkProtein) {
+  double calculateMEIntake(int liveWeight, int pregnancy, double volume,
+      double milkFat, double milkProtein) {
     double meIntake = 0;
 
     // Part 1: ME from live weight
-    var weightRow = NutritionTables.weightRequirement.firstWhere(
-      (row) => row["weight"] == liveWeight,
-      orElse: () => {"meReq": 0.0},
-    );
+    var weightRow = NutritionTables(context).weightRequirement.firstWhere(
+          (row) => row["weight"] == liveWeight,
+          orElse: () => {"meReq": 0.0},
+        );
     meIntake += weightRow["meReq"];
 
     // Part 2: ME from pregnancy
-    var pregnancyRow = NutritionTables.agePregnancyRequirements.firstWhere(
-      (row) => row["pregnancyMonth"] == pregnancy,
-      orElse: () => {"meReq": 0.0},
-    );
+    var pregnancyRow =
+        NutritionTables(context).agePregnancyRequirements.firstWhere(
+              (row) => row["pregnancyMonth"] == pregnancy,
+              orElse: () => {"meReq": 0.0},
+            );
     meIntake += pregnancyRow["meReq"];
 
     // Part 3: ME from milk production
-    if (NutritionTables.energyProteinRequirements.containsKey(milkFat)) {
-      var fatRow = NutritionTables.energyProteinRequirements[milkFat]!;
+    if (NutritionTables(context)
+        .energyProteinRequirements
+        .containsKey(milkFat)) {
+      var fatRow = NutritionTables(context).energyProteinRequirements[milkFat]!;
       if (fatRow.containsKey(milkProtein)) {
         double energyProteinFactor = fatRow[milkProtein]!;
         meIntake += volume * energyProteinFactor;
@@ -39,41 +46,44 @@ class NutritionCalculator {
     return meIntake;
   }
 
-  static double calculateCPIntake(String lactationStage) {
+  double calculateCPIntake(String lactationStage) {
     if (lactationStage.isEmpty) {
       return 0.0;
     }
 
-    var stageReq = NutritionTables.lactationStageRequirements.firstWhere(
-      (req) => req["stage"].toLowerCase() == lactationStage.toLowerCase(),
-      orElse: () => {"proteinReq": 0.0},
-    );
+    var stageReq =
+        NutritionTables(context).lactationStageRequirements.firstWhere(
+              (req) => req["id"].toLowerCase() == lactationStage.toLowerCase(),
+              orElse: () => {"proteinReq": 0.0},
+            );
 
     return stageReq["proteinReq"] / 100;
   }
 
-  static double calculateCaIntake(String lactationStage) {
+  double calculateCaIntake(String lactationStage) {
     if (lactationStage.isEmpty) {
       return 0.0;
     }
 
-    var stageReq = NutritionTables.lactationStageRequirements.firstWhere(
-      (req) => req["stage"].toLowerCase() == lactationStage.toLowerCase(),
-      orElse: () => {"caReq": 0.0},
-    );
+    var stageReq =
+        NutritionTables(context).lactationStageRequirements.firstWhere(
+              (req) => req["id"].toLowerCase() == lactationStage.toLowerCase(),
+              orElse: () => {"caReq": 0.0},
+            );
 
     return stageReq["caReq"];
   }
 
-  static double calculatePIntake(String lactationStage) {
+  double calculatePIntake(String lactationStage) {
     if (lactationStage.isEmpty) {
       return 0.0;
     }
 
-    var stageReq = NutritionTables.lactationStageRequirements.firstWhere(
-      (req) => req["stage"].toLowerCase() == lactationStage.toLowerCase(),
-      orElse: () => {"pReq": 0.0},
-    );
+    var stageReq =
+        NutritionTables(context).lactationStageRequirements.firstWhere(
+              (req) => req["id"].toLowerCase() == lactationStage.toLowerCase(),
+              orElse: () => {"pReq": 0.0},
+            );
 
     return stageReq["pReq"];
   }
