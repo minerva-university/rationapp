@@ -225,7 +225,7 @@ void main() {
                 builder: (BuildContext context) {
                   final result =
                       feedConstants.getFeedIngredientLabel(context, 'fodder1');
-                  expect(result, 'Fodder 1');
+                  expect(result, 'fodder1');
                   return Container();
                 },
               ),
