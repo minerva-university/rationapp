@@ -131,7 +131,6 @@ void main() {
       expect(find.byType(DataTable), findsOneWidget);
 
       // Verify the presence of calculated totals
-      // Note: Using textContaining because the values might be part of larger strings
       final dmTotal = find.textContaining('12.00'); // 8.0 + 4.0
       final meTotal = find.textContaining('135.00'); // 90.0 + 45.0
 
