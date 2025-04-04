@@ -7,6 +7,7 @@ import '../generated/l10n.dart';
 import 'services/persistence_manager.dart';
 import 'feed_state.dart';
 
+// coverage:ignore-start
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPrefsService.init();
@@ -24,6 +25,7 @@ void main() async {
     ),
   );
 }
+// coverage:ignore-end
 
 class RationCalculatorApp extends StatelessWidget {
   const RationCalculatorApp({super.key});
