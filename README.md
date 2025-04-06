@@ -202,6 +202,14 @@ flutter test
 - Developed as part of the [CSARIDE (Climate Smart Agriculture Research and Innovation Support for Dairy Value Chains in Eritrea) project](https://www.csaride.org/)
 - Based on validated feeding calculations provided by dairy nutrition experts
 
+## Quick Demo
+
+https://drive.google.com/file/d/1SWrLI1id3nmioVazO3mt5RVLcD0GxiHE/view?usp=sharing
+
+### With Localization
+
+https://drive.google.com/file/d/1gP4m_uVphBi3CbbMOgZzetGX9MLo5bkG/view?usp=sharing
+
 ---
 
 *For questions or support, please contact somtochiumeh@gmail.com*
